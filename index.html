@@ -1,0 +1,1513 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Auftragspilot — Vom Lead zum Auftrag, automatisiert</title>
+    <meta
+      name="description"
+      content="Auftragspilot automatisiert den Weg von der Anfrage zum Auftrag — Qualifizierung, Angebot und Terminbuchung, ohne dass ein Lead auf Rückruf wartet."
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='10' fill='%231F5C4C'/%3E%3Ctext x='50' y='68' font-family='monospace' font-weight='700' font-size='42' fill='%23EFF1EC' text-anchor='middle'%3EAP%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="nav" id="nav">
+      <div class="nav-inner">
+        <a href="#top" class="nav-brand">
+          <span class="nav-brand-name">Auftragspilot</span>
+          <span class="nav-brand-tag"
+            ><span class="nav-pulse" aria-hidden="true"></span>Vom Lead zum
+            Auftrag</span
+          >
+        </a>
+        <nav class="nav-links" aria-label="Hauptnavigation">
+          <a href="#ablauf">Ablauf</a>
+          <a href="#branchen">Branchen</a>
+          <a href="#loesung">Lösung</a>
+          <a href="#zahlen">Zahlen</a>
+          <a href="#stack">Stack</a>
+          <a href="#ergebnisse">Ergebnisse</a>
+          <a href="#kontakt">Kontakt</a>
+        </nav>
+        <div class="nav-cta-group">
+          <a
+            href="https://wa.me/4915679771598"
+            target="_blank"
+            rel="noopener"
+            class="btn btn-calendly nav-cta"
+            >WhatsApp</a
+          >
+          <a
+            href="https://cal.com/lars-timmermann-lt00/free-intro-call"
+            target="_blank"
+            rel="noopener"
+            class="btn btn-primary nav-cta"
+            >Demo buchen</a
+          >
+        </div>
+        <button
+          class="nav-toggle"
+          id="navToggle"
+          aria-label="Menü öffnen"
+          aria-expanded="false"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <div class="nav-mobile" id="navMobile">
+        <a href="#ablauf">Ablauf</a>
+        <a href="#branchen">Branchen</a>
+        <a href="#loesung">Lösung</a>
+        <a href="#zahlen">Zahlen</a>
+        <a href="#stack">Stack</a>
+        <a href="#ergebnisse">Ergebnisse</a>
+        <a href="#kontakt">Kontakt</a>
+        <a
+          href="https://wa.me/4915679771598"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-calendly"
+          >WhatsApp</a
+        >
+        <a
+          href="https://cal.com/lars-timmermann-lt00/free-intro-call"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-primary"
+          >Demo buchen</a
+        >
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Für High-Ticket-Anbieter</p>
+            <h1>Vom Lead zum<br /><em>Termin</em> — automatisch.</h1>
+            <p class="hero-sub">
+              Auftragspilot antwortet in Sekunden, qualifiziert automatisch und
+              bringt Ihre Leads direkt zum Termin — bevor sie es sich anders
+              überlegen oder bei der Konkurrenz landen.
+            </p>
+            <div class="hero-actions">
+              <a
+                href="https://cal.com/lars-timmermann-lt00/free-intro-call"
+                target="_blank"
+                rel="noopener"
+                class="btn btn-primary btn-lg"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  aria-hidden="true"
+                >
+                  <rect x="3" y="5" width="18" height="16" rx="2" />
+                  <path d="M3 10h18M8 3v4M16 3v4" />
+                </svg>
+                Demo buchen
+              </a>
+              <a
+                href="https://wa.me/4915679771598"
+                target="_blank"
+                rel="noopener"
+                class="btn btn-ghost btn-lg"
+                >Per WhatsApp schreiben</a
+              >
+            </div>
+            <p class="hero-trust">
+              Entwickelt für High-Ticket-Anbieter im deutschsprachigen Raum —
+              <strong>basierend auf einer Analyse von 60 Unternehmen</strong>,
+              von denen keines eine direkte Online-Terminbuchung anbietet.
+            </p>
+          </div>
+
+          <div class="hero-board-wrap">
+            <div class="board">
+              <div class="board-head">
+                <span class="board-dot"></span>
+                <span>LIVE-PROTOKOLL</span>
+              </div>
+              <div class="board-body" id="dispatchBoard">
+                <!-- Zeilen werden per script.js eingefügt -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABLAUF / ROUTING PATH -->
+      <section class="section section-alt" id="ablauf">
+        <div class="container">
+          <p class="eyebrow">Ablauf</p>
+          <h2 class="section-title">Eine Anfrage, von Anfang bis Termin</h2>
+          <p class="section-sub">
+            Der exakte Weg aus dem Protokoll oben — vier Schritte, vollständig
+            automatisiert.
+          </p>
+
+          <div class="path-channels">
+            <div class="channel-badge">Meta Ads / Website</div>
+            <div class="channel-badge channel-wide">WhatsApp</div>
+          </div>
+
+          <div class="path" id="routingPath">
+            <div class="path-packet" aria-hidden="true"></div>
+            <div class="path-stop">
+              <div class="path-time">22:14:08</div>
+              <div class="path-num">1</div>
+              <h3>Anfrage eingegangen</h3>
+              <p>Über Meta Ads oder das Formular auf Ihrer Website.</p>
+            </div>
+            <div class="path-arrow" aria-hidden="true">→</div>
+            <div class="path-stop">
+              <div class="path-time">22:17:47</div>
+              <div class="path-num">2</div>
+              <h3>Qualifiziert</h3>
+              <p>Budget, Bedarf und Dringlichkeit automatisch geprüft.</p>
+            </div>
+            <div class="path-arrow" aria-hidden="true">→</div>
+            <div class="path-stop">
+              <div class="path-time">22:21:12</div>
+              <div class="path-num">3</div>
+              <h3>Angebot erstellt</h3>
+              <p>
+                Automatisch generiert aus Produktparametern und Preisregeln.
+              </p>
+            </div>
+            <div class="path-arrow" aria-hidden="true">→</div>
+            <div class="path-stop">
+              <div class="path-time">22:29:30</div>
+              <div class="path-num">4</div>
+              <h3>Termin gebucht</h3>
+              <p>Per WhatsApp-Link direkt im Kalender (Cal.com/Calendly).</p>
+            </div>
+          </div>
+          <p class="fine-print path-fine-print">
+            Qualifizierung, Angebot und Terminvorschlag laufen vollständig per
+            WhatsApp — der Interessent muss dafür nichts installieren.
+          </p>
+        </div>
+      </section>
+
+      <!-- BRANCHEN -->
+      <section class="section" id="branchen">
+        <div class="container">
+          <p class="eyebrow">Branchen</p>
+          <h2 class="section-title">Für welche Branchen das passt</h2>
+          <p class="section-sub">
+            Auftragspilot ist für High-Ticket-Produkte gebaut — überall dort, wo
+            eine Anfrage erst beraten, qualifiziert oder berechnet werden muss,
+            bevor ein Termin zustande kommt.
+          </p>
+
+          <div class="grid grid-5 industry-grid">
+            <button
+              type="button"
+              class="industry-card"
+              data-modal="modal-branche-immobilien"
+            >
+              <div class="industry-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  aria-hidden="true"
+                >
+                  <rect x="5" y="3" width="14" height="18" rx="1" />
+                  <path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2" />
+                  <path d="M10 21v-4h4v4" />
+                </svg>
+              </div>
+              <h3>Immobilien</h3>
+              <p>Makler, Bauträger, Projektentwickler</p>
+              <span class="industry-card-cta">Use Case ansehen →</span>
+            </button>
+            <button
+              type="button"
+              class="industry-card"
+              data-modal="modal-branche-bau"
+            >
+              <div class="industry-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  aria-hidden="true"
+                >
+                  <path d="M4 11l8-7 8 7" />
+                  <path d="M6 10v10h12V10" />
+                  <circle cx="16" cy="16" r="2.3" />
+                  <path d="M16 12.7v1M16 18.3v1M12.7 16h1M18.3 16h1" />
+                </svg>
+              </div>
+              <h3>Bau &amp; Haustechnik</h3>
+              <p>Wärmepumpen, Treppenlifte, Fenster, Sanierung</p>
+              <span class="industry-card-cta">Use Case ansehen →</span>
+            </button>
+            <button
+              type="button"
+              class="industry-card"
+              data-modal="modal-branche-mobilitaet"
+            >
+              <div class="industry-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M3 13l1.5-5a2 2 0 0 1 2-1.4h11a2 2 0 0 1 2 1.4L21 13"
+                  />
+                  <rect x="3" y="13" width="18" height="4" rx="1" />
+                  <circle cx="7.5" cy="18.3" r="1.5" />
+                  <circle cx="16.5" cy="18.3" r="1.5" />
+                </svg>
+              </div>
+              <h3>Mobilität &amp; Fahrzeuge</h3>
+              <p>Fahrzeughandel, Mobilitätshilfen, Spezialanfertigungen</p>
+              <span class="industry-card-cta">Use Case ansehen →</span>
+            </button>
+            <button
+              type="button"
+              class="industry-card"
+              data-modal="modal-branche-beratung"
+            >
+              <div class="industry-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  aria-hidden="true"
+                >
+                  <rect x="3" y="8" width="18" height="12" rx="1.5" />
+                  <path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                  <path d="M3 13h18" />
+                </svg>
+              </div>
+              <h3>Beratung &amp; Finanzen</h3>
+              <p>
+                Rechtsanwälte, Steuerberater, Finanz- und Versicherungsmakler
+              </p>
+              <span class="industry-card-cta">Use Case ansehen →</span>
+            </button>
+            <button
+              type="button"
+              class="industry-card"
+              data-modal="modal-branche-b2b"
+            >
+              <div class="industry-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  aria-hidden="true"
+                >
+                  <path d="M3 21V11l5 3v-3l5 3v-3l5 3v7H3z" />
+                  <path d="M7 21v-4M12 21v-4M17 21v-4" />
+                </svg>
+              </div>
+              <h3>B2B-Ausrüstung &amp; Industrie</h3>
+              <p>Maschinen, Anlagen, industrielle Zulieferer</p>
+              <span class="industry-card-cta">Use Case ansehen →</span>
+            </button>
+          </div>
+          <p class="fine-print">
+            Platzhalter-Icons statt Fotos — vermeidet Lizenzrisiken bei
+            Stockbildern. Lässt sich später 1:1 gegen echte Branchenfotos
+            tauschen. Klicken Sie eine Branche an für den konkreten Use Case.
+          </p>
+        </div>
+      </section>
+
+      <!-- PROBLEM -->
+      <section class="section section-alt" id="problem">
+        <div class="container">
+          <p class="eyebrow">Ohne System</p>
+          <h2 class="section-title">
+            Die Lücke ist nicht nur die Antwortzeit.
+          </h2>
+          <p class="section-sub">
+            In einer Analyse von 60 High-Ticket-Unternehmen zeigt sich:
+            Innerhalb der Öffnungszeiten antworten viele noch akzeptabel.
+            Außerhalb davon — und bei der Terminbuchung selbst — sieht es anders
+            aus.
+          </p>
+
+          <div class="tickets">
+            <div class="ticket ticket-1">
+              <span class="ticket-time">09:14</span> Formular-Anfrage
+              <span class="ticket-status">kein Termin</span>
+            </div>
+            <div class="ticket ticket-2">
+              <span class="ticket-time">22:15</span> Anfrage, abends
+              <span class="ticket-status">bis morgen?</span>
+            </div>
+            <div class="ticket ticket-3">
+              <span class="ticket-time">11:02</span> Beratungsanfrage
+              <span class="ticket-status">wartet</span>
+            </div>
+            <div class="ticket ticket-4">
+              <span class="ticket-time">13:47</span> Anruf
+              <span class="ticket-status">manuell</span>
+            </div>
+            <div class="ticket ticket-5">
+              <span class="ticket-time">15:20</span> E-Mail
+              <span class="ticket-status">kein Self-Service</span>
+            </div>
+          </div>
+
+          <div class="grid grid-5 problem-grid">
+            <div class="problem-item">
+              <h3>Keine Direktbuchung</h3>
+              <p>
+                0 von 60 untersuchten Unternehmen bieten eine direkte
+                Online-Terminbuchung — der Interessent muss auf einen Rückruf
+                warten.
+              </p>
+            </div>
+            <div class="problem-item">
+              <h3>Tot außerhalb der Öffnungszeiten</h3>
+              <p>
+                Wer abends oder am Wochenende anfragt, wartet oft bis zum
+                nächsten Werktag — in der Zwischenzeit hat er meist schon bei
+                der Konkurrenz angefragt.
+              </p>
+            </div>
+            <div class="problem-item">
+              <h3>Manuelle Angebote</h3>
+              <p>
+                Mitarbeitende kombinieren Kundendaten, Produktparameter und
+                Preisregeln von Hand, bevor ein erstes Angebot rausgeht.
+              </p>
+            </div>
+            <div class="problem-item">
+              <h3>Qualifizierung kostet Zeit</h3>
+              <p>
+                Jede Anfrage muss erst manuell eingeordnet werden, bevor klar
+                ist, ob sie sich überhaupt lohnt.
+              </p>
+            </div>
+            <div class="problem-item">
+              <h3>Jede Lücke kostet Aufträge</h3>
+              <p>
+                Wer zuerst einen Termin anbietet, gewinnt den Auftrag —
+                unabhängig davon, wie gut die Antwort inhaltlich war.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LÖSUNG -->
+      <section class="section" id="loesung">
+        <div class="container">
+          <p class="eyebrow">Die Lösung</p>
+          <h2 class="section-title">Vier Bausteine, ein Weg zum Auftrag</h2>
+          <p class="section-sub">
+            In der Reihenfolge, in der eine echte Anfrage sie durchläuft — von
+            der ersten Sekunde bis zum gebuchten Termin. Klicken Sie auf einen
+            Baustein für den genauen Ablauf.
+          </p>
+
+          <div class="manifest">
+            <button
+              type="button"
+              class="manifest-row"
+              data-modal="modal-sofortantwort"
+            >
+              <span class="manifest-code">SOFORTANTWORT</span>
+              <span class="manifest-title"
+                >Sofortantwort &amp; Qualifizierung</span
+              >
+              <span class="manifest-desc"
+                >Antwortet innerhalb von Sekunden — auch abends und am
+                Wochenende. Jede Anfrage wird direkt nach Budget, Bedarf und
+                Dringlichkeit eingeordnet.</span
+              >
+              <span class="manifest-arrow">→</span>
+            </button>
+            <button
+              type="button"
+              class="manifest-row"
+              data-modal="modal-angebot"
+            >
+              <span class="manifest-code">ANGEBOT</span>
+              <span class="manifest-title"
+                >Automatisierte Angebotserstellung</span
+              >
+              <span class="manifest-desc"
+                >Produktparameter und Preisregeln erzeugen im Regelfall
+                automatisch ein erstes, individuelles Angebot.</span
+              >
+              <span class="manifest-arrow">→</span>
+            </button>
+            <button
+              type="button"
+              class="manifest-row"
+              data-modal="modal-followup"
+            >
+              <span class="manifest-code">FOLLOW-UP</span>
+              <span class="manifest-title">Follow-up per Chat &amp; Anruf</span>
+              <span class="manifest-desc"
+                >Bucht ein Interessent nicht sofort, übernimmt die automatische
+                Nachverfolgung — per Chat und, wenn nötig, mit einem Anruf der
+                Voice-KI.</span
+              >
+              <span class="manifest-arrow">→</span>
+            </button>
+            <button
+              type="button"
+              class="manifest-row"
+              data-modal="modal-termin"
+            >
+              <span class="manifest-code">TERMIN</span>
+              <span class="manifest-title">Direkte Terminbuchung</span>
+              <span class="manifest-desc"
+                >Der Interessent bucht direkt online — kein Rückruf, keine
+                Wartezeit, kein verlorener Lead.</span
+              >
+              <span class="manifest-arrow">→</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ZAHLEN / KPI -->
+      <section class="section section-alt" id="zahlen">
+        <div class="container">
+          <p class="eyebrow">Zahlen</p>
+          <h2 class="section-title">Was Geschwindigkeit wert ist</h2>
+          <p class="section-sub">
+            Eine Audit-Studie von 2.241 US-Unternehmen zeigt, wie stark
+            Reaktionszeit die Abschlusswahrscheinlichkeit beeinflusst. Quelle
+            anklicken für den Original-Beleg.
+          </p>
+
+          <div class="grid grid-2 stat-grid">
+            <div class="stat-card">
+              <span class="stat-number">21×</span>
+              <span class="stat-label"
+                >wahrscheinlicher qualifiziert bei Kontakt innerhalb von 5 statt
+                30 Minuten</span
+              >
+              <a
+                class="stat-source"
+                href="https://hbr.org/2011/03/the-short-life-of-online-sales-leads"
+                target="_blank"
+                rel="noopener"
+                >Oldroyd et al., Harvard Business Review (2011) ↗</a
+              >
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">42 Std.</span>
+              <span class="stat-label"
+                >durchschnittliche B2B-Antwortzeit — 23&nbsp;% antworten
+                überhaupt nicht</span
+              >
+              <a
+                class="stat-source"
+                href="https://hbr.org/2011/03/the-short-life-of-online-sales-leads"
+                target="_blank"
+                rel="noopener"
+                >Oldroyd et al., Harvard Business Review (2011) ↗</a
+              >
+            </div>
+          </div>
+
+          <div class="stat-divider">Ihre eigenen Zahlen</div>
+
+          <p class="section-sub">
+            Platzhalter — werden durch echte Werte ersetzt, sobald die ersten
+            Kundendaten vorliegen.
+          </p>
+
+          <div class="grid grid-4 stat-grid">
+            <div class="stat-card">
+              <span class="stat-number">[XX] Min</span>
+              <span class="stat-label">Ø Zeit bis zum gebuchten Termin</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">[XX]%</span>
+              <span class="stat-label">Conversion-Rate Anfrage → Termin</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">[XX]</span>
+              <span class="stat-label">zusätzliche Termine pro Monat</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">[XXX]%</span>
+              <span class="stat-label">ROI nach 90 Tagen</span>
+            </div>
+          </div>
+          <p class="fine-print">
+            Platzhalterwerte — keine belegten Kennzahlen, bis die erste
+            Kundenauswertung vorliegt.
+          </p>
+        </div>
+      </section>
+
+      <!-- SO FUNKTIONIERT'S / WALKTHROUGH -->
+      <section class="section" id="so-funktionierts">
+        <div class="container">
+          <p class="eyebrow">So funktioniert's</p>
+          <h2 class="section-title">Sehen Sie eine Anfrage live durchlaufen</h2>
+          <p class="section-sub">
+            Der exakte Ablauf aus dem Protokoll oben — einmal vollständig
+            aufgezeichnet, vom Formular bis zum bestätigten Termin.
+          </p>
+
+          <div class="demo-frame">
+            <div class="demo-frame-head">
+              <span class="board-dot"></span>
+              <span>ablauf-demo.mp4</span>
+            </div>
+            <div class="demo-frame-body">
+              <button
+                type="button"
+                class="demo-play"
+                aria-label="Video abspielen"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  width="22"
+                  height="22"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </button>
+              <p class="demo-placeholder-label">
+                Vollständiges Video — folgt in Kürze
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STACK -->
+      <section class="section section-alt" id="stack">
+        <div class="container">
+          <p class="eyebrow">Tech-Stack</p>
+          <h2 class="section-title">
+            Gebaut auf Tools, die Sie bereits kennen
+          </h2>
+          <p class="section-sub">
+            Keine Blackbox. Wir arbeiten in den Plattformen, die Sie schon
+            nutzen — Sie behalten die volle Kontrolle.
+          </p>
+
+          <div class="stack-groups">
+            <div class="stack-group">
+              <p class="stack-group-label">CRM</p>
+              <div class="stack-grid">
+                <span class="stamp stamp-logo"
+                  ><img src="assets/hubspot.png" alt="HubSpot"
+                /></span>
+                <span class="stamp stamp-logo"
+                  ><img src="assets/pipedrive.png" alt="Pipedrive"
+                /></span>
+                <span class="stamp stamp-logo"
+                  ><img src="assets/close-crm.png" alt="Close CRM"
+                /></span>
+              </div>
+            </div>
+            <div class="stack-group">
+              <p class="stack-group-label">Termin</p>
+              <div class="stack-grid">
+                <span class="stamp stamp-logo"
+                  ><img src="assets/cal-com.png" alt="Cal.com"
+                /></span>
+                <span class="stamp stamp-logo"
+                  ><img src="assets/calendly.png" alt="Calendly"
+                /></span>
+              </div>
+            </div>
+            <div class="stack-group">
+              <p class="stack-group-label">Automatisierung</p>
+              <div class="stack-grid">
+                <span class="stamp stamp-logo"
+                  ><img src="assets/n8n.png" alt="n8n"
+                /></span>
+                <span class="stamp stamp-logo"
+                  ><img src="assets/zapier.png" alt="Zapier"
+                /></span>
+                <span class="stamp stamp-logo"
+                  ><img src="assets/make.png" alt="Make"
+                /></span>
+              </div>
+            </div>
+            <div class="stack-group">
+              <p class="stack-group-label">Kommunikation</p>
+              <div class="stack-grid">
+                <span class="stamp stamp-logo"
+                  ><img src="assets/whatsapp.png" alt="WhatsApp"
+                /></span>
+              </div>
+            </div>
+            <div class="stack-group">
+              <p class="stack-group-label">Voice</p>
+              <div class="stack-grid">
+                <span class="stamp stamp-logo"
+                  ><img src="assets/fonio.png" alt="Fonio"
+                /></span>
+                <span class="stamp stamp-logo"
+                  ><img src="assets/vapi.png" alt="VAPI"
+                /></span>
+                <span class="stamp stamp-logo"
+                  ><img src="assets/twilio.png" alt="Twilio"
+                /></span>
+              </div>
+            </div>
+            <div class="stack-group">
+              <p class="stack-group-label">Leads</p>
+              <div class="stack-grid">
+                <span class="stamp stamp-logo"
+                  ><img src="assets/meta-ads.png" alt="Meta Ads"
+                /></span>
+              </div>
+            </div>
+          </div>
+          <p class="fine-print">
+            Plus individuelle Anbindungen, wo immer Ihr Betrieb es braucht.
+          </p>
+        </div>
+      </section>
+
+      <!-- ERGEBNISSE / TESTIMONIALS -->
+      <section class="section" id="ergebnisse">
+        <div class="container">
+          <p class="eyebrow">Ergebnisse</p>
+          <h2 class="section-title">Was Kunden sagen</h2>
+
+          <div class="grid grid-3 transmission-grid">
+            <div class="transmission">
+              <div class="transmission-head">
+                <span class="transmission-tag">BESTÄTIGT</span>
+              </div>
+              <p class="transmission-quote">
+                „[Kurzes Zitat dieses Kunden über das erzielte Ergebnis]"
+              </p>
+              <div class="transmission-author">
+                <span class="transmission-logo">A</span>
+                <div>
+                  <h4>Kunde A</h4>
+                  <p>Immobilienmakler</p>
+                </div>
+              </div>
+            </div>
+            <div class="transmission">
+              <div class="transmission-head">
+                <span class="transmission-tag">BESTÄTIGT</span>
+              </div>
+              <p class="transmission-quote">
+                „[Kurzes Zitat dieses Kunden über das erzielte Ergebnis]"
+              </p>
+              <div class="transmission-author">
+                <span class="transmission-logo">B</span>
+                <div>
+                  <h4>Kunde B</h4>
+                  <p>Beratungsunternehmen</p>
+                </div>
+              </div>
+            </div>
+            <div class="transmission">
+              <div class="transmission-head">
+                <span class="transmission-tag">BESTÄTIGT</span>
+              </div>
+              <p class="transmission-quote">
+                „[Kurzes Zitat dieses Kunden über das erzielte Ergebnis]"
+              </p>
+              <div class="transmission-author">
+                <span class="transmission-logo">C</span>
+                <div>
+                  <h4>Kunde C</h4>
+                  <p>Handwerksbetrieb</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="fine-print">
+            Platzhalter-Testimonials — werden durch echte Kundenstimmen ersetzt,
+            bevor die Seite Interessenten gezeigt wird.
+          </p>
+        </div>
+      </section>
+
+      <!-- ÜBER UNS -->
+      <section class="section section-alt" id="ueber-uns">
+        <div class="container about-grid">
+          <div class="about-copy">
+            <p class="eyebrow">Der Kopf dahinter</p>
+            <h2 class="section-title">
+              Von Amazon, PwC und KPMG zu Auftragspilot
+            </h2>
+            <p>
+              Hinter Auftragspilot steht Lars Timmermann. Vor dem Aufbau
+              automatisierter Systeme verbrachte er drei Jahre im operativen
+              Geschäft bei Amazon — fünf Rotationen über Retail Finance,
+              Produkt- und Vendor-Management — gefolgt von
+              Finance-Transformation-Beratung bei PwC, Prüfung bei KPMG und
+              M&amp;A bei DealCircle. Dort hat er gelernt, wie reale Betriebe
+              tatsächlich laufen — und wo der Prozess bricht.
+            </p>
+            <p>
+              Später baute er KI-Automatisierung und Voice-Agenten bei AI Union
+              &amp; SalesFrank — praktische Erfahrung mit echten Kundensystemen,
+              nicht nur Theorie. Auftragspilot bündelt diese Erfahrung in einem
+              fokussierten Produkt für High-Ticket-Anbieter im deutschsprachigen
+              Raum.
+            </p>
+          </div>
+          <div class="about-visual">
+            <div class="about-photo">
+              <img
+                src="assets/lars.jpg"
+                alt="Porträt von Lars Timmermann"
+                width="400"
+                height="400"
+              />
+            </div>
+            <div class="about-logos">
+              <p class="about-logos-label">Berufliche Stationen</p>
+              <div class="logo-row">
+                <img src="assets/amazon.png" alt="Amazon" class="logo-amazon" />
+                <img src="assets/pwc.png" alt="PwC" class="logo-pwc" />
+                <img src="assets/kpmg.png" alt="KPMG" class="logo-kpmg" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- KONTAKT -->
+      <section class="section contact-section" id="kontakt">
+        <div class="container contact-inner">
+          <p class="eyebrow">Kontakt</p>
+          <h2 class="section-title">
+            Lassen Sie uns über Ihre Anfragen sprechen
+          </h2>
+          <p class="section-sub">
+            Schnellster Weg — WhatsApp. Oder direkt einen Termin buchen.
+          </p>
+          <div class="contact-actions">
+            <a
+              href="https://wa.me/4915679771598"
+              target="_blank"
+              rel="noopener"
+              class="btn btn-primary btn-lg"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                width="18"
+                height="18"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.86 9.86 0 0 0 4.74 1.21h.004c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.13h-.003a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.22 8.22 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.21-8.25 8.21z"
+                />
+              </svg>
+              +49 156 7977 1598
+            </a>
+            <a
+              href="mailto:lars.timmermann.ai@gmail.com"
+              class="btn btn-ghost btn-lg"
+              >lars.timmermann.ai@gmail.com</a
+            >
+            <a
+              href="https://www.linkedin.com/in/lars-timmermann-428841194/"
+              target="_blank"
+              rel="noopener"
+              class="btn btn-ghost btn-lg"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                width="16"
+                height="16"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"
+                />
+              </svg>
+              LinkedIn
+            </a>
+          </div>
+          <div class="contact-calendly">
+            <a
+              href="https://cal.com/lars-timmermann-lt00/free-intro-call"
+              class="btn btn-calendly btn-lg"
+              target="_blank"
+              rel="noopener"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                width="18"
+                height="18"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                aria-hidden="true"
+              >
+                <rect x="3" y="5" width="18" height="16" rx="2" />
+                <path d="M3 10h18M8 3v4M16 3v4" />
+              </svg>
+              Demo buchen
+            </a>
+            <p class="contact-calendly-note">
+              30 Min · Kostenlos · Unverbindlich.
+            </p>
+          </div>
+          <p class="status-line">
+            <span class="status-dot"></span> STATUS: AUFNAHMEFÄHIG FÜR NEUE
+            PROJEKTE
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <span class="nav-brand-name">Auftragspilot</span>
+          <span class="nav-brand-tag">Vom Lead zum Auftrag</span>
+        </div>
+        <nav class="footer-links" aria-label="Footer-Navigation">
+          <a href="#loesung">Lösung</a>
+          <a href="#ablauf">Ablauf</a>
+          <a href="#zahlen">Zahlen</a>
+          <a href="#stack">Stack</a>
+          <a href="#ergebnisse">Ergebnisse</a>
+          <a href="#kontakt">Kontakt</a>
+        </nav>
+        <div class="footer-contact">
+          <a href="https://wa.me/4915679771598" target="_blank" rel="noopener"
+            >WhatsApp</a
+          >
+          <a href="mailto:lars.timmermann.ai@gmail.com">E-Mail</a>
+          <a
+            href="https://www.linkedin.com/in/lars-timmermann-428841194/"
+            target="_blank"
+            rel="noopener"
+            >LinkedIn</a
+          >
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          © <span id="year"></span> Auftragspilot. Ein Produkt von Lars
+          Timmermann, Deutschland.
+        </p>
+      </div>
+    </footer>
+
+    <!-- MODALS -->
+    <div class="modal-overlay" id="modal-termin" aria-hidden="true">
+      <div
+        class="modal-box"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-termin-title"
+      >
+        <button
+          type="button"
+          class="modal-close"
+          data-close
+          aria-label="Schließen"
+        >
+          ×
+        </button>
+        <span class="modal-eyebrow">Lösung · Termin</span>
+        <h3 id="modal-termin-title">Direkte Terminbuchung</h3>
+        <p class="modal-intro">
+          Der Baustein, der den größten Unterschied macht. 0 von 60 untersuchten
+          Wettbewerbern bieten das.
+        </p>
+        <div class="modal-flow">
+          <div class="modal-flow-step">
+            <span class="modal-flow-num">1</span>
+            <div>
+              <h4>Anfrage trifft ein</h4>
+              <p>Formular, Anruf oder Meta Ads.</p>
+            </div>
+          </div>
+          <div class="modal-flow-step">
+            <span class="modal-flow-num">2</span>
+            <div>
+              <h4>Qualifizierung läuft automatisch</h4>
+              <p>Budget &amp; Bedarf werden geprüft.</p>
+            </div>
+          </div>
+          <div class="modal-flow-step">
+            <span class="modal-flow-num">3</span>
+            <div>
+              <h4>Verfügbare Termine werden angezeigt</h4>
+              <p>Direkt im Chat oder per Link.</p>
+            </div>
+          </div>
+          <div class="modal-flow-step">
+            <span class="modal-flow-num">4</span>
+            <div>
+              <h4>Termin ist gebucht</h4>
+              <p>Bestätigung und Erinnerung laufen automatisch.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-sofortantwort" aria-hidden="true">
+      <div
+        class="modal-box"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-sofortantwort-title"
+      >
+        <button
+          type="button"
+          class="modal-close"
+          data-close
+          aria-label="Schließen"
+        >
+          ×
+        </button>
+        <span class="modal-eyebrow">Lösung · Sofortantwort</span>
+        <h3 id="modal-sofortantwort-title">
+          Sofortantwort &amp; Qualifizierung
+        </h3>
+        <p class="modal-intro">
+          Die ersten Minuten entscheiden. Wer zuerst antwortet, gewinnt oft den
+          Auftrag — egal, wie gut die spätere Antwort gewesen wäre.
+        </p>
+        <div class="modal-flow">
+          <div class="modal-flow-step">
+            <span class="modal-flow-num">1</span>
+            <div>
+              <h4>Anfrage kommt rein</h4>
+              <p>Egal über welchen Kanal, egal zu welcher Uhrzeit.</p>
+            </div>
+          </div>
+          <div class="modal-flow-step">
+            <span class="modal-flow-num">2</span>
+            <div>
+              <h4>Antwort innerhalb von Sekunden</h4>
+              <p>Auch abends, am Wochenende, an Feiertagen.</p>
+            </div>
+          </div>
+          <div class="modal-flow-step">
+            <span class="modal-flow-num">3</span>
+            <div>
+              <h4>KI stellt Rückfragen</h4>
+              <p>Budget, Zeitrahmen, Details zum Vorhaben.</p>
+            </div>
+          </div>
+          <div class="modal-flow-step">
+            <span class="modal-flow-num">4</span>
+            <div>
+              <h4>Anfrage wird bewertet</h4>
+              <p>Heiß, warm oder unpassend — nur Relevantes geht weiter.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-angebot" aria-hidden="true">
+      <div
+        class="modal-box"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-angebot-title"
+      >
+        <button
+          type="button"
+          class="modal-close"
+          data-close
+          aria-label="Schließen"
+        >
+          ×
+        </button>
+        <span class="modal-eyebrow">Lösung · Angebot</span>
+        <h3 id="modal-angebot-title">Automatisierte Angebotserstellung</h3>
+        <p class="modal-intro">
+          Aus Produktparametern und Preisregeln entsteht automatisch ein erstes,
+          individuelles Angebot.
+        </p>
+        <div class="modal-flow">
+          <div class="modal-flow-step">
+            <span class="modal-flow-num">1</span>
+            <div>
+              <h4>Strukturierte Daten erfasst</h4>
+              <p>Z. B. Umfang, Ausstattung, Standort des Vorhabens.</p>
+            </div>
+          </div>
+          <div class="modal-flow-step">
+            <span class="modal-flow-num">2</span>
+            <div>
+              <h4>Preislogik angewendet</h4>
+              <p>Deterministisch und nachvollziehbar.</p>
+            </div>
+          </div>
+          <div class="modal-flow-step">
+            <span class="modal-flow-num">3</span>
+            <div>
+              <h4>Erstangebot automatisch erstellt</h4>
+              <p>Als PDF oder direkt im Chat.</p>
+            </div>
+          </div>
+          <div class="modal-flow-step">
+            <span class="modal-flow-num">4</span>
+            <div>
+              <h4>Kunde erhält Angebot</h4>
+              <p>Meist innerhalb von Minuten statt Tagen.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-followup" aria-hidden="true">
+      <div
+        class="modal-box"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-followup-title"
+      >
+        <button
+          type="button"
+          class="modal-close"
+          data-close
+          aria-label="Schließen"
+        >
+          ×
+        </button>
+        <span class="modal-eyebrow">Lösung · Follow-up</span>
+        <h3 id="modal-followup-title">Follow-up per Chat &amp; Anruf</h3>
+        <p class="modal-intro">
+          Die meisten Anbieter geben nach einer Chat-Nachricht auf.
+          Auftragspilot nicht — und genau das unterscheidet uns von reinen
+          Chat-Tools.
+        </p>
+        <div class="modal-flow">
+          <div class="modal-flow-step">
+            <span class="modal-flow-num">1</span>
+            <div>
+              <h4>Keine Buchung erfolgt</h4>
+              <p>Trotz Angebot meldet sich der Interessent nicht zurück.</p>
+            </div>
+          </div>
+          <div class="modal-flow-step">
+            <span class="modal-flow-num">2</span>
+            <div>
+              <h4>Automatische Chat-Nachricht</h4>
+              <p>Freundliche Erinnerung, passend zum Gesprächsverlauf.</p>
+            </div>
+          </div>
+          <div class="modal-flow-step">
+            <span class="modal-flow-num">3</span>
+            <div>
+              <h4>Voice-KI ruft an</h4>
+              <p>Wenn der Chat nicht reicht — ein echtes Telefonat.</p>
+            </div>
+          </div>
+          <div class="modal-flow-step">
+            <span class="modal-flow-num">4</span>
+            <div>
+              <h4>Termin wird direkt im Gespräch gebucht</h4>
+              <p>Oder der Lead wird sauber als "kein Interesse" geschlossen.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BRANCHEN-MODALS -->
+    <div class="modal-overlay" id="modal-branche-immobilien" aria-hidden="true">
+      <div
+        class="modal-box modal-box-wide"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-branche-immobilien-title"
+      >
+        <button
+          type="button"
+          class="modal-close"
+          data-close
+          aria-label="Schließen"
+        >
+          ×
+        </button>
+        <span class="modal-eyebrow">Branche · Immobilien</span>
+        <h3 id="modal-branche-immobilien-title">
+          Makler, Bauträger &amp; Projektentwickler
+        </h3>
+        <p class="modal-intro">
+          Ein Interessent sieht eine Anzeige für ein Neubauprojekt und schreibt
+          über WhatsApp oder das Exposé-Formular. Auftragspilot fragt Budget,
+          Wunschlage und Finanzierungsstatus ab, verschickt das passende Exposé
+          automatisch und bucht die Besichtigung direkt im Kalender des Maklers.
+        </p>
+        <div class="demo-frame demo-frame-modal">
+          <div class="demo-frame-head">
+            <span class="board-dot"></span>
+            <span>immobilien-use-case.mp4</span>
+          </div>
+          <div class="demo-frame-body">
+            <button
+              type="button"
+              class="demo-play"
+              aria-label="Video abspielen"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                width="22"
+                height="22"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </button>
+            <p class="demo-placeholder-label">
+              Branchen-Video — folgt in Kürze
+            </p>
+          </div>
+        </div>
+        <div class="modal-stats">
+          <div class="modal-stat">
+            <span class="modal-stat-number">[XX]%</span>
+            <span class="modal-stat-label"
+              >mehr wahrgenommene Besichtigungstermine pro Woche</span
+            >
+          </div>
+          <div class="modal-stat">
+            <span class="modal-stat-number">[XX] Min</span>
+            <span class="modal-stat-label"
+              >von Anfrage bis gebuchtem Besichtigungstermin</span
+            >
+          </div>
+        </div>
+        <p class="fine-print">
+          Platzhalter — wird durch echte Branchen-Kennzahlen ersetzt, sobald die
+          ersten Kunden-Cases aus dieser Branche vorliegen.
+        </p>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-branche-bau" aria-hidden="true">
+      <div
+        class="modal-box modal-box-wide"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-branche-bau-title"
+      >
+        <button
+          type="button"
+          class="modal-close"
+          data-close
+          aria-label="Schließen"
+        >
+          ×
+        </button>
+        <span class="modal-eyebrow">Branche · Bau &amp; Haustechnik</span>
+        <h3 id="modal-branche-bau-title">
+          Wärmepumpen, Treppenlifte &amp; Sanierung
+        </h3>
+        <p class="modal-intro">
+          Ein Interessent fragt über ein Wärmepumpen- oder Treppenlift-Formular
+          an. Auftragspilot klärt Objektdaten — Haustyp, vorhandenes Heizsystem
+          bzw. Treppenform — erstellt eine erste Kostenschätzung und schlägt
+          direkt einen Termin für die Vor-Ort-Vermessung vor.
+        </p>
+        <div class="demo-frame demo-frame-modal">
+          <div class="demo-frame-head">
+            <span class="board-dot"></span>
+            <span>bau-haustechnik-use-case.mp4</span>
+          </div>
+          <div class="demo-frame-body">
+            <button
+              type="button"
+              class="demo-play"
+              aria-label="Video abspielen"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                width="22"
+                height="22"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </button>
+            <p class="demo-placeholder-label">
+              Branchen-Video — folgt in Kürze
+            </p>
+          </div>
+        </div>
+        <div class="modal-stats">
+          <div class="modal-stat">
+            <span class="modal-stat-number">[XX]%</span>
+            <span class="modal-stat-label"
+              >weniger unqualifizierte Vor-Ort-Termine</span
+            >
+          </div>
+          <div class="modal-stat">
+            <span class="modal-stat-number">[XX] Std.</span>
+            <span class="modal-stat-label"
+              >statt [XX] Tage bis zur ersten Kostenschätzung</span
+            >
+          </div>
+        </div>
+        <p class="fine-print">
+          Platzhalter — wird durch echte Branchen-Kennzahlen ersetzt, sobald die
+          ersten Kunden-Cases aus dieser Branche vorliegen.
+        </p>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-branche-mobilitaet" aria-hidden="true">
+      <div
+        class="modal-box modal-box-wide"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-branche-mobilitaet-title"
+      >
+        <button
+          type="button"
+          class="modal-close"
+          data-close
+          aria-label="Schließen"
+        >
+          ×
+        </button>
+        <span class="modal-eyebrow">Branche · Mobilität &amp; Fahrzeuge</span>
+        <h3 id="modal-branche-mobilitaet-title">
+          Fahrzeughandel &amp; Mobilitätshilfen
+        </h3>
+        <p class="modal-intro">
+          Ein Interessent fragt nach einem Fahrzeug oder einer Mobilitätshilfe —
+          etwa einer Rollstuhlrampe oder einem Fahrzeugumbau — an. Auftragspilot
+          klärt Anforderungen und Budget, verschickt ein passendes Angebot und
+          bucht direkt eine Probefahrt oder Beratung.
+        </p>
+        <div class="demo-frame demo-frame-modal">
+          <div class="demo-frame-head">
+            <span class="board-dot"></span>
+            <span>mobilitaet-use-case.mp4</span>
+          </div>
+          <div class="demo-frame-body">
+            <button
+              type="button"
+              class="demo-play"
+              aria-label="Video abspielen"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                width="22"
+                height="22"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </button>
+            <p class="demo-placeholder-label">
+              Branchen-Video — folgt in Kürze
+            </p>
+          </div>
+        </div>
+        <div class="modal-stats">
+          <div class="modal-stat">
+            <span class="modal-stat-number">[XX]%</span>
+            <span class="modal-stat-label"
+              >schnellere Erstantwort gegenüber Rückruf</span
+            >
+          </div>
+          <div class="modal-stat">
+            <span class="modal-stat-number">[XX]</span>
+            <span class="modal-stat-label"
+              >zusätzliche Probefahrten/Beratungen pro Monat</span
+            >
+          </div>
+        </div>
+        <p class="fine-print">
+          Platzhalter — wird durch echte Branchen-Kennzahlen ersetzt, sobald die
+          ersten Kunden-Cases aus dieser Branche vorliegen.
+        </p>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-branche-beratung" aria-hidden="true">
+      <div
+        class="modal-box modal-box-wide"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-branche-beratung-title"
+      >
+        <button
+          type="button"
+          class="modal-close"
+          data-close
+          aria-label="Schließen"
+        >
+          ×
+        </button>
+        <span class="modal-eyebrow">Branche · Beratung &amp; Finanzen</span>
+        <h3 id="modal-branche-beratung-title">
+          Rechtsanwälte, Steuerberater &amp; Finanzmakler
+        </h3>
+        <p class="modal-intro">
+          Ein Mandant fragt über die Website oder eine Empfehlung nach einer
+          Erstberatung an. Auftragspilot klärt das Anliegen — etwa Rechtsgebiet
+          oder Finanzierungsart — prüft die grobe Eignung und bucht direkt einen
+          Ersttermin im Kalender des Beraters.
+        </p>
+        <div class="demo-frame demo-frame-modal">
+          <div class="demo-frame-head">
+            <span class="board-dot"></span>
+            <span>beratung-finanzen-use-case.mp4</span>
+          </div>
+          <div class="demo-frame-body">
+            <button
+              type="button"
+              class="demo-play"
+              aria-label="Video abspielen"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                width="22"
+                height="22"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </button>
+            <p class="demo-placeholder-label">
+              Branchen-Video — folgt in Kürze
+            </p>
+          </div>
+        </div>
+        <div class="modal-stats">
+          <div class="modal-stat">
+            <span class="modal-stat-number">[XX]%</span>
+            <span class="modal-stat-label"
+              >weniger No-Shows durch automatische Erinnerung</span
+            >
+          </div>
+          <div class="modal-stat">
+            <span class="modal-stat-number">[XX] Min</span>
+            <span class="modal-stat-label"
+              >von Anfrage bis gebuchtem Ersttermin</span
+            >
+          </div>
+        </div>
+        <p class="fine-print">
+          Platzhalter — wird durch echte Branchen-Kennzahlen ersetzt, sobald die
+          ersten Kunden-Cases aus dieser Branche vorliegen.
+        </p>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-branche-b2b" aria-hidden="true">
+      <div
+        class="modal-box modal-box-wide"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-branche-b2b-title"
+      >
+        <button
+          type="button"
+          class="modal-close"
+          data-close
+          aria-label="Schließen"
+        >
+          ×
+        </button>
+        <span class="modal-eyebrow"
+          >Branche · B2B-Ausrüstung &amp; Industrie</span
+        >
+        <h3 id="modal-branche-b2b-title">
+          Maschinen, Anlagen &amp; Zulieferer
+        </h3>
+        <p class="modal-intro">
+          Ein Einkäufer fragt eine Maschine oder Anlage an. Auftragspilot
+          erfasst technische Eckdaten — Stückzahl, Spezifikation, Lieferort —
+          erstellt eine erste Grobkalkulation und vereinbart ein Fachgespräch
+          mit dem Vertrieb.
+        </p>
+        <div class="demo-frame demo-frame-modal">
+          <div class="demo-frame-head">
+            <span class="board-dot"></span>
+            <span>b2b-industrie-use-case.mp4</span>
+          </div>
+          <div class="demo-frame-body">
+            <button
+              type="button"
+              class="demo-play"
+              aria-label="Video abspielen"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                width="22"
+                height="22"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </button>
+            <p class="demo-placeholder-label">
+              Branchen-Video — folgt in Kürze
+            </p>
+          </div>
+        </div>
+        <div class="modal-stats">
+          <div class="modal-stat">
+            <span class="modal-stat-number">[XX]%</span>
+            <span class="modal-stat-label"
+              >schnellere Erstreaktion auf Anfragen</span
+            >
+          </div>
+          <div class="modal-stat">
+            <span class="modal-stat-number">[XX]</span>
+            <span class="modal-stat-label"
+              >qualifizierte Anfragen zusätzlich pro Monat</span
+            >
+          </div>
+        </div>
+        <p class="fine-print">
+          Platzhalter — wird durch echte Branchen-Kennzahlen ersetzt, sobald die
+          ersten Kunden-Cases aus dieser Branche vorliegen.
+        </p>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
