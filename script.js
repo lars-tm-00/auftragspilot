@@ -18,12 +18,22 @@ document.querySelectorAll(".nav-mobile a").forEach((link) => {
 });
 
 // Dispatch board — signature animation, mirrors the Ablauf section
-const dispatchLines = [
-  { t: "22:14:08", label: "ANFRAGE EINGEGANGEN", d: "Formular / Meta Ads" },
-  { t: "22:17:47", label: "QUALIFIZIERT", d: "per WhatsApp beantwortet" },
-  { t: "22:21:12", label: "ANGEBOT ERSTELLT", d: "automatisch generiert" },
-  { t: "22:29:30", label: "TERMIN GEBUCHT ✓", d: "Mo. 10:00 bestätigt" },
-];
+const dispatchLinesByLang = {
+  de: [
+    { t: "22:14:08", label: "ANFRAGE EINGEGANGEN", d: "Formular / Meta Ads" },
+    { t: "22:17:47", label: "QUALIFIZIERT", d: "per WhatsApp beantwortet" },
+    { t: "22:21:12", label: "ANGEBOT ERSTELLT", d: "automatisch generiert" },
+    { t: "22:29:30", label: "TERMIN GEBUCHT ✓", d: "Mo. 10:00 bestätigt" },
+  ],
+  en: [
+    { t: "22:14:08", label: "REQUEST RECEIVED", d: "form / Meta Ads" },
+    { t: "22:17:47", label: "QUALIFIED", d: "answered via WhatsApp" },
+    { t: "22:21:12", label: "QUOTE CREATED", d: "generated automatically" },
+    { t: "22:29:30", label: "APPOINTMENT BOOKED ✓", d: "Mon 10:00 confirmed" },
+  ],
+};
+const LANG = document.documentElement.lang === "de" ? "de" : "en";
+const dispatchLines = dispatchLinesByLang[LANG];
 
 const board = document.getElementById("dispatchBoard");
 

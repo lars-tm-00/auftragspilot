@@ -1565,3 +1565,71 @@ a.stat-source:hover {
     gap: 14px;
   }
 }
+
+/* Nav robustness for longer (German) labels */
+.nav-brand,
+.nav-logo {
+  flex-shrink: 0;
+}
+
+.nav-links a {
+  white-space: nowrap;
+}
+
+.nav-links {
+  gap: 22px;
+}
+
+.nav-cta-group .btn {
+  white-space: nowrap;
+}
+
+/* Language switch */
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
+}
+
+.lang-switch a {
+  color: var(--ink-faint);
+  text-decoration: none;
+  padding: 2px 3px;
+}
+
+.lang-switch a:hover {
+  color: var(--ink);
+}
+
+.lang-switch a.active {
+  color: var(--route);
+  font-weight: 600;
+}
+
+.lang-switch span {
+  color: var(--line-strong);
+}
+
+.nav-mobile .lang-switch {
+  margin: 4px 0 8px;
+}
+
+.nav-mobile .lang-switch a {
+  padding: 2px 3px;
+  border-bottom: none;
+  font-size: 0.8rem;
+}
+
+/* Collapse to the menu earlier: language switch + longer labels need room */
+@media (max-width: 1120px) {
+  .nav-links,
+  .nav-cta-group {
+    display: none;
+  }
+  .nav-toggle {
+    display: flex;
+  }
+}
