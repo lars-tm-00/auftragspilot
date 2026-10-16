@@ -9,7 +9,7 @@
     <title>Auftragspilot · Vom Lead zum Termin, automatisch</title>
     <meta
       name="description"
-      content="Auftragspilot antwortet in Sekunden, qualifiziert automatisch und bringt Ihre Leads direkt zum Termin, bevor sie bei der Konkurrenz landen."
+      content="Auftragspilot antwortet in unter einer Minute, qualifiziert automatisch und bringt Ihre Leads direkt zum Termin, bevor sie bei der Konkurrenz landen."
     />
     <link
       rel="icon"
@@ -1034,36 +1034,35 @@
             <div class="col col--mit">
               <div class="col__head">
                 <span class="tag">Mit Auftragspilot</span>
-                <h2>Dieselbe Anfrage. Antwort nach 8 Sekunden.</h2>
+                <h2>Dieselbe Anfrage. Antwort in unter einer Minute.</h2>
                 <p>
                   Qualifiziert, Angebot raus, Termin im Kalender. Per WhatsApp.
                 </p>
               </div>
               <ol class="evs" aria-label="Mit Auftragspilot, zeitlicher Ablauf">
                 <li class="ev" data-t="8">
-                  <span class="ev__t">22:14:08</span
+                  <span class="ev__t">22:14</span
                   ><span class="ev__h">Anfrage eingegangen</span>
                   <p class="ev__d">
-                    Über Meta Ads oder das Formular. Antwort per WhatsApp,
-                    sofort.
+                    Über Meta Ads oder das Formular. Antwort per WhatsApp, auch nachts.
                   </p>
                 </li>
                 <li class="ev" data-t="227">
-                  <span class="ev__t">22:17:47</span
+                  <span class="ev__t">22:18</span
                   ><span class="ev__h">Qualifiziert</span>
                   <p class="ev__d">
                     Budget, Bedarf und Dringlichkeit automatisch geprüft.
                   </p>
                 </li>
                 <li class="ev" data-t="432">
-                  <span class="ev__t">22:21:12</span
+                  <span class="ev__t">22:21</span
                   ><span class="ev__h">Angebot erstellt</span>
                   <p class="ev__d">
                     Automatisch aus Produktparametern und Preisregeln.
                   </p>
                 </li>
                 <li class="ev ev--done" data-t="930">
-                  <span class="ev__t">22:29:30</span
+                  <span class="ev__t">22:30</span
                   ><span class="ev__h">Termin gebucht</span>
                   <p class="ev__d">
                     Direkt im Kalender. Bestätigung und Erinnerung laufen
@@ -1073,7 +1072,7 @@
               </ol>
               <div class="meter">
                 <span class="tag">Zeit bis zum Termin</span
-                ><b id="waitR">0 Sek</b>
+                ><b id="waitR">läuft</b>
               </div>
               <div class="won">
                 <p>Die schnellere Antwort gewinnt den Auftrag.</p>
@@ -1097,7 +1096,7 @@
 
           <div class="divider" aria-hidden="true">
             <div class="clock">
-              <span class="clock__t" id="clockT">22:14:00</span
+              <span class="clock__t" id="clockT">22:14</span
               ><span class="clock__d" id="clockD">Beispielablauf</span>
             </div>
           </div>
@@ -1289,7 +1288,7 @@
                   ><em>Egal über welchen Kanal, egal zu welcher Uhrzeit.</em>
                 </li>
                 <li>
-                  <span>2</span><b>Antwort innerhalb von Sekunden</b
+                  <span>2</span><b>Antwort in unter einer Minute</b
                   ><em>Auch abends, am Wochenende, an Feiertagen.</em>
                 </li>
                 <li>
@@ -1700,13 +1699,7 @@
         }
         function hms(t) {
           var s = (BASE + Math.floor(t)) % DAY;
-          return (
-            pad(Math.floor(s / 3600)) +
-            ":" +
-            pad(Math.floor(s / 60) % 60) +
-            ":" +
-            pad(s % 60)
-          );
+          return pad(Math.floor(s / 3600)) + ":" + pad(Math.floor(s / 60) % 60);
         }
         function wait(t) {
           t = Math.floor(t);
@@ -1748,7 +1741,7 @@
             clockT.textContent = hms(t);
             clockD.textContent = t >= 6360 ? "Nächster Tag" : "Beispielablauf";
             waitL.textContent = wait(t);
-            waitR.textContent = wait(Math.min(t, 930));
+            waitR.textContent = t >= 930 ? "unter 30 Min" : "läuft";
             waitR.classList.toggle("is-done", t >= 930);
             evs.forEach(function (li) {
               li.classList.toggle(
