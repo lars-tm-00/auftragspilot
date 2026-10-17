@@ -37,7 +37,7 @@
         --route: #1f5c4c;
         --route-deep: #0f2a23;
         --cold: #141716;
-        --mast-h: 10.25rem;
+        --mast-h: 11rem;
       }
       html {
         scroll-padding-top: 1rem;
@@ -377,7 +377,7 @@
       .mast__sub {
         margin: 0.55rem 0 0;
         color: var(--sc-ink-soft);
-        max-width: 46ch;
+        max-width: 68ch;
         font-size: var(--sc-t-sm);
       }
 
@@ -957,6 +957,11 @@
       .video-frame p { margin: 0; color: var(--sc-ink-soft); font-size: var(--sc-t-sm); }
       @media (max-width: 1180px) { .mast__nav { display: none; } .topnav__links { gap: 0.9rem; overflow-x: auto; scrollbar-width: none; } }
       @media (max-width: 860px) { .topnav { gap: 0.75rem; padding-block: 0.5rem; } .topnav__brand { display: none; } .topnav__cta { display: none; } .topnav__links { margin: 0; white-space: nowrap; } }
+
+      .badge { display: inline-block; align-self: flex-start; font-family: var(--sc-font-mono); font-size: var(--sc-t-xs); font-weight: 500; letter-spacing: var(--sc-track-wide); text-transform: uppercase; padding: 0.35rem 0.7rem; border-radius: var(--sc-r-sm); }
+      .badge--before { color: var(--sc-ink); box-shadow: inset 0 0 0 1px var(--sc-hairline-strong); }
+      .badge--after { background: var(--sc-accent); color: var(--sc-accent-ink); }
+      .col__head { display: grid; justify-items: start; gap: 0.6rem; }
     </style>
   </head>
   <body>
@@ -981,13 +986,13 @@
           <div class="pane pane--ohne">
             <div class="col col--ohne">
               <div class="col__head">
-                <span class="tag">Ohne Auftragspilot</span>
+                <span class="badge badge--before">So läuft es heute</span>
                 <h2>Anfrage um 22:14. Das Büro ist zu.</h2>
                 <p>Der Interessent schreibt abends. Er bekommt: nichts.</p>
               </div>
               <ol
                 class="evs"
-                aria-label="Ohne Auftragspilot, zeitlicher Ablauf"
+                aria-label="So läuft es heute, zeitlicher Ablauf"
               >
                 <li class="ev" data-t="0">
                   <span class="ev__t">22:14</span
@@ -1033,13 +1038,13 @@
           <div class="pane pane--mit">
             <div class="col col--mit">
               <div class="col__head">
-                <span class="tag">Mit Auftragspilot</span>
+                <span class="badge badge--after">So läuft es mit Auftragspilot</span>
                 <h2>Dieselbe Anfrage. Antwort in unter einer Minute.</h2>
                 <p>
                   Qualifiziert, Angebot raus, Termin im Kalender. Per WhatsApp.
                 </p>
               </div>
-              <ol class="evs" aria-label="Mit Auftragspilot, zeitlicher Ablauf">
+              <ol class="evs" aria-label="So läuft es mit Auftragspilot, zeitlicher Ablauf">
                 <li class="ev" data-t="8">
                   <span class="ev__t">22:14</span
                   ><span class="ev__h">Anfrage eingegangen</span>
@@ -1128,8 +1133,7 @@
             <div>
               <h1>Vom Lead zum <em>Termin</em>. Automatisch.</h1>
               <p class="mast__sub">
-                Für High-Ticket-Anbieter. Beispielablauf einer echten Anfrage,
-                die Scrolltiefe ist die Uhr.
+                Dieselbe Kundenanfrage, zweimal erzählt: links, wie es heute oft läuft, rechts mit Auftragspilot. Scrolle, die Uhr in der Mitte läuft mit.
               </p>
             </div>
           </header>

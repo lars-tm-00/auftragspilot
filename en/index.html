@@ -1,12 +1,15 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Auftragspilot — From lead to order, automated</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Auftragspilot · From lead to appointment, automated</title>
     <meta
       name="description"
-      content="Auftragspilot automates the path from inquiry to order — qualification, quote and appointment booking, without a lead waiting for a callback."
+      content="Auftragspilot replies in under a minute, qualifies automatically and brings your leads straight to an appointment, before they end up with the competition."
     />
     <link
       rel="icon"
@@ -18,1438 +21,1649 @@
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../styles.css?v=2" />
-    <link rel="alternate" hreflang="de" href="https://larsomatic.org/auftragspilot/de/" />
-    <link rel="alternate" hreflang="en" href="https://larsomatic.org/auftragspilot/en/" />
-    <link rel="alternate" hreflang="x-default" href="https://larsomatic.org/auftragspilot/" />
+    <link rel="stylesheet" href="../scrollcraft.css" />
+    <style>
+      :root {
+        --sc-canvas: #0b1210;
+        --sc-surface: #121c18;
+        --sc-ink: #eef1ea;
+        --sc-ink-soft: #a3b2aa;
+        --sc-accent: #f2793b;
+        --sc-accent-ink: #1a0e07;
+        --sc-font-display: "Space Grotesk", system-ui, sans-serif;
+        --sc-font-text: "IBM Plex Sans", system-ui, sans-serif;
+        --sc-font-mono: "IBM Plex Mono", ui-monospace, monospace;
+        --sc-shadow-color: 160 30% 3%;
+        --route: #1f5c4c;
+        --route-deep: #0f2a23;
+        --cold: #141716;
+        --mast-h: 11rem;
+      }
+      html {
+        scroll-padding-top: 1rem;
+      }
+      body {
+        font-weight: 400;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: var(--sc-font-display);
+        font-weight: 500;
+      }
+      .mono {
+        font-family: var(--sc-font-mono);
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* ---------------------------------------------------------- buttons -- */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        white-space: nowrap;
+        font-family: var(--sc-font-text);
+        font-weight: 600;
+        font-size: var(--sc-t-sm);
+        padding: 0.8rem 1.25rem;
+        border-radius: var(--sc-r-md);
+        background: var(--sc-accent);
+        color: var(--sc-accent-ink);
+        text-decoration: none;
+        box-shadow: var(--sc-e1), var(--sc-edge);
+        transition:
+          transform 140ms var(--sc-ease-out),
+          background-color 140ms var(--sc-ease-out);
+      }
+      .btn:active {
+        transform: scale(0.97);
+      }
+      .btn--ghost {
+        background: transparent;
+        color: var(--sc-ink);
+        box-shadow: inset 0 0 0 1px var(--sc-hairline-strong);
+      }
+      @media (hover: hover) and (pointer: fine) {
+        .btn:hover {
+          background: #ff8a4f;
+        }
+        .btn--ghost:hover {
+          background: color-mix(in oklab, var(--sc-ink) 8%, transparent);
+        }
+      }
+      .btn--lg {
+        padding: 1.05rem 1.7rem;
+        font-size: var(--sc-t-base);
+      }
+
+      /* ----------------------------------------------------------- duel ---- */
+      .duel [data-sc-stage] {
+        background: var(--sc-canvas);
+      }
+      .duel {
+        --cut: 50;
+        --c: 0;
+        --mast: 1;
+      }
+      .pane {
+        position: absolute;
+        inset: 0;
+      }
+      .pane--ohne {
+        background: var(--cold);
+      }
+      .pane--mit {
+        background: var(--route-deep);
+        clip-path: inset(0 0 0 calc(var(--cut) * 1%));
+      }
+      .pane--mit::before {
+        /* a lit surface: soft route glow behind the winning column */
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: radial-gradient(
+          60% 70% at 75% 55%,
+          color-mix(in oklab, var(--route) 55%, transparent),
+          transparent 70%
+        );
+      }
+      .col {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 50%;
+        padding: calc(var(--mast-h) + 1.5rem) var(--sc-gutter) 2.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: var(--sc-4);
+      }
+      .col--ohne {
+        left: 0;
+        padding-right: clamp(3rem, 7vw, 7.5rem);
+      }
+      .col--mit {
+        right: 0;
+        padding-left: clamp(3rem, 7vw, 7.5rem);
+        transform: translateX(calc(var(--c) * -25vw));
+      }
+      .col__head h2 {
+        text-wrap: balance;
+        font-size: var(--sc-t-xl);
+        letter-spacing: var(--sc-track-snug);
+        line-height: 1.05;
+        margin: 0;
+      }
+      .col__head p {
+        margin: 0.45rem 0 0;
+        color: var(--sc-ink-soft);
+        font-size: var(--sc-t-sm);
+        max-width: 38ch;
+      }
+      .tag {
+        font-family: var(--sc-font-mono);
+        font-size: var(--sc-t-xs);
+        letter-spacing: var(--sc-track-wide);
+        text-transform: uppercase;
+        color: var(--sc-ink-soft);
+      }
+      .col--mit .tag {
+        color: #b9ccc2;
+      }
+
+      .evs {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.9rem;
+        flex: 1;
+        min-height: 0;
+        overflow: hidden;
+      }
+      .js .ev {
+        display: none;
+      }
+      .js .ev.is-on {
+        display: grid;
+        animation: evIn 460ms var(--sc-ease-out) both;
+      }
+      .ev {
+        grid-template-columns: 5.6rem 1fr;
+        gap: 0.25rem 0.9rem;
+        align-items: baseline;
+        padding-top: 0.9rem;
+        border-top: 1px solid var(--sc-hairline);
+      }
+      .ev__t {
+        font-family: var(--sc-font-mono);
+        font-size: var(--sc-t-sm);
+        color: var(--sc-ink-soft);
+      }
+      .ev__h {
+        font-family: var(--sc-font-display);
+        font-weight: 500;
+        font-size: var(--sc-t-lg);
+        line-height: 1.15;
+        letter-spacing: var(--sc-track-snug);
+      }
+      .ev__d {
+        grid-column: 2;
+        margin: 0;
+        color: var(--sc-ink-soft);
+        font-size: var(--sc-t-sm);
+        max-width: 44ch;
+      }
+      .ev__q {
+        grid-column: 2;
+        margin: 0.35rem 0 0;
+        padding: 0.65rem 0.9rem;
+        border-radius: var(--sc-r-md);
+        background: color-mix(in oklab, var(--sc-ink) 8%, transparent);
+        font-size: var(--sc-t-sm);
+        max-width: 40ch;
+      }
+      .col--ohne .ev__h {
+        color: var(--sc-ink);
+      }
+      .ev--lost .ev__h {
+        text-decoration: line-through;
+        text-decoration-thickness: 2px;
+        text-decoration-color: var(--sc-accent);
+      }
+      .ev--done .ev__h {
+        color: var(--sc-accent);
+      }
+      @keyframes evIn {
+        from {
+          opacity: 0;
+          transform: translate3d(0, 14px, 0);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      .meter {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-top: 0.9rem;
+        border-top: 1px solid var(--sc-hairline-strong);
+      }
+      .meter b {
+        font-family: var(--sc-font-mono);
+        font-weight: 500;
+        font-size: var(--sc-t-lg);
+        font-variant-numeric: tabular-nums;
+      }
+      .col--mit .meter b.is-done {
+        color: var(--sc-accent);
+      }
+
+      /* the divider carries the clock */
+      .divider {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        transform: translateX(calc(var(--cut) * 1vw));
+        z-index: 5;
+        pointer-events: none;
+      }
+      .divider::before {
+        content: "";
+        position: absolute;
+        top: calc(var(--mast-h) + 0.25rem);
+        bottom: 0;
+        left: -1px;
+        width: 2px;
+        background: var(--sc-ink);
+        opacity: 0.85;
+      }
+      .clock {
+        position: absolute;
+        top: 56%;
+        left: 0;
+        transform: translate(-50%, -50%);
+        background: var(--sc-ink);
+        color: #0b1210;
+        border-radius: var(--sc-r-md);
+        padding: 0.65rem 0.9rem 0.55rem;
+        text-align: center;
+        box-shadow: var(--sc-e3), var(--sc-edge);
+        opacity: calc(1 - var(--c) * 1.6);
+      }
+      .clock__t {
+        font-family: var(--sc-font-mono);
+        font-weight: 600;
+        font-size: clamp(1.4rem, 1.1rem + 1.2vw, 2rem);
+        letter-spacing: -0.01em;
+        line-height: 1;
+        font-variant-numeric: tabular-nums;
+        display: block;
+      }
+      .clock__d {
+        font-family: var(--sc-font-mono);
+        font-size: 0.68rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        display: block;
+        margin-top: 0.35rem;
+        opacity: 0.7;
+      }
+
+      /* masthead sits above both sides */
+      .mast {
+        position: absolute;
+        z-index: 6;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 1.1rem var(--sc-gutter) 0;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 0.5rem 2rem;
+        align-items: start;
+        opacity: var(--mast);
+      }
+      .mast.is-off {
+        visibility: hidden;
+      }
+      .mast__brand {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        grid-column: 1 / -1;
+        justify-content: space-between;
+      }
+      .mast__brand img {
+        height: 1.7rem;
+        width: auto;
+      }
+      .mast__right {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .lang {
+        font-family: var(--sc-font-mono);
+        font-size: var(--sc-t-xs);
+        color: var(--sc-ink-soft);
+      }
+      .lang a {
+        text-decoration: none;
+        padding: 0.2rem 0.15rem;
+      }
+      .lang a[aria-current] {
+        color: var(--sc-ink);
+      }
+      .mast h1 {
+        margin: 0.35rem 0 0;
+        font-size: clamp(1.7rem, 1.2rem + 1.8vw, 2.6rem);
+        line-height: 1.02;
+        letter-spacing: var(--sc-track-tight);
+        font-weight: 500;
+        white-space: nowrap;
+      }
+      .mast h1 em {
+        font-style: normal;
+        color: var(--sc-accent);
+      }
+      .mast__sub {
+        margin: 0.55rem 0 0;
+        color: var(--sc-ink-soft);
+        max-width: 68ch;
+        font-size: var(--sc-t-sm);
+      }
+
+      .won {
+        margin-top: auto;
+        display: none;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+      }
+      .duel.is-won .won {
+        display: flex;
+        animation: evIn 520ms var(--sc-ease-out) both;
+      }
+      .duel.is-won .col__head p,
+      .duel.is-won .col--mit .ev__d,
+      .duel.is-won .col--mit .meter {
+        display: none;
+      }
+      .won p {
+        flex-basis: 100%;
+        margin: 0 0 0.25rem;
+        font-family: var(--sc-font-display);
+        font-size: var(--sc-t-xl);
+        line-height: 1.05;
+        letter-spacing: var(--sc-track-snug);
+      }
+
+      .fineprint {
+        color: var(--sc-ink-soft);
+        font-size: var(--sc-t-xs);
+        margin: 0;
+      }
+
+      /* ------------------------------------------------- generic sections -- */
+      .block {
+        padding-block: var(--sc-section);
+        background: var(--sc-canvas);
+        position: relative;
+      }
+      .block--after-pin {
+        padding-top: clamp(3rem, 6vw, 6rem);
+      }
+      .two {
+        display: grid;
+        grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+        gap: var(--sc-7) clamp(2rem, 7vw, 8rem);
+        align-items: start;
+      }
+      .kicker {
+        margin: 0 0 var(--sc-4);
+      }
+      .bignum {
+        margin-bottom: 0;
+        font-family: var(--sc-font-display);
+        font-weight: 500;
+        letter-spacing: var(--sc-track-tight);
+        line-height: 0.9;
+        font-size: clamp(5rem, 3rem + 10vw, 12rem);
+        color: var(--sc-ink);
+        font-variant-numeric: tabular-nums;
+      }
+      .bignum small {
+        font-size: 0.38em;
+        letter-spacing: -0.02em;
+        color: var(--sc-ink-soft);
+        margin-left: 0.12em;
+      }
+      .rules {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .rules li {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+        gap: 0.5rem 2rem;
+        padding: var(--sc-5) 0;
+        border-top: 1px solid var(--sc-hairline-strong);
+      }
+      .rules li:last-child {
+        border-bottom: 1px solid var(--sc-hairline-strong);
+      }
+      .rules h3 {
+        margin: 0;
+        font-size: var(--sc-t-lg);
+        letter-spacing: var(--sc-track-snug);
+        line-height: 1.15;
+      }
+      .rules p {
+        margin: 0;
+        color: var(--sc-ink-soft);
+        font-size: var(--sc-t-sm);
+      }
+
+      .nums {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: var(--sc-7) clamp(2rem, 6vw, 7rem);
+        align-items: end;
+      }
+      .nums > div:nth-child(2) {
+        padding-bottom: clamp(0rem, 4vw, 4rem);
+      }
+      .nums .bignum {
+        display: block;
+      }
+      .nums p {
+        margin: var(--sc-3) 0 0;
+        color: var(--sc-ink);
+        font-size: var(--sc-t-lg);
+        line-height: 1.3;
+        letter-spacing: var(--sc-track-snug);
+        max-width: 24ch;
+      }
+      .nums a.src {
+        display: inline-block;
+        margin-top: var(--sc-3);
+        font-family: var(--sc-font-mono);
+        font-size: var(--sc-t-xs);
+        color: var(--sc-ink-soft);
+      }
+
+      /* the four building blocks: pinned, one at a time */
+      .parts [data-sc-stage] {
+        background: var(--sc-surface);
+        display: grid;
+        grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+        gap: clamp(2rem, 7vw, 8rem);
+        padding: clamp(3.5rem, 9vh, 6rem) var(--sc-gutter);
+        align-items: center;
+      }
+      .parts__index {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        counter-reset: p;
+      }
+      .parts__index li {
+        padding: 0.9rem 0;
+        border-top: 1px solid var(--sc-hairline);
+        font-family: var(--sc-font-display);
+        font-size: var(--sc-t-xl);
+        letter-spacing: var(--sc-track-snug);
+        line-height: 1.05;
+        color: color-mix(in oklab, var(--sc-ink) 38%, transparent);
+        transition: color 240ms var(--sc-ease-out);
+      }
+      .parts__index li.is-active {
+        color: var(--sc-ink);
+      }
+      .parts__index li:last-child {
+        border-bottom: 1px solid var(--sc-hairline);
+      }
+      .parts__stage {
+        position: relative;
+        min-height: 22rem;
+      }
+      .part {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: var(--sc-4);
+      }
+      .part h3 {
+        margin: 0;
+        font-size: var(--sc-t-2xl);
+        letter-spacing: var(--sc-track-snug);
+        line-height: 1;
+      }
+      .part > p {
+        margin: 0;
+        color: var(--sc-ink-soft);
+        max-width: 48ch;
+      }
+      .part ol {
+        list-style: none;
+        margin: var(--sc-3) 0 0;
+        padding: 0;
+        display: grid;
+        gap: 0;
+      }
+      .part li {
+        display: grid;
+        grid-template-columns: 2.2rem 1fr;
+        gap: 0.15rem 1rem;
+        padding: 0.8rem 0;
+        border-top: 1px solid var(--sc-hairline);
+      }
+      .part li span {
+        font-family: var(--sc-font-mono);
+        color: var(--sc-accent);
+        font-size: var(--sc-t-sm);
+      }
+      .part li b {
+        font-weight: 500;
+        font-size: var(--sc-t-base);
+      }
+      .part li em {
+        grid-column: 2;
+        font-style: normal;
+        color: var(--sc-ink-soft);
+        font-size: var(--sc-t-sm);
+      }
+
+      /* industries: an index that opens in place */
+      .idx {
+        border-top: 1px solid var(--sc-hairline-strong);
+      }
+      .idx details {
+        border-bottom: 1px solid var(--sc-hairline-strong);
+      }
+      .idx summary {
+        list-style: none;
+        cursor: pointer;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 2rem;
+        gap: 1rem;
+        align-items: baseline;
+        padding: var(--sc-5) 0;
+      }
+      .idx summary::-webkit-details-marker {
+        display: none;
+      }
+      .idx summary h3 {
+        margin: 0;
+        font-size: var(--sc-t-xl);
+        letter-spacing: var(--sc-track-snug);
+        line-height: 1.05;
+        transition: transform 200ms var(--sc-ease-out);
+      }
+      .idx summary span {
+        color: var(--sc-ink-soft);
+        font-size: var(--sc-t-sm);
+      }
+      .idx summary i {
+        font-style: normal;
+        font-family: var(--sc-font-mono);
+        color: var(--sc-accent);
+        text-align: right;
+        transition: transform 200ms var(--sc-ease-out);
+      }
+      .idx details[open] summary i {
+        transform: rotate(45deg);
+      }
+      .idx details p {
+        margin: 0 0 var(--sc-5);
+        max-width: 60ch;
+        color: var(--sc-ink);
+      }
+      @media (hover: hover) and (pointer: fine) {
+        .idx summary:hover h3 {
+          transform: translateX(0.5rem);
+        }
+      }
+
+      .logos {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--sc-4) var(--sc-7);
+        align-items: center;
+      }
+      .logos img {
+        height: 1.9rem;
+        width: auto;
+        max-width: 8.5rem;
+        object-fit: contain;
+        filter: grayscale(1) brightness(0) invert(1);
+        opacity: 0.72;
+      }
+      .stack-row {
+        display: grid;
+        grid-template-columns: 9rem 1fr;
+        gap: 1rem;
+        padding: var(--sc-4) 0;
+        border-top: 1px solid var(--sc-hairline);
+        align-items: center;
+      }
+
+      .person {
+        display: grid;
+        grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+        gap: clamp(2rem, 6vw, 7rem);
+        align-items: start;
+      }
+      .person img.photo {
+        width: 100%;
+        max-width: 22rem;
+        aspect-ratio: 4/5;
+        object-fit: cover;
+        border-radius: var(--sc-r-md);
+        box-shadow: var(--sc-e3), var(--sc-edge);
+      }
+      .person .logos img {
+        filter: grayscale(1) brightness(0) invert(1);
+      }
+
+      /* close */
+      .closing {
+        background: var(--route-deep);
+      }
+      .close {
+        background: var(--route-deep);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: var(--sc-section) var(--sc-gutter) 0;
+      }
+      .close [data-sc-stage] {
+        background: var(--route-deep);
+      }
+      .close__inner {
+        position: relative;
+        z-index: 3;
+        max-width: 60rem;
+        margin: auto 0;
+        padding-top: 5rem;
+        display: grid;
+        gap: var(--sc-6);
+      }
+      .close__inner h2 {
+        font-size: clamp(2.4rem, 1.4rem + 4vw, 5rem);
+        letter-spacing: var(--sc-track-tight);
+        line-height: 0.98;
+        margin: 0;
+        text-wrap: balance;
+      }
+      .close__cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+      .contact {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 2rem;
+        font-size: var(--sc-t-sm);
+        color: var(--sc-ink-soft);
+      }
+      .contact a {
+        color: var(--sc-ink);
+      }
+      .foot {
+        position: relative;
+        z-index: 3;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: var(--sc-3);
+        padding: var(--sc-5) 0 var(--sc-5);
+        border-top: 1px solid var(--sc-hairline);
+        color: var(--sc-ink-soft);
+        font-size: var(--sc-t-xs);
+      }
+      .foot a {
+        color: inherit;
+      }
+      .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        font-family: var(--sc-font-mono);
+        font-size: var(--sc-t-xs);
+        letter-spacing: var(--sc-track-wide);
+        text-transform: uppercase;
+        color: var(--sc-ink-soft);
+      }
+      .status::before {
+        content: "";
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 50%;
+        background: var(--sc-accent);
+      }
+
+      .fab {
+        position: fixed;
+        right: max(1rem, env(safe-area-inset-right));
+        bottom: max(1rem, env(safe-area-inset-bottom));
+        z-index: 60;
+        opacity: 0;
+        transform: translateY(8px);
+        pointer-events: none;
+        transition:
+          opacity 240ms var(--sc-ease-out),
+          transform 240ms var(--sc-ease-out);
+      }
+      .has-passed .fab {
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+      }
+      .has-passed .fab.is-hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .skip {
+        position: absolute;
+        left: -999px;
+        top: 0;
+        z-index: 99;
+        background: var(--sc-ink);
+        color: #0b1210;
+        padding: 0.6rem 1rem;
+      }
+      .skip:focus {
+        left: 1rem;
+        top: 1rem;
+      }
+
+      /* ------------------------------------------------------------ phone -- */
+      @media (max-width: 860px) {
+        :root {
+          --mast-h: 7.4rem;
+        }
+        .duel {
+          --cut: 56;
+        }
+        .pane--mit {
+          clip-path: inset(calc(var(--cut) * 1%) 0 0 0);
+        }
+        .col {
+          width: 100%;
+          padding: 0 var(--sc-gutter);
+        }
+        .col--ohne {
+          top: var(--mast-h);
+          bottom: calc((100 - var(--cut)) * 1% + 0.6rem);
+          padding-top: 0.9rem;
+          padding-bottom: 0;
+        }
+        .col--mit {
+          top: calc(var(--cut) * 1% + 0.4rem);
+          padding-top: 2.4rem;
+          padding-bottom: 0.9rem;
+          transform: translateY(calc(var(--c) * -29svh));
+        }
+        .col__head p,
+        .tag {
+          display: none;
+        }
+        .col__head h2 {
+          font-size: var(--sc-t-lg);
+        }
+        .evs {
+          justify-content: flex-end;
+          gap: 0.55rem;
+          mask-image: linear-gradient(to bottom, transparent 0, #000 22%);
+        }
+        .ev {
+          grid-template-columns: 4.4rem 1fr;
+          padding-top: 0.5rem;
+          gap: 0.1rem 0.6rem;
+        }
+        .ev__h {
+          font-size: var(--sc-t-base);
+        }
+        .ev__d,
+        .ev__q {
+          font-size: var(--sc-t-xs);
+        }
+        .ev__d {
+          display: none;
+        }
+        .meter {
+          padding-top: 0.5rem;
+        }
+        .meter b {
+          font-size: var(--sc-t-base);
+        }
+        .divider {
+          top: 0;
+          bottom: auto;
+          left: 0;
+          right: 0;
+          width: auto;
+          height: 0;
+          transform: translateY(calc(var(--cut) * 1svh));
+        }
+        .divider::before {
+          top: -1px;
+          bottom: auto;
+          left: 0;
+          right: 0;
+          width: auto;
+          height: 2px;
+        }
+        .clock {
+          top: 0;
+          left: auto;
+          right: var(--sc-gutter);
+          transform: translateY(-50%);
+          padding: 0.4rem 0.65rem 0.35rem;
+        }
+        .clock__t {
+          font-size: 1.15rem;
+        }
+        .clock__d {
+          display: none;
+        }
+        .mast h1 {
+          white-space: normal;
+          font-size: 1.55rem;
+        }
+        .mast__sub {
+          display: none;
+        }
+        .mast .btn {
+          padding: 0.55rem 0.9rem;
+        }
+        .won p {
+          font-size: var(--sc-t-lg);
+        }
+        .two,
+        .person,
+        .nums,
+        .parts [data-sc-stage] {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        .rules li {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        .idx summary {
+          grid-template-columns: minmax(0, 1fr) 1.5rem;
+        }
+        .idx summary span {
+          grid-column: 1 / -1;
+          grid-row: 2;
+        }
+        .stack-row {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        .parts [data-sc-stage] {
+          align-content: center;
+          gap: 1rem;
+          padding-block: 4.5rem 2rem;
+        }
+        .parts__index li {
+          font-size: var(--sc-t-base);
+          padding: 0.5rem 0;
+        }
+        .parts__stage {
+          min-height: 21rem;}
+        .part {
+          justify-content: flex-start;
+        }
+        .part h3 {
+          font-size: var(--sc-t-xl);
+        }
+        .part li {
+          padding: 0.5rem 0;
+        }
+        .part li em {
+          display: none;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .js .ev.is-on,
+        .duel.is-won .won {
+          animation: none;
+        }
+      }
+
+      @media (min-width: 861px) { .fab { display: none; } }
+      .mast__nav { display: flex; gap: 1.1rem; font-size: var(--sc-t-sm); margin-inline: auto; }
+      .mast__nav a, .topnav__links a { text-decoration: none; color: var(--sc-ink-soft); padding: 0.3rem 0; transition: color 140ms var(--sc-ease-out); }
+      @media (hover: hover) and (pointer: fine) { .mast__nav a:hover, .topnav__links a:hover { color: var(--sc-ink); } }
+      .topnav { position: fixed; top: 0; left: 0; right: 0; z-index: 60; display: flex; align-items: center; gap: 1.5rem; padding: 0.7rem var(--sc-gutter); background: color-mix(in oklab, var(--sc-canvas) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--sc-hairline); transform: translateY(-100%); transition: transform 240ms var(--sc-ease-out); }
+      .has-passed .topnav { transform: none; }
+      .topnav__brand img { height: 1.5rem; width: auto; filter: brightness(0) invert(1); }
+      .topnav__links { display: flex; gap: 1.1rem; font-size: var(--sc-t-sm); margin-inline: auto; }
+      .topnav__cta { padding: 0.5rem 1rem; }
+      .video-frame { aspect-ratio: 16 / 9; width: 100%; border-radius: var(--sc-r-md); overflow: hidden; background: var(--sc-surface); box-shadow: var(--sc-e3), var(--sc-edge); display: grid; place-items: center; text-align: center; }
+      .video-frame iframe, .video-frame video { width: 100%; height: 100%; border: 0; display: block; }
+      .video-frame p { margin: 0; color: var(--sc-ink-soft); font-size: var(--sc-t-sm); }
+      @media (max-width: 1180px) { .mast__nav { display: none; } .topnav__links { gap: 0.9rem; overflow-x: auto; scrollbar-width: none; } }
+      @media (max-width: 860px) { .topnav { gap: 0.75rem; padding-block: 0.5rem; } .topnav__brand { display: none; } .topnav__cta { display: none; } .topnav__links { margin: 0; white-space: nowrap; } }
+
+      .badge { display: inline-block; align-self: flex-start; font-family: var(--sc-font-mono); font-size: var(--sc-t-xs); font-weight: 500; letter-spacing: var(--sc-track-wide); text-transform: uppercase; padding: 0.35rem 0.7rem; border-radius: var(--sc-r-sm); }
+      .badge--before { color: var(--sc-ink); box-shadow: inset 0 0 0 1px var(--sc-hairline-strong); }
+      .badge--after { background: var(--sc-accent); color: var(--sc-accent-ink); }
+      .col__head { display: grid; justify-items: start; gap: 0.6rem; }
+    </style>
   </head>
   <body>
-    <header class="nav" id="nav">
-      <div class="nav-inner">
-        <a href="#top" class="nav-brand">
-          <img
-            src="../assets/auftragspilot-logo.png"
-            alt="Auftragspilot"
-            class="nav-logo"
-            width="640"
-            height="184"
-          />
-        </a>
-        <nav class="nav-links" aria-label="Main navigation">
-          <a href="#process">Process</a>
-          <a href="#industries">Industries</a>
-          <a href="#solution">Solution</a>
-          <a href="#numbers">Numbers</a>
-          <a href="#stack">Stack</a>
-          <a href="#results">Results</a>
-          <a href="#contact">Contact</a>
-        </nav>
-        <div class="nav-cta-group">
-          <div class="lang-switch" role="group" aria-label="Language"><a href="/auftragspilot/de/" hreflang="de" lang="de" title="Deutsch">DE</a><span aria-hidden="true">/</span><a href="/auftragspilot/en/" hreflang="en" lang="en" class="active" title="English">EN</a></div>
-          
-          
-          
-          
-          <a
-            href="https://wa.me/4915679771598"
-            target="_blank"
-            rel="noopener"
-            class="btn btn-calendly nav-cta"
-            >WhatsApp</a
-          >
-          <a
-            href="https://cal.com/lars-timmermann-lt00/auftragspilot-demo-call"
-            target="_blank"
-            rel="noopener"
-            class="btn btn-primary nav-cta"
-            >Book a demo</a
-          >
-        </div>
-        <button
-          class="nav-toggle"
-          id="navToggle"
-          aria-label="Open menu"
-          aria-expanded="false"
-        >
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-      <div class="nav-mobile" id="navMobile">
-        <div class="lang-switch" role="group" aria-label="Language"><a href="/auftragspilot/de/" hreflang="de" lang="de" title="Deutsch">DE</a><span aria-hidden="true">/</span><a href="/auftragspilot/en/" hreflang="en" lang="en" class="active" title="English">EN</a></div>
-        
-        
-        
-        
-        <a href="#process">Process</a>
-        <a href="#industries">Industries</a>
-        <a href="#solution">Solution</a>
-        <a href="#numbers">Numbers</a>
-        <a href="#stack">Stack</a>
-        <a href="#results">Results</a>
-        <a href="#contact">Contact</a>
-        <a
-          href="https://wa.me/4915679771598"
-          target="_blank"
-          rel="noopener"
-          class="btn btn-calendly"
-          >WhatsApp</a
-        >
-        <a
-          href="https://cal.com/lars-timmermann-lt00/auftragspilot-demo-call"
-          target="_blank"
-          rel="noopener"
-          class="btn btn-primary"
-          >Book a demo</a
-        >
-      </div>
-    </header>
+    <a class="skip" href="#kontakt">Skip to contact</a>
+    <nav class="topnav" id="topnav" aria-label="Main navigation"><a class="topnav__brand" href="#top"><img src="../assets/auftragspilot-logo.png" alt="Auftragspilot" width="640" height="184"></a><div class="topnav__links"><a href="#vergleich">Process</a><a href="#luecke">Problem</a><a href="#zahlen">Numbers</a><a href="#loesung">Solution</a><a href="#branchen">Industries</a><a href="#stack">Stack</a><a href="#ueber">About me</a><a href="#kontakt">Contact</a></div><a class="btn topnav__cta" href="https://cal.com/lars-timmermann-lt00/auftragspilot-demo-call" target="_blank" rel="noopener">Book a demo</a></nav>
+<span data-sc-progress></span>
+    <div class="sc-grain" aria-hidden="true"></div>
+
+    <a
+      class="btn btn--lg fab"
+      id="fab"
+      href="https://cal.com/lars-timmermann-lt00/auftragspilot-demo-call"
+      target="_blank"
+      rel="noopener"
+      >Book a demo</a
+    >
 
     <main id="top">
-      <!-- HERO -->
-      <section class="hero">
-        <div class="container hero-grid">
-          <div class="hero-copy">
-            <p class="eyebrow">For high-ticket providers</p>
-            <h1>From lead to<br /><em>appointment</em> — automatically.</h1>
-            <p class="hero-sub">
-              Auftragspilot replies in seconds, qualifies automatically and takes your leads straight to an appointment — before they change their mind or end up with a competitor.
-            </p>
-            <div class="hero-actions">
+      <!-- 1 · DER VERGLEICH: eine Anfrage, zwei Seiten, die Scrolltiefe ist die Uhr -->
+      <section class="duel" id="vergleich" data-sc-act="pin" data-sc-span="7">
+        <div data-sc-stage>
+          <div class="pane pane--ohne">
+            <div class="col col--ohne">
+              <div class="col__head">
+                <span class="badge badge--before">How it works today</span>
+                <h2>Inquiry at 22:14. The office is closed.</h2>
+                <p>The prospect writes in the evening. They get: nothing.</p>
+              </div>
+              <ol
+                class="evs"
+                aria-label="How it works today, timeline"
+              >
+                <li class="ev" data-t="0">
+                  <span class="ev__t">22:14</span
+                  ><span class="ev__h">Inquiry comes in</span>
+                  <p class="ev__d">Form, Meta Ads or phone. Nobody sees it.</p>
+                </li>
+                <li class="ev" data-t="75">
+                  <span class="ev__t">22:15</span
+                  ><span class="ev__h">No reply</span>
+                  <p class="ev__d">The office is closed. The inquiry sits in the inbox.</p>
+                </li>
+                <li class="ev" data-t="10800">
+                  <span class="ev__t">01:14</span
+                  ><span class="ev__h">The prospect asks elsewhere</span>
+                  <p class="ev__d">Whoever does not reply gets skipped.</p>
+                </li>
+                <li class="ev" data-t="33360">
+                  <span class="ev__t">07:30</span
+                  ><span class="ev__h">Office opens</span>
+                  <p class="ev__d">The inquiry sits in the pile with everything else.</p>
+                </li>
+                <li class="ev ev--lost" data-t="41160">
+                  <span class="ev__t">09:40</span
+                  ><span class="ev__h">Call back</span>
+                  <p class="ev__q">“Thanks, I already have an appointment with someone else.”</p>
+                </li>
+              </ol>
+              <div class="meter">
+                <span class="tag">Prospect has been waiting for</span
+                ><b id="waitL">0 min</b>
+              </div>
+            </div>
+          </div>
+
+          <div class="pane pane--mit">
+            <div class="col col--mit">
+              <div class="col__head">
+                <span class="badge badge--after">How it works with Auftragspilot</span>
+                <h2>Same inquiry. Reply in under a minute.</h2>
+                <p>Qualified, quote sent, appointment in the calendar. Via WhatsApp.</p>
+              </div>
+              <ol class="evs" aria-label="How it works with Auftragspilot, timeline">
+                <li class="ev" data-t="8">
+                  <span class="ev__t">22:14</span
+                  ><span class="ev__h">Inquiry received</span>
+                  <p class="ev__d">Via Meta Ads or the form. Reply via WhatsApp, even at night.</p>
+                </li>
+                <li class="ev" data-t="227">
+                  <span class="ev__t">22:18</span
+                  ><span class="ev__h">Qualified</span>
+                  <p class="ev__d">Budget, need and urgency checked automatically.</p>
+                </li>
+                <li class="ev" data-t="432">
+                  <span class="ev__t">22:21</span
+                  ><span class="ev__h">Quote created</span>
+                  <p class="ev__d">Generated automatically from product parameters and pricing rules.</p>
+                </li>
+                <li class="ev ev--done" data-t="930">
+                  <span class="ev__t">22:30</span
+                  ><span class="ev__h">Appointment booked</span>
+                  <p class="ev__d">Straight into the calendar. Confirmation and reminder run automatically.</p>
+                </li>
+              </ol>
+              <div class="meter">
+                <span class="tag">Time to appointment</span
+                ><b id="waitR">running</b>
+              </div>
+              <div class="won">
+                <p>The faster reply wins the job.</p>
+                <a
+                  class="btn btn--lg"
+                  href="https://cal.com/lars-timmermann-lt00/auftragspilot-demo-call"
+                  target="_blank"
+                  rel="noopener"
+                  >Book a demo</a
+                >
+                <a
+                  class="btn btn--lg btn--ghost"
+                  href="https://wa.me/4915679771598"
+                  target="_blank"
+                  rel="noopener"
+                  >Message me on WhatsApp</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="divider" aria-hidden="true">
+            <div class="clock">
+              <span class="clock__t" id="clockT">22:14</span
+              ><span class="clock__d" id="clockD">Example run</span>
+            </div>
+          </div>
+
+          <header class="mast">
+            <div class="mast__brand">
+              <img
+                src="../assets/auftragspilot-logo.png"
+                alt="Auftragspilot"
+                width="640"
+                height="184"
+                style="filter: brightness(0) invert(1)"
+              />
+              <nav class="mast__nav" aria-label="Sections"><a href="#vergleich">Process</a><a href="#luecke">Problem</a><a href="#zahlen">Numbers</a><a href="#loesung">Solution</a><a href="#branchen">Industries</a><a href="#stack">Stack</a><a href="#ueber">About me</a><a href="#kontakt">Contact</a></nav>
+<div class="mast__right">
+                <span class="lang" role="group" aria-label="Language"
+                  ><a href="#" aria-current="true">DE</a> /
+                  <a href="#">EN</a></span
+                >
+                <a
+                  class="btn"
+                  href="https://cal.com/lars-timmermann-lt00/auftragspilot-demo-call"
+                  target="_blank"
+                  rel="noopener"
+                  >Book a demo</a
+                >
+              </div>
+            </div>
+            <div>
+              <h1>From lead to <em>appointment</em>. Automated.</h1>
+              <p class="mast__sub">The same customer inquiry, told twice: on the left how it often goes today, on the right with Auftragspilot. Scroll, the clock in the middle runs along.</p>
+            </div>
+          </header>
+        </div>
+      </section>
+
+      
+    <!-- VIDEO: ersetze den Platzhalter im .video-frame (siehe Kommentar) -->
+    <section class="block block--after-pin" id="video" hidden>
+      <div class="sc-wrap">
+        <div class="sc-stack" data-sc-in data-sc-stagger="70" style="margin-bottom: var(--sc-6)">
+          <p class="sc-label kicker">Demo video</p>
+          <h2 class="sc-display sc-display--md">Watch one inquiry run live, from form to appointment.</h2>
+        </div>
+        <div class="video-frame" data-sc-in>
+          <!-- YouTube:  <iframe src="https://www.youtube-nocookie.com/embed/VIDEO_ID" title="Auftragspilot Demo" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+               Eigene Datei: <video src="../assets/demo.mp4" poster="assets/demo-poster.jpg" controls playsinline preload="none"></video> -->
+          <p>Demo video coming soon.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2 · DIE LÜCKE -->
+      <section class="block block--after-pin" id="luecke">
+        <div class="sc-wrap two">
+          <div class="sc-stack" data-sc-in data-sc-stagger="70">
+            <p class="sc-label kicker">Without a system</p>
+            <h2 class="sc-display sc-display--md">The gap is not just the response time.</h2>
+            <p class="sc-body">An analysis of 60 high-ticket companies shows: within opening hours many still respond acceptably. Outside of them, and at the appointment booking itself, it looks different.</p>
+            <p class="bignum" aria-label="0 of 60">0<small>/ 60</small></p>
+            <p class="sc-body">companies examined offer direct online appointment booking. The prospect has to wait for a call back.</p>
+          </div>
+          <ul class="rules" data-sc-in data-sc-stagger="60">
+            <li>
+              <h3>Dead outside opening hours</h3>
+              <p>Whoever inquires in the evening or at the weekend often waits until the next working day. In the meantime they have usually already asked the competition.</p>
+            </li>
+            <li>
+              <h3>Manual quotes</h3>
+              <p>Staff combine customer data, product parameters and pricing rules by hand before a first quote goes out.</p>
+            </li>
+            <li>
+              <h3>Qualifying takes time</h3>
+              <p>Every inquiry first has to be sorted manually before it is clear whether it is worth pursuing at all.</p>
+            </li>
+            <li>
+              <h3>Every gap costs jobs</h3>
+              <p>Whoever offers an appointment first wins the job, regardless of how good the answer itself was.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 3 · WAS GESCHWINDIGKEIT WERT IST: echte Zahlen -->
+      <section class="block" id="zahlen">
+        <div class="sc-wrap">
+          <div
+            class="sc-stack"
+            data-sc-in
+            data-sc-stagger="70"
+            style="margin-bottom: var(--sc-8)"
+          >
+            <p class="sc-label kicker">Numbers</p>
+            <h2 class="sc-display sc-display--md">What speed is worth.</h2>
+            <p class="sc-body">An audit study of 2,241 US companies shows how strongly response time affects the likelihood of closing.</p>
+          </div>
+          <div class="nums">
+            <div data-sc-in>
+              <span class="bignum"><span data-sc-count="0 21">0</span>×</span>
+              <p>more likely to qualify when contacted within 5 instead of 30 minutes.</p>
               <a
+                class="src"
+                href="https://hbr.org/2011/03/the-short-life-of-online-sales-leads"
+                target="_blank"
+                rel="noopener"
+                >Oldroyd et al., Harvard Business Review (2011) ↗</a
+              >
+            </div>
+            <div data-sc-in>
+              <span class="bignum"
+                ><span data-sc-count="0 42">0</span><small>hrs</small></span
+              >
+              <p>average B2B response time. 23 % never respond at all.</p>
+              <a
+                class="src"
+                href="https://hbr.org/2011/03/the-short-life-of-online-sales-leads"
+                target="_blank"
+                rel="noopener"
+                >Oldroyd et al., Harvard Business Review (2011) ↗</a
+              >
+            </div>
+          </div>
+          <p class="fineprint" style="margin-top: var(--sc-7)">Numbers from my own customers will follow as soon as the first evaluations are available. Until then, no values are shown here.</p>
+        </div>
+      </section>
+
+      <!-- 4 · DIE VIER BAUSTEINE: pin, einer nach dem anderen -->
+      <section class="parts" id="loesung" data-sc-act="pin" data-sc-span="5">
+        <div data-sc-stage>
+          <div>
+            <p class="sc-label kicker">The solution</p>
+            <ol class="parts__index" id="partsIndex">
+              <li class="is-active">Instant reply &amp; qualification</li>
+              <li>Automated quote creation</li>
+              <li>Follow-up via chat &amp; call</li>
+              <li>Direct appointment booking</li>
+            </ol>
+          </div>
+          <div class="parts__stage">
+            <article class="part" data-sc-cue="0 0.26 0">
+              <h3>Instant reply &amp; qualification</h3>
+              <p>The first minutes decide. Whoever replies first often wins the job.</p>
+              <ol>
+                <li>
+                  <span>1</span><b>Inquiry comes in</b
+                  ><em>No matter which channel, no matter what time.</em>
+                </li>
+                <li>
+                  <span>2</span><b>Reply in under a minute</b
+                  ><em>Also in the evening, at weekends, on public holidays.</em>
+                </li>
+                <li>
+                  <span>3</span><b>AI asks follow-up questions</b
+                  ><em>Budget, timeframe, project details.</em>
+                </li>
+                <li>
+                  <span>4</span><b>Inquiry is rated</b
+                  ><em
+                    >Hot, warm or not a fit. Only what is relevant moves on.</em
+                  >
+                </li>
+              </ol>
+            </article>
+            <article class="part" data-sc-cue="0.24 0.5">
+              <h3>Automated quote creation</h3>
+              <p>A first, individual quote is created automatically from product parameters and pricing rules.</p>
+              <ol>
+                <li>
+                  <span>1</span><b>Structured data captured</b
+                  ><em>E.g. scope, equipment, location of the project.</em>
+                </li>
+                <li>
+                  <span>2</span><b>Pricing logic applied</b
+                  ><em>Deterministic and traceable.</em>
+                </li>
+                <li>
+                  <span>3</span><b>First quote created automatically</b
+                  ><em>As a PDF or directly in the chat.</em>
+                </li>
+                <li>
+                  <span>4</span><b>Customer receives the quote</b
+                  ><em>Usually within minutes instead of days.</em>
+                </li>
+              </ol>
+            </article>
+            <article class="part" data-sc-cue="0.48 0.74">
+              <h3>Follow-up via chat &amp; call</h3>
+              <p>Most providers give up after one chat message. Auftragspilot does not.</p>
+              <ol>
+                <li>
+                  <span>1</span><b>No booking made</b
+                  ><em
+                    >Despite the quote, the prospect does not get back.</em
+                  >
+                </li>
+                <li>
+                  <span>2</span><b>Automatic chat message</b
+                  ><em
+                    >Friendly reminder, matching the conversation so far.</em
+                  >
+                </li>
+                <li>
+                  <span>3</span><b>Voice AI calls</b
+                  ><em>When chat is not enough: a real phone call.</em>
+                </li>
+                <li>
+                  <span>4</span><b>Appointment booked on the call</b
+                  ><em
+                    >Or the lead is cleanly closed as “not interested”.</em
+                  >
+                </li>
+              </ol>
+            </article>
+            <article class="part" data-sc-cue="0.72 1 0.2 0">
+              <h3>Direct appointment booking</h3>
+              <p>The building block that makes the biggest difference. 0 of 60 companies examined offer it.</p>
+              <ol>
+                <li>
+                  <span>1</span><b>Inquiry arrives</b
+                  ><em>Form, call or Meta Ads.</em>
+                </li>
+                <li>
+                  <span>2</span><b>Qualification runs automatically</b
+                  ><em>Budget and need are checked.</em>
+                </li>
+                <li>
+                  <span>3</span><b>Available appointments are shown</b
+                  ><em>Directly in the chat or via link.</em>
+                </li>
+                <li>
+                  <span>4</span><b>Appointment is booked</b
+                  ><em>Confirmation and reminder run automatically.</em>
+                </li>
+              </ol>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5 · BRANCHEN: ein Index, der sich an Ort und Stelle öffnet -->
+      <section class="block" id="branchen">
+        <div class="sc-wrap">
+          <div
+            class="sc-stack"
+            data-sc-in
+            data-sc-stagger="70"
+            style="margin-bottom: var(--sc-7)"
+          >
+            <p class="sc-label kicker">Industries</p>
+            <h2 class="sc-display sc-display--md">Wherever an inquiry first needs advice.</h2>
+            <p class="sc-body">Auftragspilot is built for high-ticket products: wherever an inquiry has to be advised, qualified or calculated before an appointment happens.</p>
+          </div>
+          <div class="idx" data-sc-in>
+            <details>
+              <summary>
+                <h3>Real estate</h3>
+                <span>Agents, developers, project developers</span
+                ><i aria-hidden="true">+</i>
+              </summary>
+              <p>A prospect sees an ad for a new-build project and writes via WhatsApp or the brochure form. Auftragspilot asks for budget, preferred location and financing status, sends the matching brochure automatically and books the viewing straight into the agent’s calendar.</p>
+            </details>
+            <details>
+              <summary>
+                <h3>Construction &amp; building services</h3>
+                <span>Heat pumps, stairlifts, windows, renovation</span
+                ><i aria-hidden="true">+</i>
+              </summary>
+              <p>A prospect inquires via a heat pump or stairlift form. Auftragspilot clarifies the property details (house type, existing heating system or staircase shape), creates a first cost estimate and directly proposes an appointment for the on-site survey.</p>
+            </details>
+            <details>
+              <summary>
+                <h3>Mobility &amp; vehicles</h3>
+                <span
+                  >Vehicle sales, mobility aids, custom builds</span
+                ><i aria-hidden="true">+</i>
+              </summary>
+              <p>A prospect asks about a vehicle or a mobility aid, such as a wheelchair ramp or a vehicle conversion. Auftragspilot clarifies requirements and budget, sends a matching quote and books a test drive or consultation directly.</p>
+            </details>
+            <details>
+              <summary>
+                <h3>Advisory &amp; finance</h3>
+                <span
+                  >Lawyers, tax advisors, financial and insurance brokers</span
+                ><i aria-hidden="true">+</i>
+              </summary>
+              <p>A client asks for an initial consultation via the website or a referral. Auftragspilot clarifies the matter (such as area of law or type of financing), checks the rough fit and books a first appointment straight into the advisor’s calendar.</p>
+            </details>
+            <details>
+              <summary>
+                <h3>B2B equipment &amp; industry</h3>
+                <span>Machinery, plants, industrial suppliers</span
+                ><i aria-hidden="true">+</i>
+              </summary>
+              <p>A buyer inquires about a machine or plant. Auftragspilot captures the technical key data (quantity, specification, delivery location), creates a first rough calculation and arranges a technical conversation with sales.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 · STACK -->
+      <section class="block" id="stack" style="padding-top: 0">
+        <div class="sc-wrap">
+          <div
+            class="sc-stack"
+            data-sc-in
+            data-sc-stagger="70"
+            style="margin-bottom: var(--sc-6)"
+          >
+            <p class="sc-label kicker">Tech stack</p>
+            <h2 class="sc-display sc-display--md">Built on tools you already know.</h2>
+            <p class="sc-body">No black box. We work in the platforms you already use, and you stay in full control.</p>
+          </div>
+          <div data-sc-in>
+            <div class="stack-row">
+              <span class="sc-label">CRM</span>
+              <div class="logos">
+                <img src="../assets/hubspot.png" alt="HubSpot" /><img
+                  src="../assets/pipedrive.png"
+                  alt="Pipedrive"
+                /><img src="../assets/close-crm.png" alt="Close" />
+              </div>
+            </div>
+            <div class="stack-row">
+              <span class="sc-label">Appointment</span>
+              <div class="logos">
+                <img src="../assets/cal-com.png" alt="Cal.com" /><img
+                  src="../assets/calendly.png"
+                  alt="Calendly"
+                />
+              </div>
+            </div>
+            <div class="stack-row">
+              <span class="sc-label">Automation</span>
+              <div class="logos">
+                <img src="../assets/n8n.png" alt="n8n" /><img
+                  src="../assets/zapier.png"
+                  alt="Zapier"
+                /><img src="../assets/make.png" alt="Make" />
+              </div>
+            </div>
+            <div class="stack-row">
+              <span class="sc-label">Communication</span>
+              <div class="logos">
+                <img src="../assets/whatsapp.png" alt="WhatsApp" />
+              </div>
+            </div>
+            <div class="stack-row">
+              <span class="sc-label">Voice</span>
+              <div class="logos">
+                <img src="../assets/fonio.png" alt="fonio" /><img
+                  src="../assets/vapi.png"
+                  alt="Vapi"
+                /><img src="../assets/twilio.png" alt="Twilio" />
+              </div>
+            </div>
+            <div
+              class="stack-row"
+              style="border-bottom: 1px solid var(--sc-hairline)"
+            >
+              <span class="sc-label">Leads</span>
+              <div class="logos">
+                <img src="../assets/meta-ads.png" alt="Meta Ads" />
+              </div>
+            </div>
+          </div>
+          <p class="fineprint" style="margin-top: var(--sc-4)">Plus custom integrations wherever your business needs them.</p>
+        </div>
+      </section>
+
+      <!-- 7 · DER KOPF DAHINTER -->
+      <section class="block" id="ueber" style="background: var(--sc-surface)">
+        <div class="sc-wrap person">
+          <img
+            class="photo"
+            src="../assets/lars.jpg"
+            alt="Lars Timmermann"
+            width="640"
+            height="800"
+            data-sc-in
+          />
+          <div class="sc-stack" data-sc-in data-sc-stagger="70">
+            <p class="sc-label kicker">The person behind it</p>
+            <h2 class="sc-display sc-display--md">From Amazon, PwC and KPMG to Auftragspilot. That is me.</h2>
+            <p class="sc-body" style="color: var(--sc-ink)">I am Lars Timmermann and I built Auftragspilot. Before I built automated systems, I spent three years in operations at Amazon (five rotations across retail finance, product and vendor management), then worked in finance transformation consulting at PwC, in audit at KPMG and in M&amp;A at DealCircle. There I learned how real businesses actually run, and where the process breaks.</p>
+        <p class="sc-body">Later I built AI automation and voice agents at AI Union &amp; SalesFrank: hands-on experience with real customer systems, not just theory. Auftragspilot bundles this experience into a focused product for high-ticket providers in the German-speaking market.</p>
+            <div class="logos" style="margin-top: var(--sc-5)">
+              <img src="../assets/amazon.png" alt="Amazon" /><img
+                src="../assets/pwc.png"
+                alt="PwC"
+              /><img src="../assets/kpmg.png" alt="KPMG" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8 · SCHLUSS: der Termin -->
+      <section class="closing" id="kontakt" data-sc-act="pin" data-sc-span="1.3">
+        <div
+          data-sc-stage
+          class="close"
+          data-sc-spotlight
+          style="padding: 0 var(--sc-gutter)"
+        >
+          <div class="close__inner">
+            <span class="status">Open to new projects</span>
+            <h2 data-sc-cue="0 1 0 0">Let us talk about your inquiries.</h2>
+            <div class="close__cta" data-sc-cue="0 1 0 0">
+              <a
+                class="btn btn--lg"
                 href="https://cal.com/lars-timmermann-lt00/auftragspilot-demo-call"
                 target="_blank"
                 rel="noopener"
-                class="btn btn-primary btn-lg"
+                data-sc-magnet="0.26"
+                data-sc-rise="0"
+                >Book a demo</a
               >
-                <svg
-                  viewBox="0 0 24 24"
-                  width="18"
-                  height="18"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  aria-hidden="true"
-                >
-                  <rect x="3" y="5" width="18" height="16" rx="2" />
-                  <path d="M3 10h18M8 3v4M16 3v4" />
-                </svg>
-                Book a demo
-              </a>
               <a
+                class="btn btn--lg btn--ghost"
                 href="https://wa.me/4915679771598"
                 target="_blank"
                 rel="noopener"
-                class="btn btn-ghost btn-lg"
-                >Message us on WhatsApp</a
+                >Message me on WhatsApp</a
               >
             </div>
-            <p class="hero-trust">
-              Built for high-ticket providers in the German-speaking market —
-              <strong>based on an analysis of 60 companies</strong>, none of which offers direct online appointment booking.
-            </p>
-          </div>
-
-          <div class="hero-board-wrap">
-            <div class="board">
-              <div class="board-head">
-                <span class="board-dot"></span>
-                <span>LIVE LOG</span>
-              </div>
-              <div class="board-body" id="dispatchBoard">
-                <!-- Zeilen werden per script.js eingefügt -->
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ABLAUF / ROUTING PATH -->
-      <section class="section section-alt" id="process">
-        <div class="container">
-          <p class="eyebrow">Process</p>
-          <h2 class="section-title">One request, from first contact to appointment</h2>
-          <p class="section-sub">
-            The exact path from the log above — four steps, fully automated.
-          </p>
-
-          <div class="path-channels">
-            <div class="channel-badge">Meta Ads / Website</div>
-            <div class="channel-badge channel-wide">WhatsApp</div>
-          </div>
-
-          <div class="path" id="routingPath">
-            <div class="path-packet" aria-hidden="true"></div>
-            <div class="path-stop">
-              <div class="path-time">22:14:08</div>
-              <div class="path-num">1</div>
-              <h3>Request received</h3>
-              <p>Via Meta Ads or the form on your website.</p>
-            </div>
-            <div class="path-arrow" aria-hidden="true">→</div>
-            <div class="path-stop">
-              <div class="path-time">22:17:47</div>
-              <div class="path-num">2</div>
-              <h3>Qualified</h3>
-              <p>Budget, need and urgency checked automatically.</p>
-            </div>
-            <div class="path-arrow" aria-hidden="true">→</div>
-            <div class="path-stop">
-              <div class="path-time">22:21:12</div>
-              <div class="path-num">3</div>
-              <h3>Quote created</h3>
-              <p>
-                Generated automatically from product parameters and pricing rules.
-              </p>
-            </div>
-            <div class="path-arrow" aria-hidden="true">→</div>
-            <div class="path-stop">
-              <div class="path-time">22:29:30</div>
-              <div class="path-num">4</div>
-              <h3>Appointment booked</h3>
-              <p>Via WhatsApp link straight into the calendar (Cal.com/Calendly).</p>
-            </div>
-          </div>
-          <p class="fine-print path-fine-print">
-            Qualification, quote and appointment proposal all run entirely on WhatsApp — the prospect doesn't have to install anything.
-          </p>
-        </div>
-      </section>
-
-      <!-- BRANCHEN -->
-      <section class="section" id="industries">
-        <div class="container">
-          <p class="eyebrow">Industries</p>
-          <h2 class="section-title">Which industries it fits</h2>
-          <p class="section-sub">
-            Auftragspilot is built for high-ticket products — wherever an inquiry first has to be advised on, qualified or priced before an appointment comes about.
-          </p>
-
-          <div class="grid grid-5 industry-grid">
-            <button
-              type="button"
-              class="industry-card"
-              data-modal="modal-branche-immobilien"
-            >
-              <div class="industry-icon">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  aria-hidden="true"
-                >
-                  <rect x="5" y="3" width="14" height="18" rx="1" />
-                  <path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2" />
-                  <path d="M10 21v-4h4v4" />
-                </svg>
-              </div>
-              <h3>Real estate</h3>
-              <p>Agents, developers, project developers</p>
-              <span class="industry-card-cta">See use case →</span>
-            </button>
-            <button
-              type="button"
-              class="industry-card"
-              data-modal="modal-branche-bau"
-            >
-              <div class="industry-icon">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  aria-hidden="true"
-                >
-                  <path d="M4 11l8-7 8 7" />
-                  <path d="M6 10v10h12V10" />
-                  <circle cx="16" cy="16" r="2.3" />
-                  <path d="M16 12.7v1M16 18.3v1M12.7 16h1M18.3 16h1" />
-                </svg>
-              </div>
-              <h3>Construction &amp; building services</h3>
-              <p>Heat pumps, stairlifts, windows, renovation</p>
-              <span class="industry-card-cta">See use case →</span>
-            </button>
-            <button
-              type="button"
-              class="industry-card"
-              data-modal="modal-branche-mobilitaet"
-            >
-              <div class="industry-icon">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M3 13l1.5-5a2 2 0 0 1 2-1.4h11a2 2 0 0 1 2 1.4L21 13"
-                  />
-                  <rect x="3" y="13" width="18" height="4" rx="1" />
-                  <circle cx="7.5" cy="18.3" r="1.5" />
-                  <circle cx="16.5" cy="18.3" r="1.5" />
-                </svg>
-              </div>
-              <h3>Mobility &amp; vehicles</h3>
-              <p>Vehicle dealers, mobility aids, custom conversions</p>
-              <span class="industry-card-cta">See use case →</span>
-            </button>
-            <button
-              type="button"
-              class="industry-card"
-              data-modal="modal-branche-beratung"
-            >
-              <div class="industry-icon">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  aria-hidden="true"
-                >
-                  <rect x="3" y="8" width="18" height="12" rx="1.5" />
-                  <path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
-                  <path d="M3 13h18" />
-                </svg>
-              </div>
-              <h3>Consulting &amp; finance</h3>
-              <p>
-                Lawyers, tax advisors, financial and insurance brokers
-              </p>
-              <span class="industry-card-cta">See use case →</span>
-            </button>
-            <button
-              type="button"
-              class="industry-card"
-              data-modal="modal-branche-b2b"
-            >
-              <div class="industry-icon">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  aria-hidden="true"
-                >
-                  <path d="M3 21V11l5 3v-3l5 3v-3l5 3v7H3z" />
-                  <path d="M7 21v-4M12 21v-4M17 21v-4" />
-                </svg>
-              </div>
-              <h3>B2B equipment &amp; industry</h3>
-              <p>Machinery, plants, industrial suppliers</p>
-              <span class="industry-card-cta">See use case →</span>
-            </button>
-          </div>
-          <p class="fine-print">
-            Placeholder icons instead of photos — avoids licensing risks with stock images. Can be swapped 1:1 for real industry photos later. Click an industry for the concrete use case.
-          </p>
-        </div>
-      </section>
-
-      <!-- PROBLEM -->
-      <section class="section section-alt" id="problem">
-        <div class="container">
-          <p class="eyebrow">Without a system</p>
-          <h2 class="section-title">
-            The gap isn't just response time.
-          </h2>
-          <p class="section-sub">
-            An analysis of 60 high-ticket companies shows: within business hours many still respond acceptably. Outside of them — and at the appointment booking itself — it looks different.
-          </p>
-
-          <div class="tickets">
-            <div class="ticket ticket-1">
-              <span class="ticket-time">09:14</span> Form inquiry
-              <span class="ticket-status">no appointment</span>
-            </div>
-            <div class="ticket ticket-2">
-              <span class="ticket-time">22:15</span> Inquiry, evening
-              <span class="ticket-status">until tomorrow?</span>
-            </div>
-            <div class="ticket ticket-3">
-              <span class="ticket-time">11:02</span> Consultation request
-              <span class="ticket-status">waiting</span>
-            </div>
-            <div class="ticket ticket-4">
-              <span class="ticket-time">13:47</span> Call
-              <span class="ticket-status">manual</span>
-            </div>
-            <div class="ticket ticket-5">
-              <span class="ticket-time">15:20</span> Email
-              <span class="ticket-status">no self-service</span>
-            </div>
-          </div>
-
-          <div class="grid grid-5 problem-grid">
-            <div class="problem-item">
-              <h3>No direct booking</h3>
-              <p>
-                0 of 60 companies analysed offer direct online appointment booking — the prospect has to wait for a callback.
-              </p>
-            </div>
-            <div class="problem-item">
-              <h3>Dead outside business hours</h3>
-              <p>
-                Anyone who enquires in the evening or at the weekend often waits until the next working day — by then they have usually already enquired with the competition.
-              </p>
-            </div>
-            <div class="problem-item">
-              <h3>Manual quotes</h3>
-              <p>
-                Staff combine customer data, product parameters and pricing rules by hand before a first quote goes out.
-              </p>
-            </div>
-            <div class="problem-item">
-              <h3>Qualification takes time</h3>
-              <p>
-                Every inquiry first has to be sorted manually before it's clear whether it's worth pursuing at all.
-              </p>
-            </div>
-            <div class="problem-item">
-              <h3>Every gap costs orders</h3>
-              <p>
-                Whoever offers an appointment first wins the order — regardless of how good the answer was content-wise.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- LÖSUNG -->
-      <section class="section" id="solution">
-        <div class="container">
-          <p class="eyebrow">The solution</p>
-          <h2 class="section-title">Four building blocks, one path to the order</h2>
-          <p class="section-sub">
-            In the order a real inquiry passes through them — from the first second to the booked appointment. Click a building block for the exact flow.
-          </p>
-
-          <div class="manifest">
-            <button
-              type="button"
-              class="manifest-row"
-              data-modal="modal-sofortantwort"
-            >
-              <span class="manifest-code">INSTANT REPLY</span>
-              <span class="manifest-title"
-                >Instant reply &amp; qualification</span
-              >
-              <span class="manifest-desc"
-                >Replies within seconds — also evenings and weekends. Every inquiry is immediately sorted by budget, need and urgency.</span
-              >
-              <span class="manifest-arrow">→</span>
-            </button>
-            <button
-              type="button"
-              class="manifest-row"
-              data-modal="modal-angebot"
-            >
-              <span class="manifest-code">QUOTE</span>
-              <span class="manifest-title"
-                >Automated quote creation</span
-              >
-              <span class="manifest-desc"
-                >Product parameters and pricing rules usually generate a first, individual quote automatically.</span
-              >
-              <span class="manifest-arrow">→</span>
-            </button>
-            <button
-              type="button"
-              class="manifest-row"
-              data-modal="modal-followup"
-            >
-              <span class="manifest-code">FOLLOW-UP</span>
-              <span class="manifest-title">Follow-up via chat &amp; call</span>
-              <span class="manifest-desc"
-                >If a prospect doesn't book right away, automatic follow-up takes over — via chat and, if needed, with a call from the voice AI.</span
-              >
-              <span class="manifest-arrow">→</span>
-            </button>
-            <button
-              type="button"
-              class="manifest-row"
-              data-modal="modal-termin"
-            >
-              <span class="manifest-code">APPOINTMENT</span>
-              <span class="manifest-title">Direct appointment booking</span>
-              <span class="manifest-desc"
-                >The prospect books directly online — no callback, no waiting, no lost lead.</span
-              >
-              <span class="manifest-arrow">→</span>
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <!-- ZAHLEN / KPI -->
-      <section class="section section-alt" id="numbers">
-        <div class="container">
-          <p class="eyebrow">Numbers</p>
-          <h2 class="section-title">What speed is worth</h2>
-          <p class="section-sub">
-            An audit study of 2,241 US companies shows how strongly response time affects the likelihood of closing. Click the source for the original evidence.
-          </p>
-
-          <div class="grid grid-2 stat-grid">
-            <div class="stat-card">
-              <span class="stat-number">21×</span>
-              <span class="stat-label"
-                >more likely to qualify when contacted within 5 instead of 30 minutes</span
+            <p class="fineprint">30 min · Free · No obligation.</p>
+            <div class="contact">
+              <span>+49 156 7977 1598</span>
+              <a href="mailto:lars.timmermann.ai@gmail.com"
+                >lars.timmermann.ai@gmail.com</a
               >
               <a
-                class="stat-source"
-                href="https://hbr.org/2011/03/the-short-life-of-online-sales-leads"
+                href="https://www.linkedin.com/in/lars-timmermann-428841194/"
                 target="_blank"
                 rel="noopener"
-                >Oldroyd et al., Harvard Business Review (2011) ↗</a
-              >
-            </div>
-            <div class="stat-card">
-              <span class="stat-number">42 hrs</span>
-              <span class="stat-label"
-                >average B2B response time — 23% don't respond at all</span
-              >
-              <a
-                class="stat-source"
-                href="https://hbr.org/2011/03/the-short-life-of-online-sales-leads"
-                target="_blank"
-                rel="noopener"
-                >Oldroyd et al., Harvard Business Review (2011) ↗</a
+                >LinkedIn</a
               >
             </div>
           </div>
-
-          <div class="stat-divider">Your own numbers</div>
-
-          <p class="section-sub">
-            Placeholder — will be replaced with real values as soon as the first customer data is available.
-          </p>
-
-          <div class="grid grid-4 stat-grid">
-            <div class="stat-card">
-              <span class="stat-number">[XX] min</span>
-              <span class="stat-label">Avg. time to booked appointment</span>
-            </div>
-            <div class="stat-card">
-              <span class="stat-number">[XX]%</span>
-              <span class="stat-label">Conversion rate inquiry → appointment</span>
-            </div>
-            <div class="stat-card">
-              <span class="stat-number">[XX]</span>
-              <span class="stat-label">additional appointments per month</span>
-            </div>
-            <div class="stat-card">
-              <span class="stat-number">[XXX]%</span>
-              <span class="stat-label">ROI after 90 days</span>
-            </div>
-          </div>
-          <p class="fine-print">
-            Placeholder values — no verified figures until the first customer evaluation is available.
-          </p>
-        </div>
-      </section>
-
-      <!-- SO FUNKTIONIERT'S / WALKTHROUGH -->
-      <section class="section" id="how-it-works">
-        <div class="container">
-          <p class="eyebrow">How it works</p>
-          <h2 class="section-title">Watch an inquiry run through live</h2>
-          <p class="section-sub">
-            The exact flow from the log above — recorded in full, from the form to the confirmed appointment.
-          </p>
-
-          <div class="demo-frame">
-            <div class="demo-frame-head">
-              <span class="board-dot"></span>
-              <span>process-demo.mp4</span>
-            </div>
-            <div class="demo-frame-body">
-              <button
-                type="button"
-                class="demo-play"
-                aria-label="Play video"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  width="22"
-                  height="22"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </button>
-              <p class="demo-placeholder-label">
-                Full video — coming soon
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- STACK -->
-      <section class="section section-alt" id="stack">
-        <div class="container">
-          <p class="eyebrow">Tech stack</p>
-          <h2 class="section-title">
-            Built on tools you already know
-          </h2>
-          <p class="section-sub">
-            No black box. We work inside the platforms you already use — you keep full control.
-          </p>
-
-          <div class="stack-groups">
-            <div class="stack-group">
-              <p class="stack-group-label">CRM</p>
-              <div class="stack-grid">
-                <span class="stamp stamp-logo"
-                  ><img src="../assets/hubspot.png" alt="HubSpot"
-                /></span>
-                <span class="stamp stamp-logo"
-                  ><img src="../assets/pipedrive.png" alt="Pipedrive"
-                /></span>
-                <span class="stamp stamp-logo"
-                  ><img src="../assets/close-crm.png" alt="Close CRM"
-                /></span>
-              </div>
-            </div>
-            <div class="stack-group">
-              <p class="stack-group-label">appointment</p>
-              <div class="stack-grid">
-                <span class="stamp stamp-logo"
-                  ><img src="../assets/cal-com.png" alt="Cal.com"
-                /></span>
-                <span class="stamp stamp-logo"
-                  ><img src="../assets/calendly.png" alt="Calendly"
-                /></span>
-              </div>
-            </div>
-            <div class="stack-group">
-              <p class="stack-group-label">Automation</p>
-              <div class="stack-grid">
-                <span class="stamp stamp-logo"
-                  ><img src="../assets/n8n.png" alt="n8n"
-                /></span>
-                <span class="stamp stamp-logo"
-                  ><img src="../assets/zapier.png" alt="Zapier"
-                /></span>
-                <span class="stamp stamp-logo"
-                  ><img src="../assets/make.png" alt="Make"
-                /></span>
-              </div>
-            </div>
-            <div class="stack-group">
-              <p class="stack-group-label">Communication</p>
-              <div class="stack-grid">
-                <span class="stamp stamp-logo"
-                  ><img src="../assets/whatsapp.png" alt="WhatsApp"
-                /></span>
-              </div>
-            </div>
-            <div class="stack-group">
-              <p class="stack-group-label">Voice</p>
-              <div class="stack-grid">
-                <span class="stamp stamp-logo"
-                  ><img src="../assets/fonio.png" alt="Fonio"
-                /></span>
-                <span class="stamp stamp-logo"
-                  ><img src="../assets/vapi.png" alt="VAPI"
-                /></span>
-                <span class="stamp stamp-logo"
-                  ><img src="../assets/twilio.png" alt="Twilio"
-                /></span>
-              </div>
-            </div>
-            <div class="stack-group">
-              <p class="stack-group-label">Leads</p>
-              <div class="stack-grid">
-                <span class="stamp stamp-logo"
-                  ><img src="../assets/meta-ads.png" alt="Meta Ads"
-                /></span>
-              </div>
-            </div>
-          </div>
-          <p class="fine-print">
-            Plus custom integrations wherever your business needs them.
-          </p>
-        </div>
-      </section>
-
-      <!-- ERGEBNISSE / TESTIMONIALS -->
-      <section class="section" id="results">
-        <div class="container">
-          <p class="eyebrow">Results</p>
-          <h2 class="section-title">What customers say</h2>
-
-          <div class="grid grid-3 transmission-grid">
-            <div class="transmission">
-              <div class="transmission-head">
-                <span class="transmission-tag">CONFIRMED</span>
-              </div>
-              <p class="transmission-quote">
-                “[Short quote from this customer about the result achieved]”
-              </p>
-              <div class="transmission-author">
-                <span class="transmission-logo">A</span>
-                <div>
-                  <h4>Customer A</h4>
-                  <p>Real estate agent</p>
-                </div>
-              </div>
-            </div>
-            <div class="transmission">
-              <div class="transmission-head">
-                <span class="transmission-tag">CONFIRMED</span>
-              </div>
-              <p class="transmission-quote">
-                “[Short quote from this customer about the result achieved]”
-              </p>
-              <div class="transmission-author">
-                <span class="transmission-logo">B</span>
-                <div>
-                  <h4>Customer B</h4>
-                  <p>Consulting firm</p>
-                </div>
-              </div>
-            </div>
-            <div class="transmission">
-              <div class="transmission-head">
-                <span class="transmission-tag">CONFIRMED</span>
-              </div>
-              <p class="transmission-quote">
-                “[Short quote from this customer about the result achieved]”
-              </p>
-              <div class="transmission-author">
-                <span class="transmission-logo">C</span>
-                <div>
-                  <h4>Customer C</h4>
-                  <p>Trade business</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <p class="fine-print">
-            Placeholder testimonials — will be replaced with real customer quotes before the page is shown to prospects.
-          </p>
-        </div>
-      </section>
-
-      <!-- ÜBER UNS -->
-      <section class="section section-alt" id="about">
-        <div class="container about-grid">
-          <div class="about-copy">
-            <p class="eyebrow">The person behind it</p>
-            <h2 class="section-title">
-              From Amazon, PwC and KPMG to Auftragspilot
-            </h2>
-            <p>
-              Auftragspilot is built by Lars Timmermann. Before building automated systems, he spent three years in operations at Amazon — five rotations across retail finance, product and vendor management — followed by finance transformation consulting at PwC, audit at KPMG and M&amp;A at DealCircle. That's where he learned how real businesses actually run — and where the process breaks.
-            </p>
-            <p>
-              Later he built AI automation and voice agents at AI Union &amp; SalesFrank — hands-on experience with real customer systems, not just theory. Auftragspilot bundles this experience in a focused product for high-ticket providers in the German-speaking market.
-            </p>
-          </div>
-          <div class="about-visual">
-            <div class="about-photo">
-              <img
-                src="../assets/lars.jpg"
-                alt="Portrait of Lars Timmermann"
-                width="400"
-                height="400"
-              />
-            </div>
-            <div class="about-logos">
-              <p class="about-logos-label">Career stations</p>
-              <div class="logo-row">
-                <img src="../assets/amazon.png" alt="Amazon" class="logo-amazon" />
-                <img src="../assets/pwc.png" alt="PwC" class="logo-pwc" />
-                <img src="../assets/kpmg.png" alt="KPMG" class="logo-kpmg" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- KONTAKT -->
-      <section class="section contact-section" id="contact">
-        <div class="container contact-inner">
-          <p class="eyebrow">Contact</p>
-          <h2 class="section-title">
-            Let's talk about your inquiries
-          </h2>
-          <p class="section-sub">
-            Fastest way — WhatsApp. Or book an appointment directly.
-          </p>
-          <div class="contact-actions">
-            <a
-              href="https://wa.me/4915679771598"
-              target="_blank"
-              rel="noopener"
-              class="btn btn-primary btn-lg"
+          <footer class="foot">
+            <span>Auftragspilot. From lead to job.</span>
+            <span
+              >© <span id="year">2026</span>Auftragspilot. A product by Lars Timmermann, Germany.</span
             >
-              <svg
-                viewBox="0 0 24 24"
-                width="18"
-                height="18"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.86 9.86 0 0 0 4.74 1.21h.004c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.13h-.003a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.22 8.22 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.21-8.25 8.21z"
-                />
-              </svg>
-              +49 156 7977 1598
-            </a>
-            <a
-              href="mailto:lars.timmermann.ai@gmail.com"
-              class="btn btn-ghost btn-lg"
-              >lars.timmermann.ai@gmail.com</a
-            >
-            <a
-              href="https://www.linkedin.com/in/lars-timmermann-428841194/"
-              target="_blank"
-              rel="noopener"
-              class="btn btn-ghost btn-lg"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                width="16"
-                height="16"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"
-                />
-              </svg>
-              LinkedIn
-            </a>
-          </div>
-          <div class="contact-calendly">
-            <a
-              href="https://cal.com/lars-timmermann-lt00/auftragspilot-demo-call"
-              class="btn btn-calendly btn-lg"
-              target="_blank"
-              rel="noopener"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                width="18"
-                height="18"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-                aria-hidden="true"
-              >
-                <rect x="3" y="5" width="18" height="16" rx="2" />
-                <path d="M3 10h18M8 3v4M16 3v4" />
-              </svg>
-              Book a demo
-            </a>
-            <p class="contact-calendly-note">
-              30 min · Free · No obligation.
-            </p>
-          </div>
-          <p class="status-line">
-            <span class="status-dot"></span> STATUS: TAKING ON NEW PROJECTS
-          </p>
+          </footer>
         </div>
       </section>
     </main>
 
-    <footer class="footer">
-      <div class="container footer-inner">
-        <div class="footer-brand">
-          <span class="nav-brand-name">Auftragspilot</span>
-          <span class="nav-brand-tag">From lead to order</span>
-        </div>
-        <nav class="footer-links" aria-label="Footer navigation">
-          <a href="#solution">Solution</a>
-          <a href="#process">Process</a>
-          <a href="#numbers">Numbers</a>
-          <a href="#stack">Stack</a>
-          <a href="#results">Results</a>
-          <a href="#contact">Contact</a>
-        </nav>
-        <div class="footer-contact">
-          <a href="https://wa.me/4915679771598" target="_blank" rel="noopener"
-            >WhatsApp</a
-          >
-          <a href="mailto:lars.timmermann.ai@gmail.com">Email</a>
-          <a
-            href="https://www.linkedin.com/in/lars-timmermann-428841194/"
-            target="_blank"
-            rel="noopener"
-            >LinkedIn</a
-          >
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>
-          © <span id="year"></span> Auftragspilot. A product by Lars Timmermann, Germany.
-        </p>
-      </div>
-    </footer>
+    <script src="../scrollcraft.js"></script>
+    <script>
+      ScrollCraft.mount(document.body);
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+    <script>
+      /* The signature move: scroll is the clock. Own code, engine untouched.
+   p (0..1) across the pinned duel maps to a clock from 22:14:00 to 10:00 the
+   next morning. The right side finishes in 15:30. The left side is still waiting. */
+      (function () {
+        var html = document.documentElement;
+        html.classList.add("js");
+        var duel = document.getElementById("vergleich");
+        if (!duel) return;
+        var evs = [].slice.call(duel.querySelectorAll(".ev"));
+        var clockT = document.getElementById("clockT");
+        var clockD = document.getElementById("clockD");
+        var waitL = document.getElementById("waitL");
+        var waitR = document.getElementById("waitR");
+        var mast = duel.querySelector(".mast");
+        var fab = document.getElementById("fab");
+        var parts = document.getElementById("loesung");
+        var partsIdx = [].slice.call(
+          document.querySelectorAll("#partsIndex li"),
+        );
+        var BASE = 22 * 3600 + 14 * 60,
+          DAY = 86400;
+        var P_A = 0.34,
+          P_END = 0.78,
+          T_A = 960,
+          T_END = 42360;
+        var P_COLLAPSE0 = 0.84,
+          P_COLLAPSE1 = 0.95;
+        var lastKey = "";
 
-    <!-- MODALS -->
-    <div class="modal-overlay" id="modal-termin" aria-hidden="true">
-      <div
-        class="modal-box"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="modal-termin-title"
-      >
-        <button
-          type="button"
-          class="modal-close"
-          data-close
-          aria-label="Close"
-        >
-          ×
-        </button>
-        <span class="modal-eyebrow">Solution · Appointment</span>
-        <h3 id="modal-termin-title">Direct appointment booking</h3>
-        <p class="modal-intro">
-          The building block that makes the biggest difference. 0 of 60 competitors analysed offer this.
-        </p>
-        <div class="modal-flow">
-          <div class="modal-flow-step">
-            <span class="modal-flow-num">1</span>
-            <div>
-              <h4>Inquiry arrives</h4>
-              <p>Form, call or Meta Ads.</p>
-            </div>
-          </div>
-          <div class="modal-flow-step">
-            <span class="modal-flow-num">2</span>
-            <div>
-              <h4>Qualification runs automatically</h4>
-              <p>Budget &amp; need are checked.</p>
-            </div>
-          </div>
-          <div class="modal-flow-step">
-            <span class="modal-flow-num">3</span>
-            <div>
-              <h4>Available appointments are shown</h4>
-              <p>Directly in the chat or via a link.</p>
-            </div>
-          </div>
-          <div class="modal-flow-step">
-            <span class="modal-flow-num">4</span>
-            <div>
-              <h4>Appointment is booked</h4>
-              <p>Confirmation and reminder run automatically.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+        function clamp(x) {
+          return x < 0 ? 0 : x > 1 ? 1 : x;
+        }
+        function smooth(x) {
+          x = clamp(x);
+          return x * x * (3 - 2 * x);
+        }
+        function pad(n) {
+          return (n < 10 ? "0" : "") + n;
+        }
+        function secs(p) {
+          if (p <= P_A) return T_A * (p / P_A);
+          if (p <= P_END)
+            return T_A + (T_END - T_A) * ((p - P_A) / (P_END - P_A));
+          return T_END;
+        }
+        function hms(t) {
+          var s = (BASE + Math.floor(t)) % DAY;
+          return pad(Math.floor(s / 3600)) + ":" + pad(Math.floor(s / 60) % 60);
+        }
+        function wait(t) {
+          t = Math.floor(t);
+          if (t < 60) return t + " sec";
+          if (t < 3600)
+            return Math.floor(t / 60) + " min " + pad(t % 60) + " sec";
+          return (
+            Math.floor(t / 3600) +
+            " hrs " +
+            pad(Math.floor(t / 60) % 60) +
+            " min"
+          );
+        }
+        function progress(el) {
+          var r = el.getBoundingClientRect();
+          var travel = Math.max(el.offsetHeight - window.innerHeight, 1);
+          return clamp(-r.top / travel);
+        }
 
-    <div class="modal-overlay" id="modal-sofortantwort" aria-hidden="true">
-      <div
-        class="modal-box"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="modal-sofortantwort-title"
-      >
-        <button
-          type="button"
-          class="modal-close"
-          data-close
-          aria-label="Close"
-        >
-          ×
-        </button>
-        <span class="modal-eyebrow">Solution · Instant reply</span>
-        <h3 id="modal-sofortantwort-title">
-          Instant reply &amp; qualification
-        </h3>
-        <p class="modal-intro">
-          The first minutes decide. Whoever replies first often wins the order — no matter how good the later answer would have been.
-        </p>
-        <div class="modal-flow">
-          <div class="modal-flow-step">
-            <span class="modal-flow-num">1</span>
-            <div>
-              <h4>Inquiry comes in</h4>
-              <p>No matter which channel, no matter what time.</p>
-            </div>
-          </div>
-          <div class="modal-flow-step">
-            <span class="modal-flow-num">2</span>
-            <div>
-              <h4>Reply within seconds</h4>
-              <p>Also evenings, weekends, public holidays.</p>
-            </div>
-          </div>
-          <div class="modal-flow-step">
-            <span class="modal-flow-num">3</span>
-            <div>
-              <h4>AI asks follow-up questions</h4>
-              <p>Budget, timeframe, details of the project.</p>
-            </div>
-          </div>
-          <div class="modal-flow-step">
-            <span class="modal-flow-num">4</span>
-            <div>
-              <h4>Inquiry is scored</h4>
-              <p>Hot, warm or unsuitable — only what's relevant moves on.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+        function frame() {
+          var p = progress(duel);
+          var t = secs(p);
+          var q = smooth((p - P_COLLAPSE0) / (P_COLLAPSE1 - P_COLLAPSE0));
+          duel.style.setProperty(
+            "--cut",
+            (window.innerWidth <= 860 ? 56 : 50) * (1 - q),
+          );
+          duel.style.setProperty("--c", q.toFixed(3));
+          duel.style.setProperty(
+            "--mast",
+            clamp(1 - (p - 0.78) / 0.06).toFixed(3),
+          );
+          mast.classList.toggle("is-off", p > 0.84);
+          duel.classList.toggle("is-won", q > 0.55);
 
-    <div class="modal-overlay" id="modal-angebot" aria-hidden="true">
-      <div
-        class="modal-box"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="modal-angebot-title"
-      >
-        <button
-          type="button"
-          class="modal-close"
-          data-close
-          aria-label="Close"
-        >
-          ×
-        </button>
-        <span class="modal-eyebrow">Solution · Quote</span>
-        <h3 id="modal-angebot-title">Automated quote creation</h3>
-        <p class="modal-intro">
-          A first, individual quote is created automatically from product parameters and pricing rules.
-        </p>
-        <div class="modal-flow">
-          <div class="modal-flow-step">
-            <span class="modal-flow-num">1</span>
-            <div>
-              <h4>Structured data captured</h4>
-              <p>E.g. scope, specification, location of the project.</p>
-            </div>
-          </div>
-          <div class="modal-flow-step">
-            <span class="modal-flow-num">2</span>
-            <div>
-              <h4>Pricing logic applied</h4>
-              <p>Deterministic and traceable.</p>
-            </div>
-          </div>
-          <div class="modal-flow-step">
-            <span class="modal-flow-num">3</span>
-            <div>
-              <h4>First quote created automatically</h4>
-              <p>As a PDF or directly in the chat.</p>
-            </div>
-          </div>
-          <div class="modal-flow-step">
-            <span class="modal-flow-num">4</span>
-            <div>
-              <h4>Customer receives quote</h4>
-              <p>Usually within minutes instead of days.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+          var key = Math.floor(t) + ":" + (q > 0.55 ? 1 : 0);
+          if (key !== lastKey) {
+            lastKey = key;
+            clockT.textContent = hms(t);
+            clockD.textContent = t >= 6360 ? "Next day" : "Example run";
+            waitL.textContent = wait(t);
+            waitR.textContent = t >= 930 ? "under 30 min" : "running";
+            waitR.classList.toggle("is-done", t >= 930);
+            evs.forEach(function (li) {
+              li.classList.toggle(
+                "is-on",
+                t >= parseFloat(li.getAttribute("data-t")),
+              );
+            });
+          }
 
-    <div class="modal-overlay" id="modal-followup" aria-hidden="true">
-      <div
-        class="modal-box"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="modal-followup-title"
-      >
-        <button
-          type="button"
-          class="modal-close"
-          data-close
-          aria-label="Close"
-        >
-          ×
-        </button>
-        <span class="modal-eyebrow">Solution · Follow-up</span>
-        <h3 id="modal-followup-title">Follow-up via chat &amp; call</h3>
-        <p class="modal-intro">
-          Most providers give up after one chat message. Auftragspilot doesn't — and that's exactly what sets us apart from pure chat tools.
-        </p>
-        <div class="modal-flow">
-          <div class="modal-flow-step">
-            <span class="modal-flow-num">1</span>
-            <div>
-              <h4>No booking made</h4>
-              <p>Despite the quote, the prospect doesn't get back.</p>
-            </div>
-          </div>
-          <div class="modal-flow-step">
-            <span class="modal-flow-num">2</span>
-            <div>
-              <h4>Automatic chat message</h4>
-              <p>Friendly reminder, matched to the conversation so far.</p>
-            </div>
-          </div>
-          <div class="modal-flow-step">
-            <span class="modal-flow-num">3</span>
-            <div>
-              <h4>Voice AI calls</h4>
-              <p>When chat isn't enough — a real phone call.</p>
-            </div>
-          </div>
-          <div class="modal-flow-step">
-            <span class="modal-flow-num">4</span>
-            <div>
-              <h4>Appointment booked right in the conversation</h4>
-              <p>Or the lead is cleanly closed as "not interested".</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+          var pp = progress(parts);
+          var idx = pp < 0.26 ? 0 : pp < 0.5 ? 1 : pp < 0.74 ? 2 : 3;
+          partsIdx.forEach(function (li, i) {
+            li.classList.toggle("is-active", i === idx);
+          });
 
-    <!-- BRANCHEN-MODALS -->
-    <div class="modal-overlay" id="modal-branche-immobilien" aria-hidden="true">
-      <div
-        class="modal-box modal-box-wide"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="modal-branche-immobilien-title"
-      >
-        <button
-          type="button"
-          class="modal-close"
-          data-close
-          aria-label="Close"
-        >
-          ×
-        </button>
-        <span class="modal-eyebrow">Industry · Real estate</span>
-        <h3 id="modal-branche-immobilien-title">
-          Agents, developers &amp; project developers
-        </h3>
-        <p class="modal-intro">
-          A prospect sees an ad for a new-build project and writes via WhatsApp or the property inquiry form. Auftragspilot asks about budget, preferred location and financing status, sends the matching property brochure automatically and books the viewing directly in the agent's calendar.
-        </p>
-        <div class="demo-frame demo-frame-modal">
-          <div class="demo-frame-head">
-            <span class="board-dot"></span>
-            <span>real-estate-use-case.mp4</span>
-          </div>
-          <div class="demo-frame-body">
-            <button
-              type="button"
-              class="demo-play"
-              aria-label="Play video"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                width="22"
-                height="22"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </button>
-            <p class="demo-placeholder-label">
-              Industry video — coming soon
-            </p>
-          </div>
-        </div>
-        <div class="modal-stats">
-          <div class="modal-stat">
-            <span class="modal-stat-number">[XX]%</span>
-            <span class="modal-stat-label"
-              >more viewings per week</span
-            >
-          </div>
-          <div class="modal-stat">
-            <span class="modal-stat-number">[XX] min</span>
-            <span class="modal-stat-label"
-              >from inquiry to booked viewing</span
-            >
-          </div>
-        </div>
-        <p class="fine-print">
-          Placeholder — will be replaced with real industry figures as soon as the first customer cases from this industry are available.
-        </p>
-      </div>
-    </div>
-
-    <div class="modal-overlay" id="modal-branche-bau" aria-hidden="true">
-      <div
-        class="modal-box modal-box-wide"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="modal-branche-bau-title"
-      >
-        <button
-          type="button"
-          class="modal-close"
-          data-close
-          aria-label="Close"
-        >
-          ×
-        </button>
-        <span class="modal-eyebrow">Industry · Construction &amp; building services</span>
-        <h3 id="modal-branche-bau-title">
-          Heat pumps, stairlifts &amp; renovation
-        </h3>
-        <p class="modal-intro">
-          A prospect enquires via a heat pump or stairlift form. Auftragspilot clarifies the property details — house type, existing heating system or stair shape — creates a first cost estimate and proposes an appointment for the on-site survey straight away.
-        </p>
-        <div class="demo-frame demo-frame-modal">
-          <div class="demo-frame-head">
-            <span class="board-dot"></span>
-            <span>construction-use-case.mp4</span>
-          </div>
-          <div class="demo-frame-body">
-            <button
-              type="button"
-              class="demo-play"
-              aria-label="Play video"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                width="22"
-                height="22"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </button>
-            <p class="demo-placeholder-label">
-              Industry video — coming soon
-            </p>
-          </div>
-        </div>
-        <div class="modal-stats">
-          <div class="modal-stat">
-            <span class="modal-stat-number">[XX]%</span>
-            <span class="modal-stat-label"
-              >fewer unqualified on-site appointments</span
-            >
-          </div>
-          <div class="modal-stat">
-            <span class="modal-stat-number">[XX] hrs</span>
-            <span class="modal-stat-label"
-              >instead of [XX] days until the first cost estimate</span
-            >
-          </div>
-        </div>
-        <p class="fine-print">
-          Placeholder — will be replaced with real industry figures as soon as the first customer cases from this industry are available.
-        </p>
-      </div>
-    </div>
-
-    <div class="modal-overlay" id="modal-branche-mobilitaet" aria-hidden="true">
-      <div
-        class="modal-box modal-box-wide"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="modal-branche-mobilitaet-title"
-      >
-        <button
-          type="button"
-          class="modal-close"
-          data-close
-          aria-label="Close"
-        >
-          ×
-        </button>
-        <span class="modal-eyebrow">Industry · Mobility &amp; vehicles</span>
-        <h3 id="modal-branche-mobilitaet-title">
-          Vehicle dealers &amp; mobility aids
-        </h3>
-        <p class="modal-intro">
-          A prospect enquires about a vehicle or a mobility aid — such as a wheelchair ramp or a vehicle conversion. Auftragspilot clarifies requirements and budget, sends a matching quote and books a test drive or consultation directly.
-        </p>
-        <div class="demo-frame demo-frame-modal">
-          <div class="demo-frame-head">
-            <span class="board-dot"></span>
-            <span>mobility-use-case.mp4</span>
-          </div>
-          <div class="demo-frame-body">
-            <button
-              type="button"
-              class="demo-play"
-              aria-label="Play video"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                width="22"
-                height="22"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </button>
-            <p class="demo-placeholder-label">
-              Industry video — coming soon
-            </p>
-          </div>
-        </div>
-        <div class="modal-stats">
-          <div class="modal-stat">
-            <span class="modal-stat-number">[XX]%</span>
-            <span class="modal-stat-label"
-              >faster first reply than a callback</span
-            >
-          </div>
-          <div class="modal-stat">
-            <span class="modal-stat-number">[XX]</span>
-            <span class="modal-stat-label"
-              >additional test drives/consultations per month</span
-            >
-          </div>
-        </div>
-        <p class="fine-print">
-          Placeholder — will be replaced with real industry figures as soon as the first customer cases from this industry are available.
-        </p>
-      </div>
-    </div>
-
-    <div class="modal-overlay" id="modal-branche-beratung" aria-hidden="true">
-      <div
-        class="modal-box modal-box-wide"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="modal-branche-beratung-title"
-      >
-        <button
-          type="button"
-          class="modal-close"
-          data-close
-          aria-label="Close"
-        >
-          ×
-        </button>
-        <span class="modal-eyebrow">Industry · Consulting &amp; finance</span>
-        <h3 id="modal-branche-beratung-title">
-          Lawyers, tax advisors &amp; financial brokers
-        </h3>
-        <p class="modal-intro">
-          A client enquires about an initial consultation via the website or a referral. Auftragspilot clarifies the matter — such as area of law or type of financing — checks rough suitability and books a first appointment directly in the advisor's calendar.
-        </p>
-        <div class="demo-frame demo-frame-modal">
-          <div class="demo-frame-head">
-            <span class="board-dot"></span>
-            <span>consulting-finance-use-case.mp4</span>
-          </div>
-          <div class="demo-frame-body">
-            <button
-              type="button"
-              class="demo-play"
-              aria-label="Play video"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                width="22"
-                height="22"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </button>
-            <p class="demo-placeholder-label">
-              Industry video — coming soon
-            </p>
-          </div>
-        </div>
-        <div class="modal-stats">
-          <div class="modal-stat">
-            <span class="modal-stat-number">[XX]%</span>
-            <span class="modal-stat-label"
-              >fewer no-shows thanks to automatic reminders</span
-            >
-          </div>
-          <div class="modal-stat">
-            <span class="modal-stat-number">[XX] min</span>
-            <span class="modal-stat-label"
-              >from inquiry to booked first appointment</span
-            >
-          </div>
-        </div>
-        <p class="fine-print">
-          Placeholder — will be replaced with real industry figures as soon as the first customer cases from this industry are available.
-        </p>
-      </div>
-    </div>
-
-    <div class="modal-overlay" id="modal-branche-b2b" aria-hidden="true">
-      <div
-        class="modal-box modal-box-wide"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="modal-branche-b2b-title"
-      >
-        <button
-          type="button"
-          class="modal-close"
-          data-close
-          aria-label="Close"
-        >
-          ×
-        </button>
-        <span class="modal-eyebrow"
-          >Industry · B2B equipment &amp; industry</span
-        >
-        <h3 id="modal-branche-b2b-title">
-          Machinery, plants &amp; suppliers
-        </h3>
-        <p class="modal-intro">
-          A buyer enquires about a machine or plant. Auftragspilot captures the technical key data — quantity, specification, delivery location — creates a first rough calculation and arranges a technical discussion with sales.
-        </p>
-        <div class="demo-frame demo-frame-modal">
-          <div class="demo-frame-head">
-            <span class="board-dot"></span>
-            <span>b2b-industry-use-case.mp4</span>
-          </div>
-          <div class="demo-frame-body">
-            <button
-              type="button"
-              class="demo-play"
-              aria-label="Play video"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                width="22"
-                height="22"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </button>
-            <p class="demo-placeholder-label">
-              Industry video — coming soon
-            </p>
-          </div>
-        </div>
-        <div class="modal-stats">
-          <div class="modal-stat">
-            <span class="modal-stat-number">[XX]%</span>
-            <span class="modal-stat-label"
-              >faster first response to inquiries</span
-            >
-          </div>
-          <div class="modal-stat">
-            <span class="modal-stat-number">[XX]</span>
-            <span class="modal-stat-label"
-              >additional qualified inquiries per month</span
-            >
-          </div>
-        </div>
-        <p class="fine-print">
-          Placeholder — will be replaced with real industry figures as soon as the first customer cases from this industry are available.
-        </p>
-      </div>
-    </div>
-
-    <script src="../script.js?v=2"></script>
+          var passed =
+            duel.getBoundingClientRect().bottom < window.innerHeight * 0.6;
+          var closeEl = document.getElementById("kontakt");
+          var atClose =
+            closeEl.getBoundingClientRect().top < window.innerHeight * 0.4;
+          document.body.classList.toggle("has-passed", passed);
+          fab.classList.toggle("is-hidden", atClose);
+        }
+        var ticking = false;
+        function onScroll() {
+          if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(function () {
+              ticking = false;
+              frame();
+            });
+          }
+        }
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", onScroll);
+        frame();
+      })();
+    </script>
   </body>
 </html>
