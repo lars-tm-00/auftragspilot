@@ -949,7 +949,7 @@
       @media (hover: hover) and (pointer: fine) { .mast__nav a:hover, .topnav__links a:hover { color: var(--sc-ink); } }
       .topnav { position: fixed; top: 0; left: 0; right: 0; z-index: 60; display: flex; align-items: center; gap: 1.5rem; padding: 0.7rem var(--sc-gutter); background: color-mix(in oklab, var(--sc-canvas) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--sc-hairline); transform: translateY(-100%); transition: transform 240ms var(--sc-ease-out); }
       .has-passed .topnav { transform: none; }
-      .topnav__brand img { height: 1.5rem; width: auto; filter: brightness(0) invert(1); }
+      .topnav__brand img { height: 1.5rem; width: auto; }
       .topnav__links { display: flex; gap: 1.1rem; font-size: var(--sc-t-sm); margin-inline: auto; }
       .topnav__cta { padding: 0.5rem 1rem; }
       .video-frame { aspect-ratio: 16 / 9; width: 100%; border-radius: var(--sc-r-md); overflow: hidden; background: var(--sc-surface); box-shadow: var(--sc-e3), var(--sc-edge); display: grid; place-items: center; text-align: center; }
@@ -962,6 +962,9 @@
       .badge--before { color: var(--sc-ink); box-shadow: inset 0 0 0 1px var(--sc-hairline-strong); }
       .badge--after { background: var(--sc-accent); color: var(--sc-accent-ink); }
       .col__head { display: grid; justify-items: start; gap: 0.6rem; }
+
+      .mast__brand > img, .topnav__brand img { background: #eff1ec; padding: 0.3rem 0.65rem; border-radius: var(--sc-r-sm); box-sizing: content-box; height: 1.7rem; width: auto; }
+      .topnav__brand img { height: 1.35rem; }
     </style>
   </head>
   <body>
@@ -1113,7 +1116,6 @@
                 alt="Auftragspilot"
                 width="640"
                 height="184"
-                style="filter: brightness(0) invert(1)"
               />
               <nav class="mast__nav" aria-label="Rubriken"><a href="#vergleich">Ablauf</a><a href="#luecke">Problem</a><a href="#zahlen">Zahlen</a><a href="#loesung">Lösung</a><a href="#branchen">Branchen</a><a href="#stack">Stack</a><a href="#ueber">Über mich</a><a href="#kontakt">Kontakt</a></nav>
 <div class="mast__right">
