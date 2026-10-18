@@ -500,6 +500,37 @@
         color: var(--sc-ink-soft);
       }
 
+      .chanrow {
+        padding-top: var(--sc-7);
+        border-top: 1px solid var(--sc-hairline-strong);
+      }
+      .chanstats {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: var(--sc-5) var(--sc-4);
+      }
+      .chanstats > div {
+        display: grid;
+        gap: 0.3rem;
+      }
+      .chanstats b {
+        font-family: var(--sc-font-display);
+        font-weight: 500;
+        font-size: var(--sc-t-2xl);
+        letter-spacing: var(--sc-track-snug);
+        color: var(--sc-ink);
+      }
+      .chanstats span {
+        color: var(--sc-ink-soft);
+        font-size: var(--sc-t-sm);
+      }
+      .chanstats__highlight b {
+        color: var(--sc-accent);
+      }
+      .chanrow a {
+        color: var(--sc-ink-soft);
+      }
+
       /* the four building blocks: pinned, one at a time */
       .parts [data-sc-stage] {
         background: var(--sc-surface);
@@ -899,6 +930,9 @@
         .parts [data-sc-stage] {
           grid-template-columns: minmax(0, 1fr);
         }
+        .chanstats {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
         .rules li {
           grid-template-columns: minmax(0, 1fr);
         }
@@ -1267,6 +1301,34 @@
               >
             </div>
           </div>
+
+          <div class="chanrow" data-sc-in style="margin-top: var(--sc-8)">
+            <p class="sc-label kicker" style="margin-bottom: var(--sc-4)">
+              Kanal-Vergleich
+            </p>
+            <div class="chanstats">
+              <div><b>50&nbsp;%</b><span>SMS/Chat-Antwortrate</span></div>
+              <div><b>25&nbsp;%</b><span>Anrufe allein</span></div>
+              <div><b>1,4&nbsp;%</b><span>E-Mail-Antwortrate</span></div>
+              <div class="chanstats__highlight">
+                <b>92&nbsp;%</b><span>Chat + Anruf kombiniert</span>
+              </div>
+            </div>
+            <p class="fineprint" style="margin-top: var(--sc-4)">
+              Herstellerdaten von Verse.ai, eigene Plattformanalyse von über
+              10 Mio. Lead-Interaktionen, nicht unabhängig geprüft. Deckt
+              sich mit dem Auftragspilot-Ansatz: Chat zuerst, bei Bedarf
+              automatischer Anruf als Eskalation, statt nur ein einzelner
+              Kanal.
+              <a
+                href="https://verse.ai/?p=262996"
+                target="_blank"
+                rel="noopener"
+                >Verse.ai ↗</a
+              >
+            </p>
+          </div>
+
           <p class="fineprint" style="margin-top: var(--sc-7)">
             Eigene Kundenzahlen folgen, sobald die ersten Auswertungen
             vorliegen. Bis dahin stehen hier keine Werte.

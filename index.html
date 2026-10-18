@@ -500,6 +500,37 @@
         color: var(--sc-ink-soft);
       }
 
+      .chanrow {
+        padding-top: var(--sc-7);
+        border-top: 1px solid var(--sc-hairline-strong);
+      }
+      .chanstats {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: var(--sc-5) var(--sc-4);
+      }
+      .chanstats > div {
+        display: grid;
+        gap: 0.3rem;
+      }
+      .chanstats b {
+        font-family: var(--sc-font-display);
+        font-weight: 500;
+        font-size: var(--sc-t-2xl);
+        letter-spacing: var(--sc-track-snug);
+        color: var(--sc-ink);
+      }
+      .chanstats span {
+        color: var(--sc-ink-soft);
+        font-size: var(--sc-t-sm);
+      }
+      .chanstats__highlight b {
+        color: var(--sc-accent);
+      }
+      .chanrow a {
+        color: var(--sc-ink-soft);
+      }
+
       /* the four building blocks: pinned, one at a time */
       .parts [data-sc-stage] {
         background: var(--sc-surface);
@@ -899,6 +930,9 @@
         .parts [data-sc-stage] {
           grid-template-columns: minmax(0, 1fr);
         }
+        .chanstats {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
         .rules li {
           grid-template-columns: minmax(0, 1fr);
         }
@@ -922,7 +956,8 @@
           padding: 0.5rem 0;
         }
         .parts__stage {
-          min-height: 21rem;}
+          min-height: 21rem;
+        }
         .part {
           justify-content: flex-start;
         }
@@ -943,34 +978,184 @@
         }
       }
 
-      @media (min-width: 861px) { .fab { display: none; } }
-      .mast__nav { display: flex; gap: 1.1rem; font-size: var(--sc-t-sm); margin-inline: auto; }
-      .mast__nav a, .topnav__links a { text-decoration: none; color: var(--sc-ink-soft); padding: 0.3rem 0; transition: color 140ms var(--sc-ease-out); }
-      @media (hover: hover) and (pointer: fine) { .mast__nav a:hover, .topnav__links a:hover { color: var(--sc-ink); } }
-      .topnav { position: fixed; top: 0; left: 0; right: 0; z-index: 60; display: flex; align-items: center; gap: 1.5rem; padding: 0.7rem var(--sc-gutter); background: color-mix(in oklab, var(--sc-canvas) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--sc-hairline); transform: translateY(-100%); transition: transform 240ms var(--sc-ease-out); }
-      .has-passed .topnav { transform: none; }
-      .topnav__brand img { height: 1.5rem; width: auto; }
-      .topnav__links { display: flex; gap: 1.1rem; font-size: var(--sc-t-sm); margin-inline: auto; }
-      .topnav__cta { padding: 0.5rem 1rem; }
-      .video-frame { aspect-ratio: 16 / 9; width: 100%; border-radius: var(--sc-r-md); overflow: hidden; background: var(--sc-surface); box-shadow: var(--sc-e3), var(--sc-edge); display: grid; place-items: center; text-align: center; }
-      .video-frame iframe, .video-frame video { width: 100%; height: 100%; border: 0; display: block; }
-      .video-frame p { margin: 0; color: var(--sc-ink-soft); font-size: var(--sc-t-sm); }
-      @media (max-width: 1180px) { .mast__nav { display: none; } .topnav__links { gap: 0.9rem; overflow-x: auto; scrollbar-width: none; } }
-      @media (max-width: 860px) { .topnav { gap: 0.75rem; padding-block: 0.5rem; } .topnav__brand { display: none; } .topnav__cta { display: none; } .topnav__links { margin: 0; white-space: nowrap; } }
+      @media (min-width: 861px) {
+        .fab {
+          display: none;
+        }
+      }
+      .mast__nav {
+        display: flex;
+        gap: 1.1rem;
+        font-size: var(--sc-t-sm);
+        margin-inline: auto;
+      }
+      .mast__nav a,
+      .topnav__links a {
+        text-decoration: none;
+        color: var(--sc-ink-soft);
+        padding: 0.3rem 0;
+        transition: color 140ms var(--sc-ease-out);
+      }
+      @media (hover: hover) and (pointer: fine) {
+        .mast__nav a:hover,
+        .topnav__links a:hover {
+          color: var(--sc-ink);
+        }
+      }
+      .topnav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 60;
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 0.7rem var(--sc-gutter);
+        background: color-mix(in oklab, var(--sc-canvas) 88%, transparent);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--sc-hairline);
+        transform: translateY(-100%);
+        transition: transform 240ms var(--sc-ease-out);
+      }
+      .has-passed .topnav {
+        transform: none;
+      }
+      .topnav__brand img {
+        height: 1.5rem;
+        width: auto;
+      }
+      .topnav__links {
+        display: flex;
+        gap: 1.1rem;
+        font-size: var(--sc-t-sm);
+        margin-inline: auto;
+      }
+      .topnav__cta {
+        padding: 0.5rem 1rem;
+      }
+      .video-frame {
+        aspect-ratio: 16 / 9;
+        width: 100%;
+        border-radius: var(--sc-r-md);
+        overflow: hidden;
+        background: var(--sc-surface);
+        box-shadow: var(--sc-e3), var(--sc-edge);
+        display: grid;
+        place-items: center;
+        text-align: center;
+      }
+      .video-frame iframe,
+      .video-frame video {
+        width: 100%;
+        height: 100%;
+        border: 0;
+        display: block;
+      }
+      .video-frame p {
+        margin: 0;
+        color: var(--sc-ink-soft);
+        font-size: var(--sc-t-sm);
+      }
+      @media (max-width: 1180px) {
+        .mast__nav {
+          display: none;
+        }
+        .topnav__links {
+          gap: 0.9rem;
+          overflow-x: auto;
+          scrollbar-width: none;
+        }
+      }
+      @media (max-width: 860px) {
+        .topnav {
+          gap: 0.75rem;
+          padding-block: 0.5rem;
+        }
+        .topnav__brand {
+          display: none;
+        }
+        .topnav__cta {
+          display: none;
+        }
+        .topnav__links {
+          margin: 0;
+          white-space: nowrap;
+        }
+      }
 
-      .badge { display: inline-block; align-self: flex-start; font-family: var(--sc-font-mono); font-size: var(--sc-t-xs); font-weight: 500; letter-spacing: var(--sc-track-wide); text-transform: uppercase; padding: 0.35rem 0.7rem; border-radius: var(--sc-r-sm); }
-      .badge--before { color: var(--sc-ink); box-shadow: inset 0 0 0 1px var(--sc-hairline-strong); }
-      .badge--after { background: var(--sc-accent); color: var(--sc-accent-ink); }
-      .col__head { display: grid; justify-items: start; gap: 0.6rem; }
+      .badge {
+        display: inline-block;
+        align-self: flex-start;
+        font-family: var(--sc-font-mono);
+        font-size: var(--sc-t-xs);
+        font-weight: 500;
+        letter-spacing: var(--sc-track-wide);
+        text-transform: uppercase;
+        padding: 0.35rem 0.7rem;
+        border-radius: var(--sc-r-sm);
+      }
+      .badge--before {
+        color: var(--sc-ink);
+        box-shadow: inset 0 0 0 1px var(--sc-hairline-strong);
+      }
+      .badge--after {
+        background: var(--sc-accent);
+        color: var(--sc-accent-ink);
+      }
+      .col__head {
+        display: grid;
+        justify-items: start;
+        gap: 0.6rem;
+      }
 
-      .mast__brand > img, .topnav__brand img { background: #eff1ec; padding: 0.3rem 0.65rem; border-radius: var(--sc-r-sm); box-sizing: content-box; height: 1.7rem; width: auto; }
-      .topnav__brand img { height: 1.35rem; }
+      .mast__brand > img,
+      .topnav__brand img {
+        background: #eff1ec;
+        padding: 0.3rem 0.65rem;
+        border-radius: var(--sc-r-sm);
+        box-sizing: content-box;
+        height: 1.7rem;
+        width: auto;
+      }
+      .topnav__brand img {
+        height: 1.35rem;
+      }
     </style>
   </head>
   <body>
     <a class="skip" href="#kontakt">Zum Kontakt springen</a>
-    <nav class="topnav" id="topnav" aria-label="Hauptnavigation"><a class="topnav__brand" href="#top"><img src="assets/auftragspilot-logo.png" alt="Auftragspilot" width="640" height="184"></a><div class="topnav__links"><a href="#vergleich">Ablauf</a><a href="#luecke">Problem</a><a href="#zahlen">Zahlen</a><a href="#loesung">Lösung</a><a href="#branchen">Branchen</a><a href="#stack">Stack</a><a href="#ueber">Über mich</a><a href="leak-check/index.html" style="color: var(--sc-accent);">Leak-Check</a><a href="#kontakt">Kontakt</a></div><a class="btn btn--ghost topnav__cta" href="leak-check/index.html" style="margin-right:-0.5rem;">Leak-Check</a><a class="btn topnav__cta" href="https://cal.com/lars-timmermann-lt00/auftragspilot-demo-gespraech" target="_blank" rel="noopener">Demo buchen</a></nav>
-<span data-sc-progress></span>
+    <nav class="topnav" id="topnav" aria-label="Hauptnavigation">
+      <a class="topnav__brand" href="#top"
+        ><img
+          src="assets/auftragspilot-logo.png"
+          alt="Auftragspilot"
+          width="640"
+          height="184"
+      /></a>
+      <div class="topnav__links">
+        <a href="#vergleich">Ablauf</a><a href="#luecke">Problem</a
+        ><a href="#zahlen">Zahlen</a><a href="#loesung">Lösung</a
+        ><a href="#branchen">Branchen</a><a href="#stack">Stack</a
+        ><a href="#ueber">Über mich</a
+        ><a href="leak-check/index.html" style="color: var(--sc-accent)"
+          >Leak-Check</a
+        ><a href="#kontakt">Kontakt</a>
+      </div>
+      <a
+        class="btn btn--ghost topnav__cta"
+        href="leak-check/index.html"
+        style="margin-right: -0.5rem"
+        >Leak-Check</a
+      ><a
+        class="btn topnav__cta"
+        href="https://cal.com/lars-timmermann-lt00/auftragspilot-demo-gespraech"
+        target="_blank"
+        rel="noopener"
+        >Demo buchen</a
+      >
+    </nav>
+    <span data-sc-progress></span>
     <div class="sc-grain" aria-hidden="true"></div>
 
     <a
@@ -993,10 +1178,7 @@
                 <h2>Anfrage um 22:14. Das Büro ist zu.</h2>
                 <p>Der Interessent schreibt abends. Er bekommt: nichts.</p>
               </div>
-              <ol
-                class="evs"
-                aria-label="So läuft es heute, zeitlicher Ablauf"
-              >
+              <ol class="evs" aria-label="So läuft es heute, zeitlicher Ablauf">
                 <li class="ev" data-t="0">
                   <span class="ev__t">22:14</span
                   ><span class="ev__h">Anfrage geht ein</span>
@@ -1041,18 +1223,24 @@
           <div class="pane pane--mit">
             <div class="col col--mit">
               <div class="col__head">
-                <span class="badge badge--after">So läuft es mit Auftragspilot</span>
+                <span class="badge badge--after"
+                  >So läuft es mit Auftragspilot</span
+                >
                 <h2>Dieselbe Anfrage. Antwort in unter einer Minute.</h2>
                 <p>
                   Qualifiziert, Angebot raus, Termin im Kalender. Per WhatsApp.
                 </p>
               </div>
-              <ol class="evs" aria-label="So läuft es mit Auftragspilot, zeitlicher Ablauf">
+              <ol
+                class="evs"
+                aria-label="So läuft es mit Auftragspilot, zeitlicher Ablauf"
+              >
                 <li class="ev" data-t="8">
                   <span class="ev__t">22:14</span
                   ><span class="ev__h">Anfrage eingegangen</span>
                   <p class="ev__d">
-                    Über Meta Ads oder das Formular. Antwort per WhatsApp, auch nachts.
+                    Über Meta Ads oder das Formular. Antwort per WhatsApp, auch
+                    nachts.
                   </p>
                 </li>
                 <li class="ev" data-t="227">
@@ -1117,15 +1305,21 @@
                 width="640"
                 height="184"
               />
-              <nav class="mast__nav" aria-label="Rubriken"><a href="#vergleich">Ablauf</a><a href="#luecke">Problem</a><a href="#zahlen">Zahlen</a><a href="#loesung">Lösung</a><a href="#branchen">Branchen</a><a href="#stack">Stack</a><a href="#ueber">Über mich</a><a href="leak-check/index.html" style="color: var(--sc-accent);">Leak-Check</a><a href="#kontakt">Kontakt</a></nav>
-<div class="mast__right">
+              <nav class="mast__nav" aria-label="Rubriken">
+                <a href="#vergleich">Ablauf</a><a href="#luecke">Problem</a
+                ><a href="#zahlen">Zahlen</a><a href="#loesung">Lösung</a
+                ><a href="#branchen">Branchen</a><a href="#stack">Stack</a
+                ><a href="#ueber">Über mich</a
+                ><a href="leak-check/index.html" style="color: var(--sc-accent)"
+                  >Leak-Check</a
+                ><a href="#kontakt">Kontakt</a>
+              </nav>
+              <div class="mast__right">
                 <span class="lang" role="group" aria-label="Sprache"
                   ><a href="#" aria-current="true">DE</a> /
                   <a href="#">EN</a></span
                 >
-                <a
-                  class="btn btn--ghost"
-                  href="leak-check/index.html"
+                <a class="btn btn--ghost" href="leak-check/index.html"
                   >Leak-Check</a
                 >
                 <a
@@ -1140,30 +1334,38 @@
             <div>
               <h1>Vom Lead zum <em>Termin</em>. Automatisch.</h1>
               <p class="mast__sub">
-                Dieselbe Kundenanfrage, zweimal erzählt: links, wie es heute oft läuft, rechts mit Auftragspilot. Scrolle, die Uhr in der Mitte läuft mit.
+                Dieselbe Kundenanfrage, zweimal erzählt: links, wie es heute oft
+                läuft, rechts mit Auftragspilot. Scrolle, die Uhr in der Mitte
+                läuft mit.
               </p>
             </div>
           </header>
         </div>
       </section>
 
-      
-    <!-- VIDEO: ersetze den Platzhalter im .video-frame (siehe Kommentar) -->
-    <section class="block block--after-pin" id="video" hidden>
-      <div class="sc-wrap">
-        <div class="sc-stack" data-sc-in data-sc-stagger="70" style="margin-bottom: var(--sc-6)">
-          <p class="sc-label kicker">Demovideo</p>
-          <h2 class="sc-display sc-display--md">Eine Anfrage live durchlaufen, vom Formular bis zum Termin.</h2>
-        </div>
-        <div class="video-frame" data-sc-in>
-          <!-- YouTube:  <iframe src="https://www.youtube-nocookie.com/embed/VIDEO_ID" title="Auftragspilot Demo" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      <!-- VIDEO: ersetze den Platzhalter im .video-frame (siehe Kommentar) -->
+      <section class="block block--after-pin" id="video" hidden>
+        <div class="sc-wrap">
+          <div
+            class="sc-stack"
+            data-sc-in
+            data-sc-stagger="70"
+            style="margin-bottom: var(--sc-6)"
+          >
+            <p class="sc-label kicker">Demovideo</p>
+            <h2 class="sc-display sc-display--md">
+              Eine Anfrage live durchlaufen, vom Formular bis zum Termin.
+            </h2>
+          </div>
+          <div class="video-frame" data-sc-in>
+            <!-- YouTube:  <iframe src="https://www.youtube-nocookie.com/embed/VIDEO_ID" title="Auftragspilot Demo" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe>
                Eigene Datei: <video src="assets/demo.mp4" poster="assets/demo-poster.jpg" controls playsinline preload="none"></video> -->
-          <p>Demovideo folgt in Kürze.</p>
+            <p>Demovideo folgt in Kürze.</p>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- 2 · DIE LÜCKE -->
+      <!-- 2 · DIE LÜCKE -->
       <section class="block block--after-pin" id="luecke">
         <div class="sc-wrap two">
           <div class="sc-stack" data-sc-in data-sc-stagger="70">
@@ -1267,6 +1469,33 @@
               >
             </div>
           </div>
+
+          <div class="chanrow" data-sc-in style="margin-top: var(--sc-8)">
+            <p class="sc-label kicker" style="margin-bottom: var(--sc-4)">
+              Kanal-Vergleich
+            </p>
+            <div class="chanstats">
+              <div><b>50&nbsp;%</b><span>SMS/Chat-Antwortrate</span></div>
+              <div><b>25&nbsp;%</b><span>Anrufe allein</span></div>
+              <div><b>1,4&nbsp;%</b><span>E-Mail-Antwortrate</span></div>
+              <div class="chanstats__highlight">
+                <b>92&nbsp;%</b><span>Chat + Anruf kombiniert</span>
+              </div>
+            </div>
+            <p class="fineprint" style="margin-top: var(--sc-4)">
+              Herstellerdaten von Verse.ai, eigene Plattformanalyse von über 10
+              Mio. Lead-Interaktionen, nicht unabhängig geprüft. Deckt sich mit
+              dem Auftragspilot-Ansatz: Chat zuerst, bei Bedarf automatischer
+              Anruf als Eskalation, statt nur ein einzelner Kanal.
+              <a
+                href="https://verse.ai/?p=262996"
+                target="_blank"
+                rel="noopener"
+                >Verse.ai ↗</a
+              >
+            </p>
+          </div>
+
           <p class="fineprint" style="margin-top: var(--sc-7)">
             Eigene Kundenzahlen folgen, sobald die ersten Auswertungen
             vorliegen. Bis dahin stehen hier keine Werte.
@@ -1589,8 +1818,21 @@
               Von Amazon, PwC und KPMG zu Auftragspilot. Das bin ich.
             </h2>
             <p class="sc-body" style="color: var(--sc-ink)">
-              Ich bin Lars Timmermann und habe Auftragspilot gebaut. Bevor ich automatisierte Systeme aufgebaut habe, war ich drei Jahre im operativen Geschäft bei Amazon (fünf Rotationen über Retail Finance, Produkt- und Vendor-Management), danach in der Finance-Transformation-Beratung bei PwC, in der Prüfung bei KPMG und im M&amp;A bei DealCircle. Dort habe ich gelernt, wie reale Betriebe tatsächlich laufen, und wo der Prozess bricht.</p>
-        <p class="sc-body">Später habe ich KI-Automatisierung und Voice-Agenten bei AI Union &amp; SalesFrank gebaut: praktische Erfahrung mit echten Kundensystemen, nicht nur Theorie. Auftragspilot bündelt diese Erfahrung in einem fokussierten Produkt für High-Ticket-Anbieter im deutschsprachigen Raum.</p>
+              Ich bin Lars Timmermann und habe Auftragspilot gebaut. Bevor ich
+              automatisierte Systeme aufgebaut habe, war ich drei Jahre im
+              operativen Geschäft bei Amazon (fünf Rotationen über Retail
+              Finance, Produkt- und Vendor-Management), danach in der
+              Finance-Transformation-Beratung bei PwC, in der Prüfung bei KPMG
+              und im M&amp;A bei DealCircle. Dort habe ich gelernt, wie reale
+              Betriebe tatsächlich laufen, und wo der Prozess bricht.
+            </p>
+            <p class="sc-body">
+              Später habe ich KI-Automatisierung und Voice-Agenten bei AI Union
+              &amp; SalesFrank gebaut: praktische Erfahrung mit echten
+              Kundensystemen, nicht nur Theorie. Auftragspilot bündelt diese
+              Erfahrung in einem fokussierten Produkt für High-Ticket-Anbieter
+              im deutschsprachigen Raum.
+            </p>
             <div class="logos" style="margin-top: var(--sc-5)">
               <img src="assets/amazon.png" alt="Amazon" /><img
                 src="assets/pwc.png"
@@ -1602,7 +1844,12 @@
       </section>
 
       <!-- 8 · SCHLUSS: der Termin -->
-      <section class="closing" id="kontakt" data-sc-act="pin" data-sc-span="1.3">
+      <section
+        class="closing"
+        id="kontakt"
+        data-sc-act="pin"
+        data-sc-span="1.3"
+      >
         <div
           data-sc-stage
           class="close"
