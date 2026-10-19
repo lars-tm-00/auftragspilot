@@ -15,12 +15,11 @@
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='10' fill='%231F5C4C'/%3E%3Ctext x='50' y='68' font-family='monospace' font-weight='700' font-size='42' fill='%23EFF1EC' text-anchor='middle'%3EAP%3C/text%3E%3C/svg%3E"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preload" href="../assets/fonts/space-grotesk-var.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../assets/fonts/ibm-plex-sans-var.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../assets/fonts.css" />
+    
+    
     <link rel="stylesheet" href="../scrollcraft.css" />
     <style>
       :root {
@@ -996,20 +995,49 @@
       .badge--before { color: var(--sc-ink); box-shadow: inset 0 0 0 1px var(--sc-hairline-strong); }
       .badge--after { background: var(--sc-accent); color: var(--sc-accent-ink); }
       .col__head { display: grid; justify-items: start; gap: 0.6rem; }
+
+      .faq { border-top: 1px solid var(--sc-hairline-strong); }
+      .faq details { border-bottom: 1px solid var(--sc-hairline-strong); }
+      .faq summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: minmax(0, 1fr) 2rem; gap: 1rem; align-items: baseline; padding: var(--sc-5) 0; }
+      .faq summary::-webkit-details-marker { display: none; }
+      .faq summary h3 { margin: 0; font-size: var(--sc-t-lg); letter-spacing: var(--sc-track-snug); line-height: 1.2; }
+      .faq summary i { font-style: normal; font-family: var(--sc-font-mono); color: var(--sc-accent); text-align: right; transition: transform 200ms var(--sc-ease-out); }
+      .faq details[open] summary i { transform: rotate(45deg); }
+      .faq details p { margin: 0 0 var(--sc-5); max-width: 62ch; color: var(--sc-ink-soft); }
+      .booking { margin-top: var(--sc-6); border-radius: var(--sc-r-md); background: var(--sc-surface); box-shadow: var(--sc-e2), var(--sc-edge); min-height: 14rem; display: grid; place-items: center; text-align: center; padding: var(--sc-6) var(--sc-5); overflow: hidden; }
+      .booking__inner { display: grid; gap: var(--sc-4); justify-items: center; max-width: 52ch; }
+      .booking iframe { width: 100%; height: min(760px, 88svh); border: 0; display: block; background: transparent; }
+      .booking.is-loaded { padding: 0; place-items: stretch; }
+      @media (max-width: 860px) { .faq summary h3 { font-size: var(--sc-t-base); } }
+      section[id] { scroll-margin-top: 4.5rem; }
     </style>
+  
+    <link rel="canonical" href="https://larsomatic.org/auftragspilot/de/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Auftragspilot" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:title" content="Auftragspilot · Vom Lead zum Termin, automatisch" />
+    <meta property="og:description" content="Auftragspilot antwortet in unter einer Minute, qualifiziert automatisch und bringt deine Leads direkt zum Termin, bevor sie bei der Konkurrenz landen." />
+    <meta property="og:url" content="https://larsomatic.org/auftragspilot/de/" />
+    <meta property="og:image" content="https://larsomatic.org/auftragspilot/assets/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Auftragspilot · Vom Lead zum Termin, automatisch" />
+    <meta name="twitter:description" content="Auftragspilot antwortet in unter einer Minute, qualifiziert automatisch und bringt deine Leads direkt zum Termin, bevor sie bei der Konkurrenz landen." />
+    <meta name="twitter:image" content="https://larsomatic.org/auftragspilot/assets/og-image.png" />
+    <meta name="theme-color" content="#0B1210" />
   </head>
   <body>
     <a class="skip" href="#kontakt">Zum Kontakt springen</a>
-    <nav class="topnav" id="topnav" aria-label="Hauptnavigation"><a class="topnav__brand" href="#top"><img src="../assets/auftragspilot-logo.png" alt="Auftragspilot" width="640" height="184"></a><div class="topnav__links"><a href="#vergleich">Ablauf</a><a href="#video">Video</a><a href="#luecke">Problem</a><a href="#zahlen">Zahlen</a><a href="#loesung">Lösung</a><a href="#branchen">Branchen</a><a href="#stack">Stack</a><a href="#ueber">Über mich</a><a href="../verlust-check/index.html" style="color: var(--sc-accent);">Verlust-Check</a><a href="#kontakt">Kontakt</a></div><a class="btn btn--ghost topnav__cta" href="../verlust-check/index.html" style="margin-right:-0.5rem;">Verlust-Check</a><a class="btn topnav__cta" href="https://cal.com/lars-timmermann-lt00/auftragspilot-demo-gespraech" target="_blank" rel="noopener">Demo buchen</a></nav>
+    <nav class="topnav" id="topnav" aria-label="Hauptnavigation"><a class="topnav__brand" href="#top"><img src="../assets/auftragspilot-logo.png" alt="Auftragspilot" width="640" height="184"></a><div class="topnav__links"><a href="#vergleich">Ablauf</a><a href="#video">Video</a><a href="#zahlen">Zahlen</a><a href="#loesung">Lösung</a><a href="#branchen">Branchen</a><a href="#ueber">Über mich</a><a href="#faq">FAQ</a><a href="#kontakt">Kontakt</a></div><a class="btn btn--ghost topnav__cta" href="../verlust-check/index.html" style="margin-right:-0.5rem;">Verlust-Check</a><a class="btn topnav__cta" href="#termin">Demo buchen</a></nav>
 <span data-sc-progress></span>
     <div class="sc-grain" aria-hidden="true"></div>
 
     <a
       class="btn btn--lg fab"
       id="fab"
-      href="https://cal.com/lars-timmermann-lt00/auftragspilot-demo-gespraech"
-      target="_blank"
-      rel="noopener"
+      href="#termin"
       >Demo buchen</a
     >
 
@@ -1117,9 +1145,7 @@
                 <p>Die schnellere Antwort gewinnt den Auftrag.</p>
                 <a
                   class="btn btn--lg"
-                  href="https://cal.com/lars-timmermann-lt00/auftragspilot-demo-gespraech"
-                  target="_blank"
-                  rel="noopener"
+                  href="#termin"
                   >Demo buchen</a
                 >
                 <a
@@ -1149,12 +1175,9 @@
                 height="184"
                 style="filter: brightness(0) invert(1)"
               />
-              <nav class="mast__nav" aria-label="Rubriken"><a href="#vergleich">Ablauf</a><a href="#video">Video</a><a href="#luecke">Problem</a><a href="#zahlen">Zahlen</a><a href="#loesung">Lösung</a><a href="#branchen">Branchen</a><a href="#stack">Stack</a><a href="#ueber">Über mich</a><a href="../verlust-check/index.html" style="color: var(--sc-accent);">Verlust-Check</a><a href="#kontakt">Kontakt</a></nav>
+              <nav class="mast__nav" aria-label="Rubriken"><a href="#vergleich">Ablauf</a><a href="#video">Video</a><a href="#zahlen">Zahlen</a><a href="#loesung">Lösung</a><a href="#branchen">Branchen</a><a href="#ueber">Über mich</a><a href="#faq">FAQ</a><a href="#kontakt">Kontakt</a></nav>
 <div class="mast__right">
-                <span class="lang" role="group" aria-label="Sprache"
-                  ><a href="#" aria-current="true">DE</a> /
-                  <a href="#">EN</a></span
-                >
+                <span class="lang" role="group" aria-label="Sprache"><a href="/auftragspilot/de/" hreflang="de" lang="de" aria-current="true">DE</a> / <a href="/auftragspilot/en/" hreflang="en" lang="en">EN</a></span>
                 <a
                   class="btn btn--ghost"
                   href="../verlust-check/index.html"
@@ -1162,9 +1185,7 @@
                 >
                 <a
                   class="btn"
-                  href="https://cal.com/lars-timmermann-lt00/auftragspilot-demo-gespraech"
-                  target="_blank"
-                  rel="noopener"
+                  href="#termin"
                   >Demo buchen</a
                 >
               </div>
@@ -1632,6 +1653,45 @@
       </section>
 
       <!-- 8 · SCHLUSS: der Termin -->
+      <!-- FAQ -->
+      <section class="block" id="faq">
+        <div class="sc-wrap">
+          <div class="sc-stack" data-sc-in data-sc-stagger="70" style="margin-bottom: var(--sc-7)">
+            <p class="sc-label kicker">FAQ</p>
+            <h2 class="sc-display sc-display--md">Häufige Fragen.</h2>
+          </div>
+          <div class="faq" data-sc-in>
+        <details><summary><h3>Wie läuft die Zusammenarbeit ab?</h3><i aria-hidden="true">+</i></summary><p>Im kostenlosen Demo-Gespräch schauen wir auf deinen aktuellen Weg von der Anfrage zum Termin. Danach richte ich Auftragspilot für dich ein und binde es an dein CRM, deinen Kalender und WhatsApp an.</p></details>
+        <details><summary><h3>Wie schnell antwortet Auftragspilot?</h3><i aria-hidden="true">+</i></summary><p>In der Regel in unter einer Minute, auch nachts und am Wochenende. Eine feste Zeit kann ich nicht zusagen, weil Zustellung und angebundene Systeme von Dritten abhängen.</p></details>
+        <details><summary><h3>Über welche Kanäle läuft das?</h3><i aria-hidden="true">+</i></summary><p>Hauptkanal ist WhatsApp. Die Anfragen können aus Meta Ads, deinem Website-Formular oder anderen Quellen kommen. Reicht der Chat nicht, kann eine Voice-KI anrufen.</p></details>
+        <details><summary><h3>Mit welchen Tools funktioniert es?</h3><i aria-hidden="true">+</i></summary><p>CRM wie HubSpot, Pipedrive oder Close, Kalender wie Cal.com oder Calendly und Automatisierung über n8n, Make oder Zapier. Weitere Systeme binde ich nach Absprache an.</p></details>
+        <details><summary><h3>Spricht der Interessent mit einer KI oder mit einem Menschen?</h3><i aria-hidden="true">+</i></summary><p>Die KI übernimmt die erste Ansprache, beantwortet Fragen auf Basis deiner Wissensdatenbank und bucht den Termin. Möchte jemand lieber mit einem Menschen sprechen, geht das jederzeit, und du bekommst direkt eine Nachricht.</p></details>
+        <details><summary><h3>Was passiert, wenn der Interessent nicht antwortet?</h3><i aria-hidden="true">+</i></summary><p>Auftragspilot erinnert per Chat und kann bei Bedarf mit einer Voice-KI anrufen. Meldet sich der Interessent trotzdem nicht, wird der Lead sauber als „kein Interesse“ geschlossen.</p></details>
+        <details><summary><h3>Wie ist das mit Datenschutz und Einwilligung?</h3><i aria-hidden="true">+</i></summary><p>Eine Kontaktaufnahme per WhatsApp setzt die Einwilligung des Interessenten voraus. Sie wird im Formular oder in der Anzeige eingeholt. Die genaue Umsetzung stimmen wir im Gespräch auf dein Geschäft ab. Das ersetzt keine Rechtsberatung.</p></details>
+        <details><summary><h3>Was kostet das, und wie lange dauert die Einrichtung?</h3><i aria-hidden="true">+</i></summary><p>Das hängt von Umfang und Anbindungen ab. Im kostenlosen Demo-Gespräch bekommst du eine konkrete Einschätzung.</p></details>
+        </div>
+        </div>
+        <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Wie läuft die Zusammenarbeit ab?", "acceptedAnswer": {"@type": "Answer", "text": "Im kostenlosen Demo-Gespräch schauen wir auf deinen aktuellen Weg von der Anfrage zum Termin. Danach richte ich Auftragspilot für dich ein und binde es an dein CRM, deinen Kalender und WhatsApp an."}}, {"@type": "Question", "name": "Wie schnell antwortet Auftragspilot?", "acceptedAnswer": {"@type": "Answer", "text": "In der Regel in unter einer Minute, auch nachts und am Wochenende. Eine feste Zeit kann ich nicht zusagen, weil Zustellung und angebundene Systeme von Dritten abhängen."}}, {"@type": "Question", "name": "Über welche Kanäle läuft das?", "acceptedAnswer": {"@type": "Answer", "text": "Hauptkanal ist WhatsApp. Die Anfragen können aus Meta Ads, deinem Website-Formular oder anderen Quellen kommen. Reicht der Chat nicht, kann eine Voice-KI anrufen."}}, {"@type": "Question", "name": "Mit welchen Tools funktioniert es?", "acceptedAnswer": {"@type": "Answer", "text": "CRM wie HubSpot, Pipedrive oder Close, Kalender wie Cal.com oder Calendly und Automatisierung über n8n, Make oder Zapier. Weitere Systeme binde ich nach Absprache an."}}, {"@type": "Question", "name": "Spricht der Interessent mit einer KI oder mit einem Menschen?", "acceptedAnswer": {"@type": "Answer", "text": "Die KI übernimmt die erste Ansprache, beantwortet Fragen auf Basis deiner Wissensdatenbank und bucht den Termin. Möchte jemand lieber mit einem Menschen sprechen, geht das jederzeit, und du bekommst direkt eine Nachricht."}}, {"@type": "Question", "name": "Was passiert, wenn der Interessent nicht antwortet?", "acceptedAnswer": {"@type": "Answer", "text": "Auftragspilot erinnert per Chat und kann bei Bedarf mit einer Voice-KI anrufen. Meldet sich der Interessent trotzdem nicht, wird der Lead sauber als „kein Interesse“ geschlossen."}}, {"@type": "Question", "name": "Wie ist das mit Datenschutz und Einwilligung?", "acceptedAnswer": {"@type": "Answer", "text": "Eine Kontaktaufnahme per WhatsApp setzt die Einwilligung des Interessenten voraus. Sie wird im Formular oder in der Anzeige eingeholt. Die genaue Umsetzung stimmen wir im Gespräch auf dein Geschäft ab. Das ersetzt keine Rechtsberatung."}}, {"@type": "Question", "name": "Was kostet das, und wie lange dauert die Einrichtung?", "acceptedAnswer": {"@type": "Answer", "text": "Das hängt von Umfang und Anbindungen ab. Im kostenlosen Demo-Gespräch bekommst du eine konkrete Einschätzung."}}]}</script>
+      </section>
+
+      <!-- TERMIN: Cal.com erst nach Klick laden (Datenschutz) -->
+      <section class="block" id="termin" style="padding-top: 0">
+        <div class="sc-wrap">
+          <div class="sc-stack" data-sc-in data-sc-stagger="70">
+            <p class="sc-label kicker">Termin buchen</p>
+            <h2 class="sc-display sc-display--md">Such dir direkt einen Termin aus.</h2>
+            <p class="sc-body">30 Minuten, kostenlos und unverbindlich. Ich zeige dir, wie Auftragspilot für dein Geschäft aussehen würde.</p>
+          </div>
+          <div class="booking" id="booking" data-src="https://cal.com/lars-timmermann-lt00/auftragspilot-demo-gespraech?theme=dark" data-sc-in>
+            <div class="booking__inner">
+              <button class="btn btn--lg" type="button" id="bookingLoad">Kalender laden</button>
+              <p class="fineprint">Mit dem Laden wird der Kalender von Cal.com eingebunden. Dabei werden Daten (zum Beispiel deine IP-Adresse) an Cal.com übertragen. <a href="datenschutz/">Datenschutz</a></p>
+              <noscript><a class="btn" href="#termin">Termin bei Cal.com buchen</a></noscript>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="closing" id="kontakt" data-sc-act="pin" data-sc-span="1.3">
         <div
           data-sc-stage
@@ -1647,9 +1707,7 @@
             <div class="close__cta" data-sc-cue="0 1 0 0">
               <a
                 class="btn btn--lg"
-                href="https://cal.com/lars-timmermann-lt00/auftragspilot-demo-gespraech"
-                target="_blank"
-                rel="noopener"
+                href="#termin"
                 data-sc-magnet="0.26"
                 data-sc-rise="0"
                 >Demo buchen</a
@@ -1823,5 +1881,30 @@
         frame();
       })();
     </script>
+  
+    <script>
+      (function () {
+        var box = document.getElementById("booking"),
+          btn = document.getElementById("bookingLoad");
+        if (!box || !btn) return;
+        function load() {
+          var f = document.createElement("iframe");
+          f.src = box.getAttribute("data-src");
+          f.title = "Cal.com Terminbuchung";
+          f.loading = "lazy";
+          f.allow = "payment";
+          box.innerHTML = "";
+          box.appendChild(f);
+          box.classList.add("is-loaded");
+          if (window.apTrack) window.apTrack("booking_load");
+        }
+        btn.addEventListener("click", load);
+        document.addEventListener("click", function (e) {
+          var a = e.target.closest && e.target.closest('a[href="#termin"]');
+          if (a) setTimeout(function () { if (!box.classList.contains("is-loaded")) btn.focus({ preventScroll: true }); }, 600);
+        });
+      })();
+    </script>
+    <script src="../assets/analytics.js" defer></script>
   </body>
 </html>

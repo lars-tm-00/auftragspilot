@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://larsomatic.org/auftragspilot/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://larsomatic.org/auftragspilot/de/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://larsomatic.org/auftragspilot/en/"/>
+  </url>
+  <url><loc>https://larsomatic.org/auftragspilot/de/</loc></url>
+  <url><loc>https://larsomatic.org/auftragspilot/en/</loc></url>
+  <url><loc>https://larsomatic.org/auftragspilot/verlust-check/</loc></url>
+  <url><loc>https://larsomatic.org/auftragspilot/impressum/</loc></url>
+  <url><loc>https://larsomatic.org/auftragspilot/datenschutz/</loc></url>
+</urlset>

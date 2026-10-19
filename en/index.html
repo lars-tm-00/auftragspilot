@@ -15,12 +15,11 @@
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='10' fill='%231F5C4C'/%3E%3Ctext x='50' y='68' font-family='monospace' font-weight='700' font-size='42' fill='%23EFF1EC' text-anchor='middle'%3EAP%3C/text%3E%3C/svg%3E"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preload" href="../assets/fonts/space-grotesk-var.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../assets/fonts/ibm-plex-sans-var.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../assets/fonts.css" />
+    
+    
     <link rel="stylesheet" href="../scrollcraft.css" />
     <style>
       :root {
@@ -1109,7 +1108,38 @@
       }
 
       
+
+      .faq { border-top: 1px solid var(--sc-hairline-strong); }
+      .faq details { border-bottom: 1px solid var(--sc-hairline-strong); }
+      .faq summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: minmax(0, 1fr) 2rem; gap: 1rem; align-items: baseline; padding: var(--sc-5) 0; }
+      .faq summary::-webkit-details-marker { display: none; }
+      .faq summary h3 { margin: 0; font-size: var(--sc-t-lg); letter-spacing: var(--sc-track-snug); line-height: 1.2; }
+      .faq summary i { font-style: normal; font-family: var(--sc-font-mono); color: var(--sc-accent); text-align: right; transition: transform 200ms var(--sc-ease-out); }
+      .faq details[open] summary i { transform: rotate(45deg); }
+      .faq details p { margin: 0 0 var(--sc-5); max-width: 62ch; color: var(--sc-ink-soft); }
+      .booking { margin-top: var(--sc-6); border-radius: var(--sc-r-md); background: var(--sc-surface); box-shadow: var(--sc-e2), var(--sc-edge); min-height: 14rem; display: grid; place-items: center; text-align: center; padding: var(--sc-6) var(--sc-5); overflow: hidden; }
+      .booking__inner { display: grid; gap: var(--sc-4); justify-items: center; max-width: 52ch; }
+      .booking iframe { width: 100%; height: min(760px, 88svh); border: 0; display: block; background: transparent; }
+      .booking.is-loaded { padding: 0; place-items: stretch; }
+      @media (max-width: 860px) { .faq summary h3 { font-size: var(--sc-t-base); } }
+      section[id] { scroll-margin-top: 4.5rem; }
     </style>
+  
+    <link rel="canonical" href="https://larsomatic.org/auftragspilot/en/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Auftragspilot" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="Auftragspilot · From lead to appointment, automated" />
+    <meta property="og:description" content="Auftragspilot replies in under a minute, qualifies automatically and brings your leads straight to an appointment, before they end up with the competition." />
+    <meta property="og:url" content="https://larsomatic.org/auftragspilot/en/" />
+    <meta property="og:image" content="https://larsomatic.org/auftragspilot/assets/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Auftragspilot · From lead to appointment, automated" />
+    <meta name="twitter:description" content="Auftragspilot replies in under a minute, qualifies automatically and brings your leads straight to an appointment, before they end up with the competition." />
+    <meta name="twitter:image" content="https://larsomatic.org/auftragspilot/assets/og-image.png" />
+    <meta name="theme-color" content="#0B1210" />
   </head>
   <body>
     <a class="skip" href="#kontakt">Skip to contact</a>
@@ -1122,17 +1152,10 @@
           height="184"
                 style="filter: brightness(0) invert(1)"
               /></a>
-      <div class="topnav__links">
-        <a href="#vergleich">Process</a><a href="#luecke">Problem</a
-        ><a href="#zahlen">Numbers</a><a href="#loesung">Solution</a
-        ><a href="#branchen">Industries</a><a href="#stack">Stack</a
-        ><a href="#ueber">About me</a><a href="#kontakt">Contact</a>
-      </div>
+      <div class="topnav__links"><a href="#vergleich">Process</a><a href="#video">Video</a><a href="#zahlen">Numbers</a><a href="#loesung">Solution</a><a href="#branchen">Industries</a><a href="#ueber">About me</a><a href="#faq">FAQ</a><a href="#kontakt">Contact</a></div>
       <a
         class="btn topnav__cta"
-        href="https://cal.com/lars-timmermann-lt00/auftragspilot-demo-call"
-        target="_blank"
-        rel="noopener"
+        href="#termin"
         >Book a demo</a
       >
     </nav>
@@ -1142,9 +1165,7 @@
     <a
       class="btn btn--lg fab"
       id="fab"
-      href="https://cal.com/lars-timmermann-lt00/auftragspilot-demo-call"
-      target="_blank"
-      rel="noopener"
+      href="#termin"
       >Book a demo</a
     >
 
@@ -1254,9 +1275,7 @@
                 <p>The faster reply wins the job.</p>
                 <a
                   class="btn btn--lg"
-                  href="https://cal.com/lars-timmermann-lt00/auftragspilot-demo-call"
-                  target="_blank"
-                  rel="noopener"
+                  href="#termin"
                   >Book a demo</a
                 >
                 <a
@@ -1284,22 +1303,12 @@
                 alt="Auftragspilot"
                 width="640"
                 height="184" style="filter: brightness(0) invert(1)">
-              <nav class="mast__nav" aria-label="Sections">
-                <a href="#vergleich">Process</a><a href="#luecke">Problem</a
-                ><a href="#zahlen">Numbers</a><a href="#loesung">Solution</a
-                ><a href="#branchen">Industries</a><a href="#stack">Stack</a
-                ><a href="#ueber">About me</a><a href="#kontakt">Contact</a>
-              </nav>
+              <nav class="mast__nav" aria-label="Sections"><a href="#vergleich">Process</a><a href="#video">Video</a><a href="#zahlen">Numbers</a><a href="#loesung">Solution</a><a href="#branchen">Industries</a><a href="#ueber">About me</a><a href="#faq">FAQ</a><a href="#kontakt">Contact</a></nav>
               <div class="mast__right">
-                <span class="lang" role="group" aria-label="Language"
-                  ><a href="#" aria-current="true">DE</a> /
-                  <a href="#">EN</a></span
-                >
+                <span class="lang" role="group" aria-label="Language"><a href="/auftragspilot/de/" hreflang="de" lang="de">DE</a> / <a href="/auftragspilot/en/" hreflang="en" lang="en" aria-current="true">EN</a></span>
                 <a
                   class="btn"
-                  href="https://cal.com/lars-timmermann-lt00/auftragspilot-demo-call"
-                  target="_blank"
-                  rel="noopener"
+                  href="#termin"
                   >Book a demo</a
                 >
               </div>
@@ -1773,8 +1782,46 @@
       </section>
 
       <!-- 8 · SCHLUSS: der Termin -->
-      <section
-        class="closing"
+      <!-- FAQ -->
+      <section class="block" id="faq">
+        <div class="sc-wrap">
+          <div class="sc-stack" data-sc-in data-sc-stagger="70" style="margin-bottom: var(--sc-7)">
+            <p class="sc-label kicker">FAQ</p>
+            <h2 class="sc-display sc-display--md">Frequently asked questions.</h2>
+          </div>
+          <div class="faq" data-sc-in>
+        <details><summary><h3>How does working together look?</h3><i aria-hidden="true">+</i></summary><p>In the free demo call we look at your current path from inquiry to appointment. After that I set up Auftragspilot for you and connect it to your CRM, your calendar and WhatsApp.</p></details>
+        <details><summary><h3>How fast does Auftragspilot reply?</h3><i aria-hidden="true">+</i></summary><p>Usually in under a minute, also at night and on weekends. I cannot promise a fixed time, because delivery and connected systems depend on third parties.</p></details>
+        <details><summary><h3>Which channels does it run on?</h3><i aria-hidden="true">+</i></summary><p>The main channel is WhatsApp. Inquiries can come from Meta Ads, your website form or other sources. If chat is not enough, a voice AI can call.</p></details>
+        <details><summary><h3>Which tools does it work with?</h3><i aria-hidden="true">+</i></summary><p>CRMs such as HubSpot, Pipedrive or Close, calendars such as Cal.com or Calendly, and automation via n8n, Make or Zapier. I connect other systems by arrangement.</p></details>
+        <details><summary><h3>Does the prospect talk to an AI or a human?</h3><i aria-hidden="true">+</i></summary><p>The AI handles the first contact, answers questions based on your knowledge base and books the appointment. If someone prefers to talk to a human, that is possible at any time and you get a message right away.</p></details>
+        <details><summary><h3>What happens if the prospect does not reply?</h3><i aria-hidden="true">+</i></summary><p>Auftragspilot sends a reminder via chat and can call with a voice AI if needed. If the prospect still does not respond, the lead is cleanly closed as “not interested”.</p></details>
+        <details><summary><h3>What about data protection and consent?</h3><i aria-hidden="true">+</i></summary><p>Contacting someone via WhatsApp requires the prospect’s consent. It is collected in the form or the ad. We align the exact setup for your business in the call. This does not replace legal advice.</p></details>
+        <details><summary><h3>What does it cost, and how long does setup take?</h3><i aria-hidden="true">+</i></summary><p>That depends on scope and integrations. In the free demo call you get a concrete estimate.</p></details>
+        </div>
+        </div>
+        <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How does working together look?", "acceptedAnswer": {"@type": "Answer", "text": "In the free demo call we look at your current path from inquiry to appointment. After that I set up Auftragspilot for you and connect it to your CRM, your calendar and WhatsApp."}}, {"@type": "Question", "name": "How fast does Auftragspilot reply?", "acceptedAnswer": {"@type": "Answer", "text": "Usually in under a minute, also at night and on weekends. I cannot promise a fixed time, because delivery and connected systems depend on third parties."}}, {"@type": "Question", "name": "Which channels does it run on?", "acceptedAnswer": {"@type": "Answer", "text": "The main channel is WhatsApp. Inquiries can come from Meta Ads, your website form or other sources. If chat is not enough, a voice AI can call."}}, {"@type": "Question", "name": "Which tools does it work with?", "acceptedAnswer": {"@type": "Answer", "text": "CRMs such as HubSpot, Pipedrive or Close, calendars such as Cal.com or Calendly, and automation via n8n, Make or Zapier. I connect other systems by arrangement."}}, {"@type": "Question", "name": "Does the prospect talk to an AI or a human?", "acceptedAnswer": {"@type": "Answer", "text": "The AI handles the first contact, answers questions based on your knowledge base and books the appointment. If someone prefers to talk to a human, that is possible at any time and you get a message right away."}}, {"@type": "Question", "name": "What happens if the prospect does not reply?", "acceptedAnswer": {"@type": "Answer", "text": "Auftragspilot sends a reminder via chat and can call with a voice AI if needed. If the prospect still does not respond, the lead is cleanly closed as “not interested”."}}, {"@type": "Question", "name": "What about data protection and consent?", "acceptedAnswer": {"@type": "Answer", "text": "Contacting someone via WhatsApp requires the prospect’s consent. It is collected in the form or the ad. We align the exact setup for your business in the call. This does not replace legal advice."}}, {"@type": "Question", "name": "What does it cost, and how long does setup take?", "acceptedAnswer": {"@type": "Answer", "text": "That depends on scope and integrations. In the free demo call you get a concrete estimate."}}]}</script>
+      </section>
+
+      <!-- TERMIN: Cal.com erst nach Klick laden (Datenschutz) -->
+      <section class="block" id="termin" style="padding-top: 0">
+        <div class="sc-wrap">
+          <div class="sc-stack" data-sc-in data-sc-stagger="70">
+            <p class="sc-label kicker">Book a call</p>
+            <h2 class="sc-display sc-display--md">Pick a time right here.</h2>
+            <p class="sc-body">30 minutes, free and no obligation. I will show you what Auftragspilot would look like for your business.</p>
+          </div>
+          <div class="booking" id="booking" data-src="https://cal.com/lars-timmermann-lt00/auftragspilot-demo-call?theme=dark" data-sc-in>
+            <div class="booking__inner">
+              <button class="btn btn--lg" type="button" id="bookingLoad">Load calendar</button>
+              <p class="fineprint">Loading the calendar embeds Cal.com. This transmits data (for example your IP address) to Cal.com. <a href="../datenschutz/">Privacy (German)</a></p>
+              <noscript><a class="btn" href="https://cal.com/lars-timmermann-lt00/auftragspilot-demo-call" rel="noopener">Book on Cal.com</a></noscript>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="closing"
         id="kontakt"
         data-sc-act="pin"
         data-sc-span="1.3"
@@ -1791,9 +1838,7 @@
             <div class="close__cta" data-sc-cue="0 1 0 0">
               <a
                 class="btn btn--lg"
-                href="https://cal.com/lars-timmermann-lt00/auftragspilot-demo-call"
-                target="_blank"
-                rel="noopener"
+                href="#termin"
                 data-sc-magnet="0.26"
                 data-sc-rise="0"
                 >Book a demo</a
@@ -1965,5 +2010,30 @@
         frame();
       })();
     </script>
+  
+    <script>
+      (function () {
+        var box = document.getElementById("booking"),
+          btn = document.getElementById("bookingLoad");
+        if (!box || !btn) return;
+        function load() {
+          var f = document.createElement("iframe");
+          f.src = box.getAttribute("data-src");
+          f.title = "Cal.com Terminbuchung";
+          f.loading = "lazy";
+          f.allow = "payment";
+          box.innerHTML = "";
+          box.appendChild(f);
+          box.classList.add("is-loaded");
+          if (window.apTrack) window.apTrack("booking_load");
+        }
+        btn.addEventListener("click", load);
+        document.addEventListener("click", function (e) {
+          var a = e.target.closest && e.target.closest('a[href="#termin"]');
+          if (a) setTimeout(function () { if (!box.classList.contains("is-loaded")) btn.focus({ preventScroll: true }); }, 600);
+        });
+      })();
+    </script>
+    <script src="../assets/analytics.js" defer></script>
   </body>
 </html>
