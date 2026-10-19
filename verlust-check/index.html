@@ -1,0 +1,853 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Anfragen-Verlust-Check · Auftragspilot</title>
+    <meta
+      name="description"
+      content="Wie viele Aufträge verlierst du durch zu langsame Antwortzeiten? Rechner auf Basis deiner eigenen Zahlen plus einer zitierten Harvard-Business-Review-Studie."
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='10' fill='%231F5C4C'/%3E%3Ctext x='50' y='68' font-family='monospace' font-weight='700' font-size='42' fill='%23EFF1EC' text-anchor='middle'%3EAP%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../scrollcraft.css" />
+    <style>
+      :root {
+        --sc-canvas: #0b1210;
+        --sc-surface: #121c18;
+        --sc-ink: #eef1ea;
+        --sc-ink-soft: #a3b2aa;
+        --sc-accent: #f2793b;
+        --sc-accent-ink: #1a0e07;
+        --sc-font-display: "Space Grotesk", system-ui, sans-serif;
+        --sc-font-text: "IBM Plex Sans", system-ui, sans-serif;
+        --sc-font-mono: "IBM Plex Mono", ui-monospace, monospace;
+        --sc-shadow-color: 160 30% 3%;
+        --route: #1f5c4c;
+        --route-deep: #0f2a23;
+        --cold: #141716;
+      }
+      body {
+        font-weight: 400;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: var(--sc-font-display);
+        font-weight: 500;
+      }
+      .mono {
+        font-family: var(--sc-font-mono);
+        font-variant-numeric: tabular-nums;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        white-space: nowrap;
+        font-family: var(--sc-font-text);
+        font-weight: 600;
+        font-size: var(--sc-t-sm);
+        padding: 0.8rem 1.25rem;
+        border-radius: var(--sc-r-md);
+        background: var(--sc-accent);
+        color: var(--sc-accent-ink);
+        text-decoration: none;
+        box-shadow: var(--sc-e1), var(--sc-edge);
+        border: 0;
+        cursor: pointer;
+        transition:
+          transform 140ms var(--sc-ease-out),
+          background-color 140ms var(--sc-ease-out);
+      }
+      .btn:active {
+        transform: scale(0.97);
+      }
+      .btn--ghost {
+        background: transparent;
+        color: var(--sc-ink);
+        box-shadow: inset 0 0 0 1px var(--sc-hairline-strong);
+      }
+      @media (hover: hover) and (pointer: fine) {
+        .btn:hover {
+          background: #ff8a4f;
+        }
+        .btn--ghost:hover {
+          background: color-mix(in oklab, var(--sc-ink) 8%, transparent);
+        }
+      }
+      .btn--lg {
+        padding: 1.05rem 1.7rem;
+        font-size: var(--sc-t-base);
+      }
+
+      .topnav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 60;
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 0.7rem var(--sc-gutter);
+        background: color-mix(in oklab, var(--sc-canvas) 88%, transparent);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--sc-hairline);
+      }
+      .topnav__brand img {
+        height: 1.35rem;
+        width: auto;
+        background: #eff1ec;
+        padding: 0.3rem 0.65rem;
+        border-radius: var(--sc-r-sm);
+        box-sizing: content-box;
+      }
+      .topnav__links {
+        display: flex;
+        gap: 1.1rem;
+        font-size: var(--sc-t-sm);
+        margin-inline: auto;
+      }
+      .topnav__links a {
+        text-decoration: none;
+        color: var(--sc-ink-soft);
+        padding: 0.3rem 0;
+        transition: color 140ms var(--sc-ease-out);
+      }
+      @media (hover: hover) and (pointer: fine) {
+        .topnav__links a:hover {
+          color: var(--sc-ink);
+        }
+      }
+      .topnav__cta {
+        padding: 0.5rem 1rem;
+      }
+      @media (max-width: 860px) {
+        .topnav {
+          gap: 0.75rem;
+          padding-block: 0.5rem;
+        }
+        .topnav__brand {
+          display: none;
+        }
+        .topnav__links {
+          margin: 0;
+          white-space: nowrap;
+          overflow-x: auto;
+          scrollbar-width: none;
+        }
+      }
+
+      .hero {
+        padding: calc(var(--sc-section) + 2.5rem) var(--sc-gutter) var(--sc-7);
+        background: var(--sc-canvas);
+      }
+      .hero .sc-wrap {
+        max-width: 50rem;
+      }
+      .hero .badge {
+        display: inline-block;
+        font-family: var(--sc-font-mono);
+        font-size: var(--sc-t-xs);
+        font-weight: 500;
+        letter-spacing: var(--sc-track-wide);
+        text-transform: uppercase;
+        padding: 0.35rem 0.7rem;
+        border-radius: var(--sc-r-sm);
+        background: var(--sc-accent);
+        color: var(--sc-accent-ink);
+        margin-bottom: var(--sc-4);
+      }
+      .hero h1 {
+        font-size: clamp(2rem, 1.3rem + 3vw, 3.4rem);
+        line-height: 1.02;
+        letter-spacing: var(--sc-track-tight);
+        margin: 0 0 var(--sc-4);
+        text-wrap: balance;
+      }
+      .hero p.lead {
+        color: var(--sc-ink-soft);
+        font-size: var(--sc-t-lg);
+        max-width: 42ch;
+        margin: 0;
+      }
+
+      .calc {
+        background: var(--sc-surface);
+        padding: var(--sc-section) var(--sc-gutter);
+      }
+      .calc .sc-wrap {
+        max-width: 50rem;
+      }
+      .calc form {
+        display: grid;
+        gap: var(--sc-5);
+        background: var(--sc-canvas);
+        border-radius: var(--sc-r-lg);
+        padding: clamp(1.5rem, 4vw, 2.75rem);
+        box-shadow: var(--sc-e2), var(--sc-edge);
+      }
+      .field {
+        display: grid;
+        gap: 0.5rem;
+      }
+      .field label {
+        font-size: var(--sc-t-sm);
+        color: var(--sc-ink);
+        font-weight: 500;
+      }
+      .field span.hint {
+        font-size: var(--sc-t-xs);
+        color: var(--sc-ink-soft);
+      }
+      .field input,
+      .field select {
+        font-family: var(--sc-font-text);
+        font-size: var(--sc-t-base);
+        color: var(--sc-ink);
+        background: var(--sc-surface);
+        border: 1px solid var(--sc-hairline-strong);
+        border-radius: var(--sc-r-md);
+        padding: 0.75rem 0.9rem;
+      }
+      .field input:focus,
+      .field select:focus {
+        outline: 2px solid var(--sc-accent);
+        outline-offset: 1px;
+      }
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--sc-5);
+      }
+      @media (max-width: 640px) {
+        .two-col {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .gate {
+        margin-top: var(--sc-7);
+        display: none;
+        gap: var(--sc-5);
+        background: var(--sc-canvas);
+        border-radius: var(--sc-r-lg);
+        padding: clamp(1.5rem, 4vw, 2.75rem);
+        box-shadow: var(--sc-e2), var(--sc-edge);
+        animation: fadeUp 420ms var(--sc-ease-out) both;
+      }
+      .gate.is-visible {
+        display: grid;
+      }
+      .gate__intro {
+        margin: 0;
+        color: var(--sc-ink);
+        font-weight: 500;
+      }
+      .consent {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.6rem;
+        font-size: var(--sc-t-xs);
+        color: var(--sc-ink-soft);
+        cursor: pointer;
+      }
+      .consent input {
+        margin-top: 0.2rem;
+        accent-color: var(--sc-accent);
+      }
+      .consent a {
+        color: var(--sc-ink);
+      }
+
+      .result {
+        margin-top: var(--sc-7);
+        border-radius: var(--sc-r-lg);
+        padding: clamp(1.5rem, 4vw, 2.75rem);
+        background: var(--route-deep);
+        display: none;
+      }
+      .result.is-visible {
+        display: grid;
+        gap: var(--sc-5);
+        animation: fadeUp 420ms var(--sc-ease-out) both;
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      .result__headline {
+        font-size: var(--sc-t-xs);
+        font-family: var(--sc-font-mono);
+        letter-spacing: var(--sc-track-wide);
+        text-transform: uppercase;
+        color: #b9ccc2;
+        margin: 0;
+      }
+      .result .bignum {
+        font-family: var(--sc-font-display);
+        font-weight: 500;
+        letter-spacing: var(--sc-track-tight);
+        line-height: 0.95;
+        font-size: clamp(2.6rem, 1.8rem + 3.5vw, 4.5rem);
+        color: var(--sc-ink);
+        margin: 0;
+      }
+      .result .bignum small {
+        font-size: 0.4em;
+        color: #b9ccc2;
+        margin-left: 0.2em;
+      }
+      .result p.explain {
+        margin: 0;
+        color: #d7e3dc;
+        max-width: 54ch;
+      }
+      .result .note {
+        font-size: var(--sc-t-xs);
+        color: #8fa89c;
+        margin: 0;
+      }
+      .result .cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: var(--sc-2);
+      }
+
+      .method {
+        background: var(--sc-canvas);
+        padding: var(--sc-section) var(--sc-gutter);
+        border-top: 1px solid var(--sc-hairline);
+      }
+      .method .sc-wrap {
+        max-width: 50rem;
+      }
+      .method ol {
+        list-style: none;
+        margin: var(--sc-6) 0 0;
+        padding: 0;
+        display: grid;
+        gap: var(--sc-5);
+      }
+      .method li {
+        display: grid;
+        grid-template-columns: 2.2rem 1fr;
+        gap: 0.2rem 1rem;
+        padding-top: var(--sc-5);
+        border-top: 1px solid var(--sc-hairline-strong);
+      }
+      .method li span.num {
+        font-family: var(--sc-font-mono);
+        color: var(--sc-accent);
+        font-size: var(--sc-t-sm);
+      }
+      .method li p {
+        margin: 0;
+        color: var(--sc-ink-soft);
+        grid-column: 2;
+      }
+      .method li strong {
+        color: var(--sc-ink);
+      }
+      .source-box {
+        margin-top: var(--sc-6);
+        padding: var(--sc-5);
+        border-radius: var(--sc-r-md);
+        background: var(--sc-surface);
+        box-shadow: var(--sc-edge);
+      }
+      .source-box p {
+        margin: 0 0 var(--sc-3);
+        color: var(--sc-ink-soft);
+        font-size: var(--sc-t-sm);
+      }
+      .source-box p:last-child {
+        margin-bottom: 0;
+      }
+      .source-box a {
+        color: var(--sc-ink);
+      }
+      .caveat {
+        margin-top: var(--sc-5);
+        padding: var(--sc-4) var(--sc-5);
+        border-left: 2px solid var(--sc-accent);
+        color: var(--sc-ink-soft);
+        font-size: var(--sc-t-sm);
+      }
+      .caveat strong {
+        color: var(--sc-ink);
+      }
+
+      .closing {
+        background: var(--route-deep);
+        padding: var(--sc-section) var(--sc-gutter);
+        text-align: center;
+      }
+      .closing h2 {
+        font-size: clamp(1.8rem, 1.3rem + 2vw, 2.6rem);
+        margin: 0 0 var(--sc-4);
+        letter-spacing: var(--sc-track-tight);
+      }
+      .closing .cta {
+        display: flex;
+        justify-content: center;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+      }
+      .foot {
+        padding: var(--sc-5) var(--sc-gutter);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: var(--sc-3);
+        color: var(--sc-ink-soft);
+        font-size: var(--sc-t-xs);
+        background: var(--route-deep);
+      }
+      .foot a {
+        color: inherit;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sc-grain" aria-hidden="true"></div>
+    <nav class="topnav" aria-label="Hauptnavigation">
+      <a class="topnav__brand" href="../index.html"
+        ><img
+          src="../assets/auftragspilot-logo.png"
+          alt="Auftragspilot"
+          width="640"
+          height="184"
+      /></a>
+      <div class="topnav__links">
+        <a href="../index.html#luecke">Problem</a>
+        <a href="../index.html#loesung">Lösung</a>
+        <a href="../index.html#branchen">Branchen</a>
+        <a href="../index.html#kontakt">Kontakt</a>
+      </div>
+      <a
+        class="btn topnav__cta"
+        href="https://cal.com/lars-timmermann-lt00/auftragspilot-demo-gespraech"
+        target="_blank"
+        rel="noopener"
+        >Demo buchen</a
+      >
+    </nav>
+
+    <main>
+      <section class="hero">
+        <div class="sc-wrap">
+          <span class="badge">Anfragen-Verlust-Check</span>
+          <h1>
+            Wie viele Aufträge verschwinden gerade in deinem Antwort-Postfach?
+          </h1>
+          <p class="lead">
+            Trag deine eigenen Zahlen ein. Keine erfundenen Branchenwerte, nur
+            eine einzige, konkret belegte Kennzahl aus einer zitierten Studie.
+          </p>
+        </div>
+      </section>
+
+      <section class="calc">
+        <div class="sc-wrap">
+          <form id="leakForm" novalidate>
+            <div class="field">
+              <label for="leads"
+                >Wie viele Anfragen bekommt ihr im Schnitt pro Monat?</label
+              >
+              <input
+                type="number"
+                id="leads"
+                min="1"
+                step="1"
+                placeholder="z. B. 40"
+                required
+              />
+            </div>
+            <div class="two-col">
+              <div class="field">
+                <label for="rate"
+                  >Wie viel Prozent davon führt aktuell zu einem Auftrag?</label
+                >
+                <input
+                  type="number"
+                  id="rate"
+                  min="0.1"
+                  max="100"
+                  step="0.1"
+                  placeholder="z. B. 15"
+                  required
+                />
+                <span class="hint"
+                  >Eure eigene Abschlussquote, kein Schätzwert von uns.</span
+                >
+              </div>
+              <div class="field">
+                <label for="value"
+                  >Was ist euch ein Auftrag im Schnitt wert?</label
+                >
+                <input
+                  type="number"
+                  id="value"
+                  min="1"
+                  step="1"
+                  placeholder="z. B. 3500 €"
+                  required
+                />
+              </div>
+            </div>
+            <div class="field">
+              <label for="speed"
+                >Wie schnell antwortet ihr im Schnitt auf eine neue
+                Anfrage?</label
+              >
+              <select id="speed" required>
+                <option value="" disabled selected>Bitte wählen</option>
+                <option value="fast">Innerhalb von 1 Stunde</option>
+                <option value="slow">
+                  Über 1 Stunde (Stunden, über Nacht, nächster Werktag)
+                </option>
+                <option value="unknown">Weiß ich nicht genau</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn--lg">Jetzt berechnen</button>
+          </form>
+
+          <form class="gate" id="gateForm" novalidate>
+            <p class="gate__intro">
+              Fast fertig. Wohin soll das Ergebnis gehen?
+            </p>
+            <div class="two-col">
+              <div class="field">
+                <label for="gateFirma">Firma</label>
+                <input
+                  type="text"
+                  id="gateFirma"
+                  placeholder="Eure Firma"
+                  required
+                />
+              </div>
+              <div class="field">
+                <label for="gateEmail">E-Mail</label>
+                <input
+                  type="email"
+                  id="gateEmail"
+                  placeholder="name@firma.de"
+                  required
+                />
+              </div>
+            </div>
+            <div class="field">
+              <label for="gateTelefon">Telefon (optional)</label>
+              <input type="tel" id="gateTelefon" placeholder="Optional" />
+            </div>
+            <label class="consent">
+              <input type="checkbox" id="gateConsent" required />
+              <span
+                >Ich bin einverstanden, dass Auftragspilot mich zur Einordnung
+                des Ergebnisses kontaktiert.
+                <a href="../datenschutz/index.html" target="_blank"
+                  >Datenschutzhinweise</a
+                ></span
+              >
+            </label>
+            <button type="submit" class="btn btn--lg">Ergebnis anzeigen</button>
+          </form>
+
+          <div class="result" id="result">
+            <p class="result__headline" id="resultHeadline">Ergebnis</p>
+            <p class="bignum" id="resultBig">0 <small>€ / Monat</small></p>
+            <p class="explain" id="resultExplain"></p>
+            <p class="note" id="resultNote"></p>
+            <div class="cta">
+              <a
+                class="btn btn--lg"
+                href="https://cal.com/lars-timmermann-lt00/auftragspilot-demo-gespraech"
+                target="_blank"
+                rel="noopener"
+                >Ergebnis im Gespräch einordnen</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="method">
+        <div class="sc-wrap">
+          <p class="sc-label kicker">Methodik</p>
+          <h2 class="sc-display sc-display--md">
+            Wie diese Zahl berechnet wird
+          </h2>
+          <p class="sc-body">
+            Damit das Ergebnis belastbar bleibt, verwendet der Rechner
+            ausschließlich zwei Dinge: deine eigenen Angaben und einen einzigen,
+            konkret zitierten Multiplikator aus einer Studie. Keine erfundenen
+            Branchenwerte.
+          </p>
+          <ol>
+            <li>
+              <span class="num">1</span>
+              <p>
+                <strong>Deine eigenen Zahlen.</strong> Anfragen pro Monat, eure
+                Abschlussquote und der durchschnittliche Auftragswert kommen
+                direkt von dir. Daraus berechnen wir euren aktuellen monatlichen
+                Umsatz aus Anfragen (Anfragen × Abschlussquote × Auftragswert).
+              </p>
+            </li>
+            <li>
+              <span class="num">2</span>
+              <p>
+                <strong>Ein einziger externer Faktor.</strong> Falls ihr im
+                Schnitt länger als 1 Stunde auf eine neue Anfrage antwortet,
+                wenden wir den Faktor aus der Studie unten an: Unternehmen, die
+                einen Lead innerhalb von 1 Stunde kontaktieren, führen laut der
+                Studie rund 7-mal häufiger ein qualifizierendes Gespräch mit
+                einem Entscheider, als wenn der Erstkontakt erst eine weitere
+                Stunde später erfolgt.
+              </p>
+            </li>
+            <li>
+              <span class="num">3</span>
+              <p>
+                <strong>Realitäts-Cap.</strong> Das Ergebnis wird auf maximal
+                100&nbsp;% eurer eingehenden Anfragen begrenzt, damit keine
+                unrealistische Zahl entsteht. Wer bereits innerhalb von 1 Stunde
+                antwortet, bekommt keinen Aufschlag, sondern nur die eigene
+                aktuelle Zahl zurück.
+              </p>
+            </li>
+          </ol>
+
+          <div class="source-box">
+            <p>
+              <strong>Quelle des Multiplikators:</strong> Oldroyd, J. B.,
+              McElheran, K., &amp; Elkington, D. (2011).
+              <em>The Short Life of Online Sales Leads.</em> Harvard Business
+              Review, 89(3), S. 28. Direkt am Original-Artikel geprüft (nicht
+              nur an Sekundärquellen). Der 7&times;-Faktor stammt aus einer im
+              selben Artikel beschriebenen Teilstudie: 1,25 Millionen Leads
+              bei 42 US-Unternehmen (29 B2C, 13 B2B). Firmen, die einen Lead
+              innerhalb von 1 Stunde kontaktierten, waren darin zudem &uuml;ber
+              60-mal wahrscheinlicher erfolgreich als Firmen, die 24 Stunden
+              oder l&auml;nger warteten.
+            </p>
+            <p>
+              <a
+                href="https://hbr.org/2011/03/the-short-life-of-online-sales-leads"
+                target="_blank"
+                rel="noopener"
+                >hbr.org/2011/03/the-short-life-of-online-sales-leads ↗</a
+              >
+            </p>
+          </div>
+
+          <div class="caveat">
+            <strong>Fairer Hinweis:</strong> Die Studie ist US-amerikanisch und
+            branchenübergreifend angelegt, nicht speziell für den DACH-Markt
+            oder eine einzelne Branche erhoben. Der Rechner liefert deshalb
+            eine fundierte, konservativ begrenzte Schätzung auf Basis der am
+            besten dokumentierten verfügbaren Studie zu diesem Thema, keine
+            Garantie für euren Betrieb. Eine häufig zitierte, aber in
+            Methodik und Herkunft unsicherere Zahl ("21-mal wahrscheinlicher
+            bei 5 statt 30 Minuten") stammt aus einer anderen, 2007 auf einem
+            Branchen-Summit vorgestellten Analyse und wird hier bewusst nicht
+            verwendet. Ebenso bewusst nicht verwendet: diverse "2024-2026"-
+            Benchmark-Reports von Anbietern, die selbst Lead-Response-Software
+            verkaufen und Zahlen teils falsch oder widersprüchlich zitieren.
+          </div>
+        </div>
+      </section>
+
+      <section class="closing">
+        <div class="sc-wrap">
+          <h2>Lass uns das Ergebnis gemeinsam einordnen.</h2>
+          <div class="cta">
+            <a
+              class="btn btn--lg"
+              href="https://cal.com/lars-timmermann-lt00/auftragspilot-demo-gespraech"
+              target="_blank"
+              rel="noopener"
+              >Demo buchen</a
+            >
+            <a
+              class="btn btn--lg btn--ghost"
+              href="https://wa.me/4915679771598"
+              target="_blank"
+              rel="noopener"
+              >Per WhatsApp schreiben</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <span>Auftragspilot. Vom Lead zum Auftrag.</span>
+      <span
+        >© <span id="year">2026</span> Auftragspilot. Ein Produkt von Lars
+        Timmermann, Deutschland.</span
+      >
+    </footer>
+
+    <script src="../scrollcraft.js"></script>
+    <script>
+      ScrollCraft.mount(document.body);
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      var MULTIPLIER = 7;
+      var LEAD_WEBHOOK = "https://n8n.larsomatic.org/webhook/verlust-check-lead";
+      var form = document.getElementById("leakForm");
+      var gateForm = document.getElementById("gateForm");
+      var result = document.getElementById("result");
+      var fmtEUR = new Intl.NumberFormat("de-DE", { maximumFractionDigits: 0 });
+      var pending = null;
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var leads = parseFloat(document.getElementById("leads").value);
+        var rate = parseFloat(document.getElementById("rate").value) / 100;
+        var value = parseFloat(document.getElementById("value").value);
+        var speed = document.getElementById("speed").value;
+
+        if (!leads || !rate || !value || !speed) return;
+        pending = { leads: leads, rate: rate, value: value, speed: speed };
+        gateForm.classList.add("is-visible");
+        gateForm.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+
+      gateForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (!pending) return;
+        var firma = document.getElementById("gateFirma").value.trim();
+        var email = document.getElementById("gateEmail").value.trim();
+        var telefon = document.getElementById("gateTelefon").value.trim();
+        var consent = document.getElementById("gateConsent").checked;
+        if (!firma || !email || !consent) return;
+
+        var computed = computeResult(
+          pending.leads,
+          pending.rate,
+          pending.value,
+          pending.speed,
+        );
+        var deltaRevenue = computed.deltaRevenue || 0;
+
+        var payload = {
+          firma: firma,
+          email: email,
+          telefon: telefon,
+          leads: pending.leads,
+          rate: pending.rate * 100,
+          value: pending.value,
+          speed: pending.speed,
+          leck_eur: Math.round(deltaRevenue),
+          consent: true,
+        };
+        var send = fetch(LEAD_WEBHOOK, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        }).catch(function () {});
+        var timeout = new Promise(function (resolve) {
+          setTimeout(resolve, 3000);
+        });
+        Promise.race([send, timeout]).then(function () {
+          showResult(computed);
+        });
+      });
+
+      function computeResult(leads, rate, value, speed) {
+        var currentOrders = leads * rate;
+        var currentRevenue = currentOrders * value;
+
+        var headline, big, explain, note;
+
+        if (speed === "fast") {
+          headline = "Antwortzeit unter 1 Stunde";
+          big =
+            fmtEUR.format(Math.round(currentRevenue)) +
+            " <small>€ / Monat aktuell</small>";
+          explain =
+            "Ihr antwortet bereits in der Zeitspanne, die laut der zitierten Studie die höchste Erfolgswahrscheinlichkeit hat. Bei dieser Antwortzeit sehen wir hier kein Leck, das sich allein durch Geschwindigkeit schließen ließe.";
+          note =
+            "Das entspricht " +
+            leads.toFixed(0) +
+            " Anfragen × " +
+            (rate * 100).toFixed(1) +
+            " % Abschlussquote × " +
+            fmtEUR.format(value) +
+            " € pro Auftrag.";
+        } else {
+          var potentialRate = Math.min(rate * MULTIPLIER, 1);
+          var potentialOrders = leads * potentialRate;
+          var potentialRevenue = potentialOrders * value;
+          var deltaOrders = Math.max(potentialOrders - currentOrders, 0);
+          var deltaRevenue = Math.max(potentialRevenue - currentRevenue, 0);
+          var capped = rate * MULTIPLIER > 1;
+
+          headline =
+            speed === "slow"
+              ? "Antwortzeit über 1 Stunde"
+              : "Antwortzeit unklar";
+          big =
+            fmtEUR.format(Math.round(deltaRevenue)) +
+            " <small>€ / Monat potenzielles Leck</small>";
+          explain =
+            "Rechnerisch bis zu " +
+            deltaOrders.toFixed(1) +
+            " zusätzliche Aufträge pro Monat, wenn ihr auf jede Anfrage innerhalb von 1 Stunde reagiert statt später. Das ist eine Hochrechnung aus euren eigenen Zahlen plus dem 7×-Faktor aus der Studie unten, nicht ein garantiertes Ergebnis.";
+          note =
+            "Aktuell: " +
+            currentOrders.toFixed(1) +
+            " Aufträge / " +
+            fmtEUR.format(Math.round(currentRevenue)) +
+            " € pro Monat. Bei Antwort innerhalb von 1 Stunde (Modellrechnung): " +
+            potentialOrders.toFixed(1) +
+            " Aufträge / " +
+            fmtEUR.format(Math.round(potentialRevenue)) +
+            " € pro Monat." +
+            (capped ? " Ergebnis durch den 100-%-Cap begrenzt." : "");
+        }
+
+        return {
+          headline: headline,
+          big: big,
+          explain: explain,
+          note: note,
+          deltaRevenue: typeof deltaRevenue !== "undefined" ? deltaRevenue : 0,
+        };
+      }
+
+      function showResult(computed) {
+        document.getElementById("resultHeadline").textContent =
+          computed.headline;
+        document.getElementById("resultBig").innerHTML = computed.big;
+        document.getElementById("resultExplain").textContent = computed.explain;
+        document.getElementById("resultNote").textContent = computed.note;
+        gateForm.classList.remove("is-visible");
+        result.classList.add("is-visible");
+        result.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    </script>
+  </body>
+</html>
