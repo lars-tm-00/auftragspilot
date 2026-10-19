@@ -462,8 +462,7 @@
             Wie viele Aufträge verschwinden gerade in deinem Antwort-Postfach?
           </h1>
           <p class="lead">
-            Trag deine eigenen Zahlen ein. Keine erfundenen Branchenwerte, nur
-            eine einzige, konkret belegte Kennzahl aus einer zitierten Studie.
+            Trag deine eigenen Zahlen ein. Keine erfundenen Branchenwerte: Du siehst nur, was deine eigenen Zahlen hergeben.
           </p>
         </div>
       </section>
@@ -473,7 +472,7 @@
           <form id="leakForm" novalidate>
             <div class="field">
               <label for="leads"
-                >Wie viele Anfragen bekommt ihr im Schnitt pro Monat?</label
+                >Wie viele Anfragen bekommst du im Schnitt pro Monat?</label
               >
               <input
                 type="number"
@@ -499,12 +498,12 @@
                   required
                 />
                 <span class="hint"
-                  >Eure eigene Abschlussquote, kein Schätzwert von uns.</span
+                  >Deine eigene Abschlussquote, kein Schätzwert von uns.</span
                 >
               </div>
               <div class="field">
                 <label for="value"
-                  >Was ist euch ein Auftrag im Schnitt wert?</label
+                  >Was ist dir ein Auftrag im Schnitt wert?</label
                 >
                 <input
                   type="number"
@@ -518,8 +517,7 @@
             </div>
             <div class="field">
               <label for="speed"
-                >Wie schnell antwortet ihr im Schnitt auf eine neue
-                Anfrage?</label
+                >Wie schnell antwortest du im Schnitt auf eine neue Anfrage?</label
               >
               <select id="speed" required>
                 <option value="" disabled selected>Bitte wählen</option>
@@ -543,7 +541,7 @@
                 <input
                   type="text"
                   id="gateFirma"
-                  placeholder="Eure Firma"
+                  placeholder="Deine Firma"
                   required
                 />
               </div>
@@ -579,6 +577,19 @@
             <p class="bignum" id="resultBig">0 <small>€ / Monat</small></p>
             <p class="explain" id="resultExplain"></p>
             <p class="note" id="resultNote"></p>
+            <p class="note" id="resultSource">
+              Warum Geschwindigkeit zählt:
+              <a
+                href="https://hbr.org/2011/03/the-short-life-of-online-sales-leads"
+                target="_blank"
+                rel="noopener"
+                >Oldroyd, McElheran &amp; Elkington, Harvard Business Review
+                (2011) ↗</a
+              >
+              (7-mal höhere Chance auf ein qualifizierendes Gespräch bei
+              Erstkontakt innerhalb von 1 Stunde statt eine Stunde später, nicht
+              auf einen Abschluss).
+            </p>
             <div class="cta">
               <a
                 class="btn btn--lg"
@@ -599,57 +610,56 @@
             Wie diese Zahl berechnet wird
           </h2>
           <p class="sc-body">
-            Damit das Ergebnis belastbar bleibt, verwendet der Rechner
-            ausschließlich zwei Dinge: deine eigenen Angaben und einen einzigen,
-            konkret zitierten Multiplikator aus einer Studie. Keine erfundenen
-            Branchenwerte.
+            Der Rechner nutzt ausschließlich deine eigenen Angaben und zeigt
+            Szenarien. Er stellt keine Prognose auf und setzt keine erfundenen
+            Branchenwerte ein.
           </p>
           <ol>
             <li>
               <span class="num">1</span>
               <p>
-                <strong>Deine eigenen Zahlen.</strong> Anfragen pro Monat, eure
-                Abschlussquote und der durchschnittliche Auftragswert kommen
-                direkt von dir. Daraus berechnen wir euren aktuellen monatlichen
-                Umsatz aus Anfragen (Anfragen × Abschlussquote × Auftragswert).
+                <strong>Deine eigenen Zahlen.</strong> Anfragen pro Monat,
+                deine Abschlussquote und der durchschnittliche Auftragswert
+                kommen direkt von dir. Daraus berechnen wir deinen aktuellen
+                monatlichen Umsatz aus Anfragen (Anfragen × Abschlussquote ×
+                Auftragswert).
               </p>
             </li>
             <li>
               <span class="num">2</span>
               <p>
-                <strong>Ein einziger externer Faktor.</strong> Falls ihr im
-                Schnitt länger als 1 Stunde auf eine neue Anfrage antwortet,
-                wenden wir den Faktor aus der Studie unten an: Unternehmen, die
-                einen Lead innerhalb von 1 Stunde kontaktieren, führen laut der
-                Studie rund 7-mal häufiger ein qualifizierendes Gespräch mit
-                einem Entscheider, als wenn der Erstkontakt erst eine weitere
-                Stunde später erfolgt.
+                <strong>Wert einer Anfrage.</strong> Abschlussquote ×
+                Auftragswert. Bei 20&nbsp;% und 30.000&nbsp;€ ist eine Anfrage
+                dir im Schnitt 6.000&nbsp;€ wert.
               </p>
             </li>
             <li>
               <span class="num">3</span>
               <p>
-                <strong>Realitäts-Cap.</strong> Das Ergebnis wird auf maximal
-                100&nbsp;% eurer eingehenden Anfragen begrenzt, damit keine
-                unrealistische Zahl entsteht. Wer bereits innerhalb von 1 Stunde
-                antwortet, bekommt keinen Aufschlag, sondern nur die eigene
-                aktuelle Zahl zurück.
+                <strong>Szenarien statt Prognose.</strong> Wir zeigen, was es
+                bedeutet, wenn dir durch späte Antworten 5, 10 oder 20&nbsp;%
+                deiner Anfragen verloren gehen. Diese Anteile sind
+                Rechenbeispiele und keine Studienergebnisse. Wie viele
+                Anfragen es bei dir wirklich sind, siehst du am besten in
+                deinen eigenen Daten.
               </p>
             </li>
           </ol>
-
           <div class="source-box">
             <p>
-              <strong>Quelle des Multiplikators:</strong> Oldroyd, J. B.,
-              McElheran, K., &amp; Elkington, D. (2011).
+              <strong>Warum Geschwindigkeit zählt, Quelle:</strong> Oldroyd,
+              J. B., McElheran, K., &amp; Elkington, D. (2011).
               <em>The Short Life of Online Sales Leads.</em> Harvard Business
-              Review, 89(3), S. 28. Direkt am Original-Artikel geprüft (nicht
-              nur an Sekundärquellen). Der 7&times;-Faktor stammt aus einer im
-              selben Artikel beschriebenen Teilstudie: 1,25 Millionen Leads
-              bei 42 US-Unternehmen (29 B2C, 13 B2B). Firmen, die einen Lead
-              innerhalb von 1 Stunde kontaktierten, waren darin zudem &uuml;ber
-              60-mal wahrscheinlicher erfolgreich als Firmen, die 24 Stunden
-              oder l&auml;nger warteten.
+              Review, 89(3), S. 28. Direkt am Original-Artikel geprüft. In
+              einer Teilstudie mit 1,25 Millionen Leads bei 42 US-Unternehmen
+              war die Chance auf ein qualifizierendes Gespräch mit einem
+              Entscheider rund 7-mal höher, wenn der Erstkontakt innerhalb von
+              1 Stunde erfolgte statt eine weitere Stunde später. Gegenüber
+              Firmen, die 24 Stunden oder länger warteten, lag der Faktor bei
+              über 60. Wichtig: Die Studie misst die Chance auf ein
+              qualifizierendes Gespräch, nicht auf einen Abschluss. Deshalb
+              rechnet dieser Rechner nicht mit dem Faktor, sondern zeigt nur
+              Szenarien.
             </p>
             <p>
               <a
@@ -660,20 +670,11 @@
               >
             </p>
           </div>
-
           <div class="caveat">
             <strong>Fairer Hinweis:</strong> Die Studie ist US-amerikanisch und
-            branchenübergreifend angelegt, nicht speziell für den DACH-Markt
-            oder eine einzelne Branche erhoben. Der Rechner liefert deshalb
-            eine fundierte, konservativ begrenzte Schätzung auf Basis der am
-            besten dokumentierten verfügbaren Studie zu diesem Thema, keine
-            Garantie für euren Betrieb. Eine häufig zitierte, aber in
-            Methodik und Herkunft unsicherere Zahl ("21-mal wahrscheinlicher
-            bei 5 statt 30 Minuten") stammt aus einer anderen, 2007 auf einem
-            Branchen-Summit vorgestellten Analyse und wird hier bewusst nicht
-            verwendet. Ebenso bewusst nicht verwendet: diverse "2024-2026"-
-            Benchmark-Reports von Anbietern, die selbst Lead-Response-Software
-            verkaufen und Zahlen teils falsch oder widersprüchlich zitieren.
+            branchenübergreifend, nicht speziell für den DACH-Markt oder eine
+            einzelne Branche erhoben. Die Szenarien sind kein Versprechen für
+            deinen Betrieb.
           </div>
         </div>
       </section>
@@ -779,8 +780,11 @@
       function computeResult(leads, rate, value, speed) {
         var currentOrders = leads * rate;
         var currentRevenue = currentOrders * value;
-
+        var perLead = rate * value;
+        var fmtN = new Intl.NumberFormat("de-DE", { maximumFractionDigits: 1 });
+        var scenarios = [0.05, 0.1, 0.2];
         var headline, big, explain, note;
+        var deltaRevenue = 0;
 
         if (speed === "fast") {
           headline = "Antwortzeit unter 1 Stunde";
@@ -788,45 +792,48 @@
             fmtEUR.format(Math.round(currentRevenue)) +
             " <small>€ / Monat aktuell</small>";
           explain =
-            "Ihr antwortet bereits in der Zeitspanne, die laut der zitierten Studie die höchste Erfolgswahrscheinlichkeit hat. Bei dieser Antwortzeit sehen wir hier kein Leck, das sich allein durch Geschwindigkeit schließen ließe.";
+            "Du antwortest bereits in der Zeitspanne, die laut der zitierten Studie die höchste Erfolgswahrscheinlichkeit hat. Bei dieser Antwortzeit sehen wir hier kein Leck, das sich allein durch Geschwindigkeit schließen ließe.";
           note =
             "Das entspricht " +
-            leads.toFixed(0) +
+            fmtN.format(leads) +
             " Anfragen × " +
-            (rate * 100).toFixed(1) +
+            fmtN.format(rate * 100) +
             " % Abschlussquote × " +
             fmtEUR.format(value) +
-            " € pro Auftrag.";
+            " € pro Auftrag. Eine Anfrage ist dir im Schnitt " +
+            fmtEUR.format(Math.round(perLead)) +
+            " € wert.";
         } else {
-          var potentialRate = Math.min(rate * MULTIPLIER, 1);
-          var potentialOrders = leads * potentialRate;
-          var potentialRevenue = potentialOrders * value;
-          var deltaOrders = Math.max(potentialOrders - currentOrders, 0);
-          var deltaRevenue = Math.max(potentialRevenue - currentRevenue, 0);
-          var capped = rate * MULTIPLIER > 1;
-
+          deltaRevenue = leads * scenarios[0] * perLead;
           headline =
             speed === "slow"
               ? "Antwortzeit über 1 Stunde"
               : "Antwortzeit unklar";
           big =
             fmtEUR.format(Math.round(deltaRevenue)) +
-            " <small>€ / Monat potenzielles Leck</small>";
+            " <small>€ / Monat (Szenario 5 %)</small>";
           explain =
-            "Rechnerisch bis zu " +
-            deltaOrders.toFixed(1) +
-            " zusätzliche Aufträge pro Monat, wenn ihr auf jede Anfrage innerhalb von 1 Stunde reagiert statt später. Das ist eine Hochrechnung aus euren eigenen Zahlen plus dem 7×-Faktor aus der Studie unten, nicht ein garantiertes Ergebnis.";
+            "Eine Anfrage ist dir im Schnitt " +
+            fmtEUR.format(Math.round(perLead)) +
+            " € wert (" +
+            fmtN.format(rate * 100) +
+            " % Abschlussquote × " +
+            fmtEUR.format(value) +
+            " € pro Auftrag). Gehen dir durch späte Antworten nur 5 % deiner Anfragen (" +
+            fmtN.format(leads * scenarios[0]) +
+            " pro Monat) verloren, die sich sonst wie deine übrigen entwickelt hätten, sind das etwa " +
+            fmtEUR.format(Math.round(deltaRevenue)) +
+            " € pro Monat.";
           note =
-            "Aktuell: " +
-            currentOrders.toFixed(1) +
-            " Aufträge / " +
+            "Szenarien pro Monat: 5 % → " +
+            fmtEUR.format(Math.round(leads * scenarios[0] * perLead)) +
+            " €, 10 % → " +
+            fmtEUR.format(Math.round(leads * scenarios[1] * perLead)) +
+            " €, 20 % → " +
+            fmtEUR.format(Math.round(leads * scenarios[2] * perLead)) +
+            " €. Das sind Rechenbeispiele aus deinen eigenen Zahlen, keine Prognose. Aktuell erzeugen deine Anfragen " +
             fmtEUR.format(Math.round(currentRevenue)) +
-            " € pro Monat. Bei Antwort innerhalb von 1 Stunde (Modellrechnung): " +
-            potentialOrders.toFixed(1) +
-            " Aufträge / " +
-            fmtEUR.format(Math.round(potentialRevenue)) +
-            " € pro Monat." +
-            (capped ? " Ergebnis durch den 100-%-Cap begrenzt." : "");
+            " € Umsatz pro Monat.";
         }
 
         return {
@@ -834,7 +841,7 @@
           big: big,
           explain: explain,
           note: note,
-          deltaRevenue: typeof deltaRevenue !== "undefined" ? deltaRevenue : 0,
+          deltaRevenue: deltaRevenue,
         };
       }
 
