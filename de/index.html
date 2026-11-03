@@ -9,7 +9,7 @@
     <title>Auftragspilot · Vom Lead zum Termin, automatisch</title>
     <meta
       name="description"
-      content="Auftragspilot antwortet in unter einer Minute, qualifiziert automatisch und bringt deine Leads direkt zum Termin, bevor sie bei der Konkurrenz landen."
+      content="Auftragspilot meldet sich bei jedem neuen Lead in unter einer Minute per WhatsApp, qualifiziert ihn und bucht den Termin. Auch nachts, am Wochenende und an Feiertagen."
     />
     <link
       rel="icon"
@@ -36,7 +36,7 @@
         --route: #1f5c4c;
         --route-deep: #0f2a23;
         --cold: #141716;
-        --mast-h: 11rem;
+        --mast-h: 12.3rem;
       }
       html {
         scroll-padding-top: 1rem;
@@ -363,11 +363,11 @@
       }
       .mast h1 {
         margin: 0.35rem 0 0;
-        font-size: clamp(1.7rem, 1.2rem + 1.8vw, 2.6rem);
+        font-size: clamp(1.7rem, 1.1rem + 1.9vw, 2.7rem);
         line-height: 1.02;
         letter-spacing: var(--sc-track-tight);
         font-weight: 500;
-        white-space: nowrap;
+        max-width: none; text-wrap: balance;
       }
       .mast h1 em {
         font-style: normal;
@@ -376,7 +376,7 @@
       .mast__sub {
         margin: 0.55rem 0 0;
         color: var(--sc-ink-soft);
-        max-width: 68ch;
+        max-width: 74ch;
         font-size: var(--sc-t-sm);
       }
 
@@ -823,7 +823,7 @@
       /* ------------------------------------------------------------ phone -- */
       @media (max-width: 860px) {
         :root {
-          --mast-h: 7.4rem;
+          --mast-h: 13.6rem;
         }
         .duel {
           --cut: 56;
@@ -912,11 +912,9 @@
         }
         .mast h1 {
           white-space: normal;
-          font-size: 1.55rem;
+          font-size: 1.5rem; max-width: none;
         }
-        .mast__sub {
-          display: none;
-        }
+        .mast__sub { font-size: 0.8rem; line-height: 1.4; margin-top: 0.4rem; }
         .mast .btn {
           padding: 0.55rem 0.9rem;
         }
@@ -1010,6 +1008,9 @@
       .booking.is-loaded { padding: 0; place-items: stretch; }
       @media (max-width: 860px) { .faq summary h3 { font-size: var(--sc-t-base); } }
       section[id] { scroll-margin-top: 4.5rem; }
+    
+      @media (min-width: 861px) and (max-width: 1100px) { :root { --mast-h: 15rem; } }
+      @media (max-width: 860px) { .mast .btn--ghost { display: none; } .mast > * { min-width: 0; } .mast > div:last-child { grid-column: 1 / -1; } .mast__sub { max-width: 100%; } }
     </style>
   
     <link rel="canonical" href="https://larsomatic.org/auftragspilot/de/" />
@@ -1017,14 +1018,14 @@
     <meta property="og:site_name" content="Auftragspilot" />
     <meta property="og:locale" content="de_DE" />
     <meta property="og:title" content="Auftragspilot · Vom Lead zum Termin, automatisch" />
-    <meta property="og:description" content="Auftragspilot antwortet in unter einer Minute, qualifiziert automatisch und bringt deine Leads direkt zum Termin, bevor sie bei der Konkurrenz landen." />
+    <meta property="og:description" content="Auftragspilot meldet sich bei jedem neuen Lead in unter einer Minute per WhatsApp, qualifiziert ihn und bucht den Termin. Auch nachts, am Wochenende und an Feiertagen." />
     <meta property="og:url" content="https://larsomatic.org/auftragspilot/de/" />
     <meta property="og:image" content="https://larsomatic.org/auftragspilot/assets/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Auftragspilot · Vom Lead zum Termin, automatisch" />
-    <meta name="twitter:description" content="Auftragspilot antwortet in unter einer Minute, qualifiziert automatisch und bringt deine Leads direkt zum Termin, bevor sie bei der Konkurrenz landen." />
+    <meta name="twitter:description" content="Auftragspilot meldet sich bei jedem neuen Lead in unter einer Minute per WhatsApp, qualifiziert ihn und bucht den Termin. Auch nachts, am Wochenende und an Feiertagen." />
     <meta name="twitter:image" content="https://larsomatic.org/auftragspilot/assets/og-image.png" />
     <meta name="theme-color" content="#0B1210" />
   </head>
@@ -1191,10 +1192,8 @@
               </div>
             </div>
             <div>
-              <h1>Vom Lead zum <em>Termin</em>. Automatisch.</h1>
-              <p class="mast__sub">
-                Dieselbe Kundenanfrage, zweimal erzählt: links, wie es heute oft läuft, rechts mit Auftragspilot. Scrolle, die Uhr in der Mitte läuft mit.
-              </p>
+              <h1>Jeder Lead, der wartet, <em>verbrennt dein Werbebudget</em>.</h1>
+              <p class="mast__sub">Auftragspilot meldet sich bei jedem neuen Lead in unter einer Minute per WhatsApp, qualifiziert ihn und bucht den Termin in deinen Kalender. Auch nachts, am Wochenende und an Feiertagen.</p>
             </div>
           </header>
         </div>
