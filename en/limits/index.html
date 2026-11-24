@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Limits and error codes · Auftragspilot</title>
+<meta name="description" content="All limits for the API, WhatsApp sending, broadcasts, sequences and scheduled messages, plus all error codes.">
+<link rel="canonical" href="https://larsomatic.org/auftragspilot/en/limits/">
+<link rel="alternate" hreflang="en" href="https://larsomatic.org/auftragspilot/en/limits/">
+<link rel="alternate" hreflang="de" href="https://larsomatic.org/auftragspilot/limits/">
+<meta property="og:title" content="Limits and error codes">
+<meta property="og:description" content="All limits for the API, WhatsApp sending, broadcasts, sequences and scheduled messages, plus all error codes.">
+<meta property="og:image" content="https://larsomatic.org/auftragspilot/assets/og-en.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='10' fill='%231F5C4C'/%3E%3Ctext x='50' y='68' font-family='monospace' font-weight='700' font-size='42' fill='%23EFF1EC' text-anchor='middle'%3EAP%3C/text%3E%3C/svg%3E">
+<link rel="preload" href="../../assets/fonts/space-grotesk-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/ibm-plex-sans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/fonts.css">
+<link rel="stylesheet" href="../../assets/pages.css">
+</head>
+<body>
+<header class="nav"><div class="nav__in">
+<a class="nav__brand" href="../../en/" aria-label="Home"><img src="../../assets/auftragspilot-logo.png" alt="Auftragspilot" width="640" height="184"></a>
+<nav class="nav__links" aria-label="Navigation"><a href="../../en/agents/">AI agents</a><a href="../../en/use-cases/">Use cases</a><a href="../../en/compare/">Compare</a><a href="../../en/blog/">Blog</a></nav>
+<div class="nav__app" title="The app is the protected area for customers: access only with an account."><a href="../../limits/" hreflang="de">Deutsch</a><a href="https://auftragspilot-crm.vercel.app/a/login">Log in (app)</a><a class="btn btn--ghost" href="https://auftragspilot-crm.vercel.app/a/start">Create account</a></div>
+</div></header>
+<main class="wrap">
+<p class="kicker">Limits</p><h1>Clear limits that keep your number healthy.</h1><p class="lead">These limits protect your WhatsApp number and your contacts. Whenever something is stopped, your agent gets a clear error code and knows what to do.</p><div class="tbl"><table><thead><tr><th>Area</th><th>Limit</th></tr></thead><tbody><tr><td>API</td><td>600 requests per hour per key</td></tr><tr><td>Setup server (no key)</td><td>300 requests per hour per IP address</td></tr><tr><td>Free-text replies</td><td>only within 24 hours after the customer's last message (Meta rule), after that only approved templates</td></tr><tr><td>New conversations (start_conversation)</td><td>60 per hour per account, consent required</td></tr><tr><td>Broadcasts</td><td>approved template only, only to contacts with consent (form, ad, test page or wrote first), not opted out, confirmation required, max 1,000 recipients per broadcast, 30 per minute per number, only 08:00 to 20:00</td></tr><tr><td>Meta's daily limit</td><td>applies on top per number: new numbers start low and grow with good quality</td></tr><tr><td>Scheduled messages</td><td>up to 90 days ahead</td></tr><tr><td>Sequences</td><td>max 6 steps, at least 1 hour apart, stop automatically on a reply or opt-out, only 08:00 to 20:00</td></tr><tr><td>Idempotency keys</td><td>remembered for 24 hours</td></tr><tr><td>One-click setup links</td><td>valid for 2 hours</td></tr><tr><td>E-mail setup code</td><td>valid for 30 minutes, max 5 tries</td></tr></tbody></table></div><h2>Error codes</h2><p>Every error has a <code>code</code> field. <code>RATE_LIMITED</code> also includes <code>retry_after_seconds</code>.</p><div class="tbl"><table><thead><tr><th>Code</th><th>Meaning</th></tr></thead><tbody><tr><td><code>UNAUTHORIZED</code></td><td>Missing or invalid key or sign-in.</td></tr><tr><td><code>FORBIDDEN_SCOPE</code></td><td>The key lacks the permission (e.g. read only).</td></tr><tr><td><code>NOT_FOUND</code></td><td>Contact, client or item not found.</td></tr><tr><td><code>INVALID_ARGUMENT</code></td><td>A value is missing or has the wrong format.</td></tr><tr><td><code>RATE_LIMITED</code></td><td>Too many requests. Wait <code>retry_after_seconds</code>, then retry.</td></tr><tr><td><code>OUTSIDE_24H_WINDOW</code></td><td>Free text only within 24 hours after the customer's last message. After that only with an approved template.</td></tr><tr><td><code>CONSENT_REQUIRED</code></td><td>There is no consent for this contact.</td></tr><tr><td><code>OPTED_OUT</code></td><td>The contact opted out (STOP).</td></tr><tr><td><code>HANDED_OVER</code></td><td>A person has taken over the conversation.</td></tr><tr><td><code>NOT_CONNECTED</code></td><td>No WhatsApp number or channel connected.</td></tr><tr><td><code>TEMPLATE_REQUIRED</code></td><td>An approved template is required, e.g. outside the 24-hour window or for broadcasts.</td></tr><tr><td><code>NEEDS_CONFIRMATION</code></td><td>The action needs explicit confirmation (e.g. sending a broadcast).</td></tr><tr><td><code>OUTSIDE_SENDING_HOURS</code></td><td>Outside 08:00 to 20:00 in the account's time zone.</td></tr><tr><td><code>NEEDS_APPROVAL</code></td><td>Draft key: the message was saved for approval, not sent.</td></tr><tr><td><code>PLAN_REQUIRED</code></td><td>This needs an active plan.</td></tr></tbody></table></div><p class="note">More: <a href="../security/">Security</a> · <a href="../agents/">Connect AI agents</a></p><section class="cta"><p class="kicker">Next step</p><h2>Try it yourself or let us do it.</h2>
+<p>Message the demo agent for your industry on WhatsApp and see how fast a lead gets an answer. Or book a free call and we set everything up for you.</p>
+<div class="btns"><a class="btn" href="https://auftragspilot-crm.vercel.app/a/demo/larsomatic-demo?lang=en">Try the demo</a><a class="btn btn--ghost" href="https://cal.com/lars-timmermann-n7d0gl/auftragspilot-demo-gespraech">Book a free call</a></div></section>
+</main>
+<footer class="foot"><div class="foot__in"><a href="../../en/security/">Security</a><a href="../../en/limits/">Limits</a><a href="../../en/changelog/">Changelog</a><a href="../../en/industries/">Industries</a><a href="../../en/loss-check/">Loss check</a><a href="../../en/privacy/">Privacy</a><a href="../../impressum/">Legal notice</a><a href="../../llms.txt">For AI agents (text)</a><span class="sp"></span><span>Auftragspilot. From lead to job. A product of Larsomatic OÜ.</span><span>The app is the protected area for customers: access only with an account.</span></div></footer>
+<script>
+document.querySelectorAll("[data-copy]").forEach(function(b){b.addEventListener("click",function(){var c=b.parentElement.querySelector("code");if(navigator.clipboard&&c)navigator.clipboard.writeText(c.innerText).then(function(){b.textContent=b.dataset.done})})});
+</script>
+</body>
+</html>

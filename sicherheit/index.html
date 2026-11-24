@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sicherheit · Auftragspilot</title>
+<meta name="description" content="Schlüssel, Rechte-Stufen, OAuth-Anmeldung, offizielle WhatsApp-Anbindung und Schutz vor eingeschleusten Anweisungen.">
+<link rel="canonical" href="https://larsomatic.org/auftragspilot/sicherheit/">
+<link rel="alternate" hreflang="de" href="https://larsomatic.org/auftragspilot/sicherheit/">
+<link rel="alternate" hreflang="en" href="https://larsomatic.org/auftragspilot/en/security/">
+<meta property="og:title" content="Sicherheit">
+<meta property="og:description" content="Schlüssel, Rechte-Stufen, OAuth-Anmeldung, offizielle WhatsApp-Anbindung und Schutz vor eingeschleusten Anweisungen.">
+<meta property="og:image" content="https://larsomatic.org/auftragspilot/assets/og-de.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='10' fill='%231F5C4C'/%3E%3Ctext x='50' y='68' font-family='monospace' font-weight='700' font-size='42' fill='%23EFF1EC' text-anchor='middle'%3EAP%3C/text%3E%3C/svg%3E">
+<link rel="preload" href="../assets/fonts/space-grotesk-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/ibm-plex-sans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/pages.css">
+</head>
+<body>
+<header class="nav"><div class="nav__in">
+<a class="nav__brand" href="../" aria-label="Startseite"><img src="../assets/auftragspilot-logo.png" alt="Auftragspilot" width="640" height="184"></a>
+<nav class="nav__links" aria-label="Navigation"><a href="../agenten/">KI-Agenten</a><a href="../anwendungsfaelle/">Anwendungsfälle</a><a href="../vergleich/">Vergleich</a><a href="../blog/">Blog</a></nav>
+<div class="nav__app" title="Die App ist der geschützte Bereich für Kunden: Zugang nur mit Konto."><a href="../en/security/" hreflang="en">English</a><a href="https://auftragspilot-crm.vercel.app/a/login">Anmelden (App)</a><a class="btn btn--ghost" href="https://auftragspilot-crm.vercel.app/a/start">Konto erstellen</a></div>
+</div></header>
+<main class="wrap">
+<p class="kicker">Sicherheit</p><h1>So schützen wir deine Daten und deine Nummer.</h1><p class="lead">Dein Agent arbeitet mit echten Kundengesprächen. Deshalb bekommt er nur so viel Zugriff, wie du erlaubst, und jede Verbindung lässt sich mit einem Klick trennen.</p><div class="grid"><div class="card"><h3>Passwörter</h3><p>Passwörter speichern wir nur als gesalzenen scrypt-Hash, nie im Klartext.</p></div><div class="card"><h3>Zugangsschlüssel</h3><p>Ein Schlüssel wird nur einmal angezeigt und danach nur als SHA-256-Hash gespeichert. Pro Agent ein eigener Schlüssel, jederzeit in der App löschbar.</p></div><div class="card"><h3>Drei Rechte-Stufen</h3><p><b>Lesen</b>, <b>Entwurf</b> (alles Ausgehende wartet auf deine Freigabe) oder <b>Schreiben</b>. Du entscheidest beim Verbinden.</p></div><div class="card"><h3>Anmeldung für Agenten</h3><p>OAuth 2.1 mit PKCE (S256). Dein Agent öffnet ein Browserfenster, du meldest dich an und klickst „Erlauben“. Kein Schlüssel zum Kopieren.</p></div><div class="card"><h3>Freigabe-Seite</h3><p>Die Seite, auf der du einen Agenten erlaubst, lässt sich nicht in fremde Websites einbetten. So kann dir niemand einen Klick unterschieben.</p></div><div class="card"><h3>Kurze Gültigkeit</h3><p>Ein-Klick-Einrichtungslinks gelten 2 Stunden. Einrichtungs-Codes per E-Mail gelten 30 Minuten und erlauben höchstens 5 Versuche.</p></div><div class="card"><h3>Getrennte Konten</h3><p>Jeder Schlüssel sieht nur das eigene Konto, nie die Daten anderer Kunden.</p></div><div class="card"><h3>Offizielle WhatsApp-Anbindung</h3><p>WhatsApp läuft nur über die offizielle WhatsApp Business Platform von Meta. Keine WhatsApp-Web- oder QR-Code-Tricks, also kein Sperr-Risiko durch inoffizielle Automatisierung.</p></div><div class="card"><h3>Abmeldung</h3><p>Schreibt ein Kontakt STOP, respektieren wir das dauerhaft. Diese Person bekommt keine Nachrichten mehr.</p></div><div class="card"><h3>Übergabe an einen Menschen</h3><p>Übernimmt ein Mensch ein Gespräch, schreibt der Agent in diesem Chat nicht mehr, bis er es zurückgibt.</p></div><div class="card"><h3>Schutz vor eingeschleusten Anweisungen</h3><p>Nachrichten von Kunden, die wie Anweisungen an eine KI aussehen, werden als verdächtig markiert und an Agenten als nicht vertrauenswürdiger Kundentext weitergegeben. Die eingebaute KI befolgt sie nicht.</p></div><div class="card"><h3>Kein doppelter Versand</h3><p>Mit einem Idempotenz-Schlüssel wird eine Nachricht auch bei einer Wiederholung nur einmal verschickt.</p></div></div><p class="note">Mehr dazu: <a href="../limits/">Limits und Fehlercodes</a> · <a href="../datenschutz/">Datenschutzerklärung</a> · <a href="https://auftragspilot-crm.vercel.app/rechtliches/avv">Auftragsverarbeitungsvertrag (AVV)</a></p><section class="cta"><p class="kicker">Nächster Schritt</p><h2>Selbst testen oder machen lassen.</h2>
+<p>Schreib dem Demo-Agenten deiner Branche auf WhatsApp und erlebe, wie schnell ein Lead eine Antwort bekommt. Oder buch ein kostenloses Gespräch, dann richten wir alles für dich ein.</p>
+<div class="btns"><a class="btn" href="https://auftragspilot-crm.vercel.app/a/demo/larsomatic-demo">Demo testen</a><a class="btn btn--ghost" href="https://cal.com/lars-timmermann-n7d0gl/auftragspilot-demo-gespraech">Kostenloses Gespräch buchen</a></div></section>
+</main>
+<footer class="foot"><div class="foot__in"><a href="../sicherheit/">Sicherheit</a><a href="../limits/">Limits</a><a href="../changelog/">Changelog</a><a href="../branchen/">Branchen</a><a href="../verlust-check/">Verlust-Check</a><a href="../datenschutz/">Datenschutz</a><a href="../impressum/">Impressum</a><a href="../llms.txt">Für KI-Agenten (Text)</a><span class="sp"></span><span>Auftragspilot. Vom Lead zum Auftrag. Ein Produkt der Larsomatic OÜ.</span><span>Die App ist der geschützte Bereich für Kunden: Zugang nur mit Konto.</span></div></footer>
+<script>
+document.querySelectorAll("[data-copy]").forEach(function(b){b.addEventListener("click",function(){var c=b.parentElement.querySelector("code");if(navigator.clipboard&&c)navigator.clipboard.writeText(c.innerText).then(function(){b.textContent=b.dataset.done})})});
+</script>
+</body>
+</html>

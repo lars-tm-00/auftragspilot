@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Security · Auftragspilot</title>
+<meta name="description" content="Keys, permission levels, OAuth sign-in, official WhatsApp connection and protection against injected instructions.">
+<link rel="canonical" href="https://larsomatic.org/auftragspilot/en/security/">
+<link rel="alternate" hreflang="en" href="https://larsomatic.org/auftragspilot/en/security/">
+<link rel="alternate" hreflang="de" href="https://larsomatic.org/auftragspilot/sicherheit/">
+<meta property="og:title" content="Security">
+<meta property="og:description" content="Keys, permission levels, OAuth sign-in, official WhatsApp connection and protection against injected instructions.">
+<meta property="og:image" content="https://larsomatic.org/auftragspilot/assets/og-en.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='10' fill='%231F5C4C'/%3E%3Ctext x='50' y='68' font-family='monospace' font-weight='700' font-size='42' fill='%23EFF1EC' text-anchor='middle'%3EAP%3C/text%3E%3C/svg%3E">
+<link rel="preload" href="../../assets/fonts/space-grotesk-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/ibm-plex-sans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/fonts.css">
+<link rel="stylesheet" href="../../assets/pages.css">
+</head>
+<body>
+<header class="nav"><div class="nav__in">
+<a class="nav__brand" href="../../en/" aria-label="Home"><img src="../../assets/auftragspilot-logo.png" alt="Auftragspilot" width="640" height="184"></a>
+<nav class="nav__links" aria-label="Navigation"><a href="../../en/agents/">AI agents</a><a href="../../en/use-cases/">Use cases</a><a href="../../en/compare/">Compare</a><a href="../../en/blog/">Blog</a></nav>
+<div class="nav__app" title="The app is the protected area for customers: access only with an account."><a href="../../sicherheit/" hreflang="de">Deutsch</a><a href="https://auftragspilot-crm.vercel.app/a/login">Log in (app)</a><a class="btn btn--ghost" href="https://auftragspilot-crm.vercel.app/a/start">Create account</a></div>
+</div></header>
+<main class="wrap">
+<p class="kicker">Security</p><h1>How we protect your data and your number.</h1><p class="lead">Your agent works with real customer conversations. So it only gets the access you allow, and every connection can be revoked with one click.</p><div class="grid"><div class="card"><h3>Passwords</h3><p>Passwords are stored only as a salted scrypt hash, never in plain text.</p></div><div class="card"><h3>Access keys</h3><p>A key is shown once and then stored only as a SHA-256 hash. One key per agent, revocable any time in the app.</p></div><div class="card"><h3>Three permission levels</h3><p><b>Read</b>, <b>draft</b> (everything outgoing waits for your approval) or <b>write</b>. You choose when you connect.</p></div><div class="card"><h3>Sign-in for agents</h3><p>OAuth 2.1 with PKCE (S256). Your agent opens a browser window, you sign in and click “Allow”. No key to copy.</p></div><div class="card"><h3>Approval page</h3><p>The page where you allow an agent cannot be embedded in other websites, so nobody can trick you into a click.</p></div><div class="card"><h3>Short lifetimes</h3><p>One-click setup links are valid for 2 hours. E-mail setup codes are valid for 30 minutes with at most 5 tries.</p></div><div class="card"><h3>Separate accounts</h3><p>Every key only sees its own account, never other customers' data.</p></div><div class="card"><h3>Official WhatsApp connection</h3><p>WhatsApp runs only over Meta's official WhatsApp Business Platform. No WhatsApp Web or QR code tricks, so no ban risk from unofficial automation.</p></div><div class="card"><h3>Opt-out</h3><p>When a contact writes STOP, we respect it permanently. That person gets no more messages.</p></div><div class="card"><h3>Handover to a person</h3><p>When a person takes over a conversation, the agent stops writing in that chat until it is handed back.</p></div><div class="card"><h3>Protection against injected instructions</h3><p>Customer messages that look like instructions to an AI are flagged as suspicious and passed to agents as untrusted customer text. The built-in AI does not follow them.</p></div><div class="card"><h3>No double sends</h3><p>With an idempotency key a message is sent only once, even if a request is retried.</p></div></div><p class="note">More: <a href="../limits/">Limits and error codes</a> · <a href="../privacy/">Privacy policy</a> · <a href="https://auftragspilot-crm.vercel.app/rechtliches/terms#data-processing">Data processing agreement (DPA)</a></p><section class="cta"><p class="kicker">Next step</p><h2>Try it yourself or let us do it.</h2>
+<p>Message the demo agent for your industry on WhatsApp and see how fast a lead gets an answer. Or book a free call and we set everything up for you.</p>
+<div class="btns"><a class="btn" href="https://auftragspilot-crm.vercel.app/a/demo/larsomatic-demo?lang=en">Try the demo</a><a class="btn btn--ghost" href="https://cal.com/lars-timmermann-n7d0gl/auftragspilot-demo-gespraech">Book a free call</a></div></section>
+</main>
+<footer class="foot"><div class="foot__in"><a href="../../en/security/">Security</a><a href="../../en/limits/">Limits</a><a href="../../en/changelog/">Changelog</a><a href="../../en/industries/">Industries</a><a href="../../en/loss-check/">Loss check</a><a href="../../en/privacy/">Privacy</a><a href="../../impressum/">Legal notice</a><a href="../../llms.txt">For AI agents (text)</a><span class="sp"></span><span>Auftragspilot. From lead to job. A product of Larsomatic OÜ.</span><span>The app is the protected area for customers: access only with an account.</span></div></footer>
+<script>
+document.querySelectorAll("[data-copy]").forEach(function(b){b.addEventListener("click",function(){var c=b.parentElement.querySelector("code");if(navigator.clipboard&&c)navigator.clipboard.writeText(c.innerText).then(function(){b.textContent=b.dataset.done})})});
+</script>
+</body>
+</html>
