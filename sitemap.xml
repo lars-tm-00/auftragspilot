@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <url>
-    <loc>https://larsomatic.org/auftragspilot/</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://larsomatic.org/auftragspilot/de/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://larsomatic.org/auftragspilot/en/"/>
-  </url>
-  <url><loc>https://larsomatic.org/auftragspilot/de/</loc></url>
+  <url><loc>https://larsomatic.org/auftragspilot/</loc></url>
   <url><loc>https://larsomatic.org/auftragspilot/en/</loc></url>
+  <url><loc>https://larsomatic.org/auftragspilot/de/</loc></url>
   <url><loc>https://larsomatic.org/auftragspilot/verlust-check/</loc></url>
   <url><loc>https://larsomatic.org/auftragspilot/en/loss-check/</loc></url>
   <url><loc>https://larsomatic.org/auftragspilot/impressum/</loc></url>
   <url><loc>https://larsomatic.org/auftragspilot/datenschutz/</loc></url>
+  <url><loc>https://larsomatic.org/auftragspilot/agenten/</loc><xhtml:link rel="alternate" hreflang="de" href="https://larsomatic.org/auftragspilot/agenten/"/><xhtml:link rel="alternate" hreflang="en" href="https://larsomatic.org/auftragspilot/en/agents/"/></url>
+  <url><loc>https://larsomatic.org/auftragspilot/agenten/claude-code/</loc><xhtml:link rel="alternate" hreflang="de" href="https://larsomatic.org/auftragspilot/agenten/claude-code/"/><xhtml:link rel="alternate" hreflang="en" href="https://larsomatic.org/auftragspilot/en/agents/claude-code/"/></url>
+  <url><loc>https://larsomatic.org/auftragspilot/agenten/claude/</loc><xhtml:link rel="alternate" hreflang="de" href="https://larsomatic.org/auftragspilot/agenten/claude/"/><xhtml:link rel="alternate" hreflang="en" href="https://larsomatic.org/auftragspilot/en/agents/claude/"/></url>
+  <url><loc>https://larsomatic.org/auftragspilot/agenten/claude-duet/</loc><xhtml:link rel="alternate" hreflang="de" href="https://larsomatic.org/auftragspilot/agenten/claude-duet/"/><xhtml:link rel="alternate" hreflang="en" href="https://larsomatic.org/auftragspilot/en/agents/claude-duet/"/></url>
+  <url><loc>https://larsomatic.org/auftragspilot/agenten/chatgpt/</loc><xhtml:link rel="alternate" hreflang="de" href="https://larsomatic.org/auftragspilot/agenten/chatgpt/"/><xhtml:link rel="alternate" hreflang="en" href="https://larsomatic.org/auftragspilot/en/agents/chatgpt/"/></url>
+  <url><loc>https://larsomatic.org/auftragspilot/agenten/dots/</loc><xhtml:link rel="alternate" hreflang="de" href="https://larsomatic.org/auftragspilot/agenten/dots/"/><xhtml:link rel="alternate" hreflang="en" href="https://larsomatic.org/auftragspilot/en/agents/dots/"/></url>
+  <url><loc>https://larsomatic.org/auftragspilot/agenten/codex/</loc><xhtml:link rel="alternate" hreflang="de" href="https://larsomatic.org/auftragspilot/agenten/codex/"/><xhtml:link rel="alternate" hreflang="en" href="https://larsomatic.org/auftragspilot/en/agents/codex/"/></url>
+  <url><loc>https://larsomatic.org/auftragspilot/agenten/cursor/</loc><xhtml:link rel="alternate" hreflang="de" href="https://larsomatic.org/auftragspilot/agenten/cursor/"/><xhtml:link rel="alternate" hreflang="en" href="https://larsomatic.org/auftragspilot/en/agents/cursor/"/></url>
+  <url><loc>https://larsomatic.org/auftragspilot/agenten/grok/</loc><xhtml:link rel="alternate" hreflang="de" href="https://larsomatic.org/auftragspilot/agenten/grok/"/><xhtml:link rel="alternate" hreflang="en" href="https://larsomatic.org/auftragspilot/en/agents/grok/"/></url>
+  <url><loc>https://larsomatic.org/auftragspilot/agenten/grokbot/</loc><xhtml:link rel="alternate" hreflang="de" href="https://larsomatic.org/auftragspilot/agenten/grokbot/"/><xhtml:link rel="alternate" hreflang="en" href="https://larsomatic.org/auftragspilot/en/agents/grokbot/"/></url>
+  <url><loc>https://larsomatic.org/auftragspilot/agenten/muse/</loc><xhtml:link rel="alternate" hreflang="de" href="https://larsomatic.org/auftragspilot/agenten/muse/"/><xhtml:link rel="alternate" hreflang="en" href="https://larsomatic.org/auftragspilot/en/agents/muse/"/></url>
+  <url><loc>https://larsomatic.org/auftragspilot/agenten/openclaw/</loc><xhtml:link rel="alternate" hreflang="de" href="https://larsomatic.org/auftragspilot/agenten/openclaw/"/><xhtml:link rel="alternate" hreflang="en" href="https://larsomatic.org/auftragspilot/en/agents/openclaw/"/></url>
+  <url><loc>https://larsomatic.org/auftragspilot/agenten/hermes/</loc><xhtml:link rel="alternate" hreflang="de" href="https://larsomatic.org/auftragspilot/agenten/hermes/"/><xhtml:link rel="alternate" hreflang="en" href="https://larsomatic.org/auftragspilot/en/agents/hermes/"/></url>
+  <url><loc>https://larsomatic.org/auftragspilot/en/agents/</loc><xhtml:link rel="alternate" hreflang="en" href="https://larsomatic.org/auftragspilot/en/agents/"/><xhtml:link rel="alternate" hreflang="de" href="https://larsomatic.org/auftragspilot/agenten/"/></url>
+  <url><loc>https://larsomatic.org/auftragspilot/en/agents/claude-code/</loc><xhtml:link rel="alternate" hreflang="en" href="https://larsomatic.org/auftragspilot/en/agents/claude-code/"/><xhtml:link rel="alternate" hreflang="de" href="https://larsomatic.org/auftragspilot/agenten/claude-code/"/></url>
+  <url><loc>https://larsomatic.org/auftragspilot/en/agents/claude/</loc><xhtml:link rel="alternate" hreflang="en" href="https://larsomatic.org/auftragspilot/en/agents/claude/"/><xhtml:link rel="alternate" hreflang="de" href="https://larsomatic.org/auftragspilot/agenten/claude/"/></url>
+  <url><loc>https://larsomatic.org/auftragspilot/en/agents/claude-duet/</loc><xhtml:link rel="alternate" hreflang="en" href="https://larsomatic.org/auftragspilot/en/agents/claude-duet/"/><xhtml:link rel="alternate" hreflang="de" href="https://larsomatic.org/auftragspilot/agenten/claude-duet/"/></url>
+  <url><loc>https://larsomatic.org/auftragspilot/en/agents/chatgpt/</loc><xhtml:link rel="alternate" hreflang="en" href="https://larsomatic.org/auftragspilot/en/agents/chatgpt/"/><xhtml:link rel="alternate" hreflang="de" href="https://larsomatic.org/auftragspilot/agenten/chatgpt/"/></url>
+  <url><loc>https://larsomatic.org/auftragspilot/en/agents/dots/</loc><xhtml:link rel="alternate" hreflang="en" href="https://larsomatic.org/auftragspilot/en/agents/dots/"/><xhtml:link rel="alternate" hreflang="de" href="https://larsomatic.org/auftragspilot/agenten/dots/"/></url>
+  <url><loc>https://larsomatic.org/auftragspilot/en/agents/codex/</loc><xhtml:link rel="alternate" hreflang="en" href="https://larsomatic.org/auftragspilot/en/agents/codex/"/><xhtml:link rel="alternate" hreflang="de" href="https://larsomatic.org/auftragspilot/agenten/codex/"/></url>
+  <url><loc>https://larsomatic.org/auftragspilot/en/agents/cursor/</loc><xhtml:link rel="alternate" hreflang="en" href="https://larsomatic.org/auftragspilot/en/agents/cursor/"/><xhtml:link rel="alternate" hreflang="de" href="https://larsomatic.org/auftragspilot/agenten/cursor/"/></url>
+  <url><loc>https://larsomatic.org/auftragspilot/en/agents/grok/</loc><xhtml:link rel="alternate" hreflang="en" href="https://larsomatic.org/auftragspilot/en/agents/grok/"/><xhtml:link rel="alternate" hreflang="de" href="https://larsomatic.org/auftragspilot/agenten/grok/"/></url>
+  <url><loc>https://larsomatic.org/auftragspilot/en/agents/grokbot/</loc><xhtml:link rel="alternate" hreflang="en" href="https://larsomatic.org/auftragspilot/en/agents/grokbot/"/><xhtml:link rel="alternate" hreflang="de" href="https://larsomatic.org/auftragspilot/agenten/grokbot/"/></url>
+  <url><loc>https://larsomatic.org/auftragspilot/en/agents/muse/</loc><xhtml:link rel="alternate" hreflang="en" href="https://larsomatic.org/auftragspilot/en/agents/muse/"/><xhtml:link rel="alternate" hreflang="de" href="https://larsomatic.org/auftragspilot/agenten/muse/"/></url>
+  <url><loc>https://larsomatic.org/auftragspilot/en/agents/openclaw/</loc><xhtml:link rel="alternate" hreflang="en" href="https://larsomatic.org/auftragspilot/en/agents/openclaw/"/><xhtml:link rel="alternate" hreflang="de" href="https://larsomatic.org/auftragspilot/agenten/openclaw/"/></url>
+  <url><loc>https://larsomatic.org/auftragspilot/en/agents/hermes/</loc><xhtml:link rel="alternate" hreflang="en" href="https://larsomatic.org/auftragspilot/en/agents/hermes/"/><xhtml:link rel="alternate" hreflang="de" href="https://larsomatic.org/auftragspilot/agenten/hermes/"/></url>
 </urlset>
