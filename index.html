@@ -1152,8 +1152,8 @@
           height="184"
                 style="filter: brightness(0) invert(1)"
               /></a>
-      <div class="topnav__links"><a href="#vergleich">Ablauf</a><a href="#video">Video</a><a href="#zahlen">Zahlen</a><a href="#loesung">Lösung</a><a href="#branchen">Branchen</a><a href="#agenten">KI-Agenten</a><a href="#ueber">Über mich</a><a href="#faq">FAQ</a><a href="#kontakt">Kontakt</a></div>
-      <a
+      <div class="topnav__links"><a href="#vergleich">Ablauf</a><a href="#loesung">Lösung</a><a href="#agenten">KI-Agenten</a><a href="anwendungsfaelle/">Anwendungsfälle</a><a href="vergleich/">Vergleich</a><a href="blog/">Blog</a><a href="#faq">FAQ</a><a href="#kontakt">Kontakt</a></div>
+      <a class="topnav__cta" href="https://auftragspilot-crm.vercel.app/a/login" style="color:var(--sc-ink-soft);text-decoration:none;font-size:var(--sc-t-sm);white-space:nowrap" title="App: Zugang nur mit Konto">Anmelden</a><a
         class="btn btn--ghost topnav__cta"
         href="verlust-check/index.html"
         style="margin-right: -0.5rem"
@@ -1309,7 +1309,7 @@
                 alt="Auftragspilot"
                 width="640"
                 height="184" style="filter: brightness(0) invert(1)">
-              <nav class="mast__nav" aria-label="Rubriken"><a href="#vergleich">Ablauf</a><a href="#video">Video</a><a href="#zahlen">Zahlen</a><a href="#loesung">Lösung</a><a href="#branchen">Branchen</a><a href="#agenten">KI-Agenten</a><a href="#ueber">Über mich</a><a href="#faq">FAQ</a><a href="#kontakt">Kontakt</a></nav>
+              <nav class="mast__nav" aria-label="Rubriken"><a href="#vergleich">Ablauf</a><a href="#loesung">Lösung</a><a href="#agenten">KI-Agenten</a><a href="anwendungsfaelle/">Anwendungsfälle</a><a href="vergleich/">Vergleich</a><a href="blog/">Blog</a><a href="#faq">FAQ</a><a href="#kontakt">Kontakt</a></nav>
               <div class="mast__right">
                 <span class="lang" role="group" aria-label="Sprache"><a href="/auftragspilot/de/" hreflang="de" lang="de" aria-current="true">DE</a> / <a href="/auftragspilot/en/" hreflang="en" lang="en">EN</a></span>
                 <a class="btn btn--ghost" href="verlust-check/index.html"
@@ -1803,30 +1803,36 @@
 
       <!-- 8 · SCHLUSS: der Termin -->
       <!-- FAQ -->
-      <!-- KI-AGENTEN: eigenen Agenten verbinden (wie Spaces) oder Einrichtung durch uns -->
+      <!-- KI-AGENTEN: eigenen Agenten verbinden oder Einrichtung durch uns, plus was nur Auftragspilot kann -->
       <section class="block" id="agenten">
         <div class="sc-wrap">
           <div class="sc-stack" data-sc-in data-sc-stagger="70" style="margin-bottom: var(--sc-7)">
             <p class="sc-label kicker">KI-Agenten</p>
-            <h2 class="sc-display sc-display--md">Dein KI-Agent beantwortet ab heute deine WhatsApp-Anfragen.</h2>
-            <p class="sc-body">Du nutzt schon Claude, ChatGPT, Muse oder Grokbot? Verbinde deinen Agenten in zwei Minuten mit WhatsApp und Instagram. Noch nie mit KI gearbeitet? Dann richten wir alles für dich ein.</p>
+            <h2 class="sc-display sc-display--md">Zwei Wege zu deinem WhatsApp-Assistenten.</h2>
+            <p class="sc-body">Du nutzt schon Claude, ChatGPT, Muse oder Grokbot? Dann verbindest du deinen Agenten in zwei Minuten selbst. Noch nie mit KI gearbeitet? Dann richten wir alles für dich ein. In beiden Fällen antwortet jede Anfrage in Sekunden.</p>
           </div>
           <div data-sc-in style="display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))">
             <div style="background:var(--sc-surface);border:1px solid var(--sc-line, rgba(127,127,127,.25));border-radius:16px;padding:1.5rem;display:grid;gap:.8rem;align-content:start">
-              <p class="sc-label">Selbst verbinden · 2 Minuten</p>
+              <p class="sc-label">Weg 1 · Eigenen Agenten verbinden</p>
               <h3 style="margin:0">Einen Satz kopieren, dein Agent macht den Rest.</h3>
               <p class="sc-body" style="margin:0">Füg diesen Satz in deinen KI-Agenten ein. Er legt dein Konto an, fragt kurz nach deinem Betrieb und schickt dir die Links für WhatsApp und Kalender. Du bestätigst nur einen Code aus der E-Mail.</p>
-              <code style="display:block;white-space:normal;word-break:break-word;padding:.8rem;border-radius:10px;background:rgba(127,127,127,.12);font-size:var(--sc-t-sm)">Richte Auftragspilot für mich ein. Folge dazu der Anleitung unter https://auftragspilot-crm.vercel.app/agenten</code>
-              <div style="display:flex;gap:.5rem;flex-wrap:wrap"><button class="btn" type="button" onclick="navigator.clipboard&&navigator.clipboard.writeText(this.closest('div[style]').parentElement.querySelector('code').innerText).then(()=>{this.textContent='Kopiert ✓'})">Satz kopieren</button><a class="btn btn--ghost" href="https://auftragspilot-crm.vercel.app/agenten">Alle Anleitungen</a></div>
+              <code style="display:block;white-space:normal;word-break:break-word;padding:.8rem;border-radius:10px;background:rgba(127,127,127,.12);font-size:var(--sc-t-sm)">Richte Auftragspilot für mich ein. Folge dazu der Anleitung unter https://larsomatic.org/auftragspilot/agenten/</code>
+              <div style="display:flex;gap:.5rem;flex-wrap:wrap"><button class="btn" type="button" onclick="navigator.clipboard&&navigator.clipboard.writeText(this.closest('div[style]').parentElement.querySelector('code').innerText).then(()=>{this.textContent='Kopiert ✓'})">Satz kopieren</button><a class="btn btn--ghost" href="agenten/">Anleitungen für 12 Agenten</a></div>
             </div>
             <div style="background:var(--sc-surface);border:1px solid var(--sc-line, rgba(127,127,127,.25));border-radius:16px;padding:1.5rem;display:grid;gap:.8rem;align-content:start">
-              <p class="sc-label">Wir machen das für dich</p>
+              <p class="sc-label">Weg 2 · Wir machen das für dich</p>
               <h3 style="margin:0">Keine Zeit oder noch nie mit KI gearbeitet?</h3>
-              <p class="sc-body" style="margin:0">Wir richten alles ein: Nummer, Kalender, Texte, Fragen und Nachfassen. Du bekommst einen fertigen Agenten, der in deinem Namen antwortet. Ein kurzes Gespräch reicht.</p>
-              <div style="display:flex;gap:.5rem;flex-wrap:wrap"><a class="btn" href="#termin">Kostenloses Gespräch buchen</a><a class="btn btn--ghost" href="https://auftragspilot-crm.vercel.app/a/demo/larsomatic-demo">Demo testen</a></div>
+              <p class="sc-body" style="margin:0">Wir richten alles ein: Nummer, Kalender, Texte, Fragen und Nachfassen. Du bekommst einen fertigen Assistenten, der in deinem Namen antwortet. Ein kurzes Gespräch reicht.</p>
+              <div style="display:flex;gap:.5rem;flex-wrap:wrap"><a class="btn" href="https://cal.com/lars-timmermann-n7d0gl/auftragspilot-demo-gespraech">Kostenloses Gespräch buchen</a><a class="btn btn--ghost" href="https://auftragspilot-crm.vercel.app/a/demo/larsomatic-demo">Demo testen</a></div>
+            </div>
+            <div style="background:var(--sc-surface);border:1px solid var(--sc-line, rgba(127,127,127,.25));border-radius:16px;padding:1.5rem;display:grid;gap:.8rem;align-content:start">
+              <p class="sc-label">Nur bei Auftragspilot</p>
+              <ul style="margin:0;padding-left:1.1rem" class="sc-body"><li style="margin:.35rem 0"><b>Offizielle WhatsApp Business Platform:</b> Leads aus Anzeigen und Formularen bekommen sofort eine Vorlage, ohne Sperr-Risiko.</li><li style="margin:.35rem 0"><b>Eingebaute KI:</b> qualifiziert und bucht Termine direkt in deinen Kalender, auch ohne eigenen Agenten.</li><li style="margin:.35rem 0"><b>CRM und Kalender inklusive:</b> jedes Gespräch, jeder Termin an einem Ort.</li><li style="margin:.35rem 0"><b>Einrichtung durch uns:</b> wer keine Zeit hat, bekommt alles fertig eingerichtet.</li></ul>
+              <div style="display:flex;gap:.5rem;flex-wrap:wrap"><a class="btn btn--ghost" href="vergleich/">Zum Vergleich</a><a class="btn btn--ghost" href="sicherheit/">Sicherheit</a></div>
             </div>
           </div>
-          <div data-sc-in style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.25rem;align-items:center"><span class="sc-label">Funktioniert mit</span><a href="https://auftragspilot-crm.vercel.app/agenten/claude-code" style="border:1px solid var(--sc-line, rgba(127,127,127,.35));border-radius:999px;padding:.35rem .8rem;text-decoration:none;color:inherit;font-size:var(--sc-t-sm)">Claude Code</a><a href="https://auftragspilot-crm.vercel.app/agenten/claude" style="border:1px solid var(--sc-line, rgba(127,127,127,.35));border-radius:999px;padding:.35rem .8rem;text-decoration:none;color:inherit;font-size:var(--sc-t-sm)">Claude</a><a href="https://auftragspilot-crm.vercel.app/agenten/chatgpt" style="border:1px solid var(--sc-line, rgba(127,127,127,.35));border-radius:999px;padding:.35rem .8rem;text-decoration:none;color:inherit;font-size:var(--sc-t-sm)">ChatGPT</a><a href="https://auftragspilot-crm.vercel.app/agenten/codex" style="border:1px solid var(--sc-line, rgba(127,127,127,.35));border-radius:999px;padding:.35rem .8rem;text-decoration:none;color:inherit;font-size:var(--sc-t-sm)">Codex</a><a href="https://auftragspilot-crm.vercel.app/agenten/cursor" style="border:1px solid var(--sc-line, rgba(127,127,127,.35));border-radius:999px;padding:.35rem .8rem;text-decoration:none;color:inherit;font-size:var(--sc-t-sm)">Cursor</a><a href="https://auftragspilot-crm.vercel.app/agenten/grok" style="border:1px solid var(--sc-line, rgba(127,127,127,.35));border-radius:999px;padding:.35rem .8rem;text-decoration:none;color:inherit;font-size:var(--sc-t-sm)">Grok</a><a href="https://auftragspilot-crm.vercel.app/agenten/grokbot" style="border:1px solid var(--sc-line, rgba(127,127,127,.35));border-radius:999px;padding:.35rem .8rem;text-decoration:none;color:inherit;font-size:var(--sc-t-sm)">Grokbot</a><a href="https://auftragspilot-crm.vercel.app/agenten/muse" style="border:1px solid var(--sc-line, rgba(127,127,127,.35));border-radius:999px;padding:.35rem .8rem;text-decoration:none;color:inherit;font-size:var(--sc-t-sm)">Muse</a><a href="https://auftragspilot-crm.vercel.app/agenten/dots" style="border:1px solid var(--sc-line, rgba(127,127,127,.35));border-radius:999px;padding:.35rem .8rem;text-decoration:none;color:inherit;font-size:var(--sc-t-sm)">Dots</a><a href="https://auftragspilot-crm.vercel.app/agenten/openclaw" style="border:1px solid var(--sc-line, rgba(127,127,127,.35));border-radius:999px;padding:.35rem .8rem;text-decoration:none;color:inherit;font-size:var(--sc-t-sm)">OpenClaw</a><a href="https://auftragspilot-crm.vercel.app/agenten/hermes" style="border:1px solid var(--sc-line, rgba(127,127,127,.35));border-radius:999px;padding:.35rem .8rem;text-decoration:none;color:inherit;font-size:var(--sc-t-sm)">Hermes</a></div>
+          <div data-sc-in style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.25rem;align-items:center"><span class="sc-label">Funktioniert mit</span><a href="agenten/claude-code/" style="border:1px solid var(--sc-line, rgba(127,127,127,.35));border-radius:999px;padding:.35rem .8rem;text-decoration:none;color:inherit;font-size:var(--sc-t-sm)">Claude Code</a><a href="agenten/claude/" style="border:1px solid var(--sc-line, rgba(127,127,127,.35));border-radius:999px;padding:.35rem .8rem;text-decoration:none;color:inherit;font-size:var(--sc-t-sm)">Claude</a><a href="agenten/chatgpt/" style="border:1px solid var(--sc-line, rgba(127,127,127,.35));border-radius:999px;padding:.35rem .8rem;text-decoration:none;color:inherit;font-size:var(--sc-t-sm)">ChatGPT</a><a href="agenten/codex/" style="border:1px solid var(--sc-line, rgba(127,127,127,.35));border-radius:999px;padding:.35rem .8rem;text-decoration:none;color:inherit;font-size:var(--sc-t-sm)">Codex</a><a href="agenten/cursor/" style="border:1px solid var(--sc-line, rgba(127,127,127,.35));border-radius:999px;padding:.35rem .8rem;text-decoration:none;color:inherit;font-size:var(--sc-t-sm)">Cursor</a><a href="agenten/grok/" style="border:1px solid var(--sc-line, rgba(127,127,127,.35));border-radius:999px;padding:.35rem .8rem;text-decoration:none;color:inherit;font-size:var(--sc-t-sm)">Grok</a><a href="agenten/grokbot/" style="border:1px solid var(--sc-line, rgba(127,127,127,.35));border-radius:999px;padding:.35rem .8rem;text-decoration:none;color:inherit;font-size:var(--sc-t-sm)">Grokbot</a><a href="agenten/muse/" style="border:1px solid var(--sc-line, rgba(127,127,127,.35));border-radius:999px;padding:.35rem .8rem;text-decoration:none;color:inherit;font-size:var(--sc-t-sm)">Muse</a><a href="agenten/dots/" style="border:1px solid var(--sc-line, rgba(127,127,127,.35));border-radius:999px;padding:.35rem .8rem;text-decoration:none;color:inherit;font-size:var(--sc-t-sm)">Dots</a><a href="agenten/openclaw/" style="border:1px solid var(--sc-line, rgba(127,127,127,.35));border-radius:999px;padding:.35rem .8rem;text-decoration:none;color:inherit;font-size:var(--sc-t-sm)">OpenClaw</a><a href="agenten/hermes/" style="border:1px solid var(--sc-line, rgba(127,127,127,.35));border-radius:999px;padding:.35rem .8rem;text-decoration:none;color:inherit;font-size:var(--sc-t-sm)">Hermes</a><a href="agenten/claude-duet/" style="border:1px solid var(--sc-line, rgba(127,127,127,.35));border-radius:999px;padding:.35rem .8rem;text-decoration:none;color:inherit;font-size:var(--sc-t-sm)">Claude Duet</a></div>
+          <p class="sc-body" data-sc-in style="margin-top:1rem;font-size:var(--sc-t-sm)">Schon Kunde? Die App ist der geschützte Bereich mit deinen Leads und Einstellungen: <a href="https://auftragspilot-crm.vercel.app/a/login">Anmelden (App)</a> · <a href="https://auftragspilot-crm.vercel.app/a/start">Konto erstellen</a></p>
         </div>
       </section>
 
@@ -1915,6 +1921,7 @@
             </div>
           </div>
           <footer class="foot">
+            <span><a href="agenten/">KI-Agenten</a> &middot; <a href="anwendungsfaelle/">Anwendungsfälle</a> &middot; <a href="branchen/">Branchen</a> &middot; <a href="vergleich/">Vergleich</a> &middot; <a href="blog/">Blog</a> &middot; <a href="sicherheit/">Sicherheit</a> &middot; <a href="limits/">Limits</a> &middot; <a href="changelog/">Changelog</a> &middot; <a href="https://auftragspilot-crm.vercel.app/a/login">Anmelden (App)</a> &middot; <a href="https://auftragspilot-crm.vercel.app/a/start">Konto erstellen</a></span>
             <span>Auftragspilot. Vom Lead zum Auftrag.</span>
             <span
               >© <span id="year">2026</span> Auftragspilot. Ein Produkt von Lars
